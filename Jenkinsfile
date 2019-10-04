@@ -239,7 +239,7 @@ Boolean isOnlyAutomation(changedFiles) {
 	println "###### Automation changes, Copy from LSB #######"
     return true
 }
-
+//
 //commit1
 //commits in branch11-1
 //
