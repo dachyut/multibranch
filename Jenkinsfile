@@ -109,7 +109,7 @@ Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
 
     def buildProps = readProperties file:buildPropertiesFile
 	
-	println ">>>>>>>>>>> ${buildProps[commitKey]}"
+	println ">>>>>>>>>>> LSB commit ID:- ${buildProps[commitKey]}"
 	lsbCommitId = buildProps[commitKey]
 	
     if (!buildProps.containsKey(commitKey)) {
@@ -129,19 +129,22 @@ Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
         return false
     }
 
+	currentCommit = getCommitHash('HEAD')
+	lsbCommit = buildProps[commitKey]
 	println "*****************************"
-	println "buildProps[commitKey] = ${buildProps[commitKey]}"  //<--- this gives LSB commit id
+	println "LSB commit id:- ${lsbCommit}"  //<--- this gives LSB commit id
 	//println "getCommitHash[origin/${targetBranch}] = ${getCommitHash("origin/${targetBranch}")}"
 	//println "getCommitHash[origin/${sourceBranch}] = ${getCommitHash("origin/${sourceBranch}")}"
+	println "Current commit:- ${currentCommit}"
 	println "*****************************"
 
     //if (buildProps[commitKey] == getCommitHash("origin/${targetBranch}")) {
-	currentCommit = getCommitHash('HEAD')
-	  if (buildProps[commitKey] == currentCommit) {
+	
+	  if (lsbCommit == currentCommit) {
         println "The last successful CI build ${targetCIJob} is up to date."
     } else {
         //String[] changedFiles = getChangedFiles(buildProps[commitKey], "origin/${targetBranch}")
-		String[] changedFiles = getChangedFiles(buildProps[commitKey], currentCommit)
+		String[] changedFiles = getChangedFiles(lsbCommit, currentCommit)
         if (!isOnlyAutomation(changedFiles)) {
             println "Target branch ${targetBranch} has non-automation commits not included in the last successful CI build ${targetCIJob}."
             return false
