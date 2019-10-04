@@ -52,7 +52,7 @@ node {
 	
 		println "1>>>>>>>>>>>>>>>>>>"
 		buildStatus = getCIBuild(env.BRANCH_NAME,BuildPropertiesFile,env.CHANGE_BRANCH)
-		println "==============>${env.BRANCH_NAME} build: ${buildStatus}"
+		println "==============>${env.BRANCH_NAME} build: ${buildStatus}" //buildStatus=False - requires product build
 		println "--------${env.BRANCH_NAME} prop file:"
 		sh "cat ${BuildPropertiesFile}"
 		skipBuild = lsbCommitId
@@ -80,7 +80,7 @@ node {
 Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
     final String commitKey = 'COMMIT'
     final String artifactKey = 'DCPROTECT_MAC_INSTALLER'
-    final String targetCIJob =  '//MultiBranchPipeline/' + targetBranch
+    final String targetCIJob =  '//MultiBranchPipelien2/' + targetBranch
 
     try {
         step([$class: 'CopyArtifact',
