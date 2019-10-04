@@ -34,6 +34,7 @@ node {
 		
 		//httpRequest authentication: '669a0175-39d9-487f-92e4-6fbf1723599a', outputFile: 'output.txt', responseHandle: 'NONE', url: "${JENKINS_URL}job/MultiBranchPipeline/job/${env.BRANCH_NAME}/lastSuccessfulBuild/artifact/build.properties"
 		//
+		//
 		//String suiteFile = readFile('output.txt')
 		// split lines
 		//skipComponentsList = (((suiteFile.split('\n')
