@@ -55,16 +55,26 @@ node {
 		println "==============>${env.BRANCH_NAME} build: ${buildStatus}" //buildStatus=False - requires product build
 		println "--------${env.BRANCH_NAME} prop file:"
 		sh "cat ${BuildPropertiesFile}"
-		skipBuild = lsbCommitId
+		skipBuild = buildStatus
 		println "1>>>>>>>>> ${skipBuild}"
+		if(!skipBuild) {
+			println ">>>>>>Build requires product build" }
+		else {
+				println ">>>>>>Build does not requires product build" }
+		}
 		
 		println "2>>>>>>>>>>>>>>>>>>"
-		buildStatus = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,env.CHANGE_TARGET)
+		buildStatus = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,'HEAD')
 		println "==============>${env.CHANGE_BRANCH} build: ${buildStatus}"
 		println "--------${env.CHANGE_BRANCH} prop file:"
 		sh "cat ${BuildPropertiesFile}"
-		skipBuild = lsbCommitId
+		skipBuild = buildStatus
 		println "2>>>>>>>>> ${skipBuild}"
+		if(!skipBuild) {
+			println ">>>>>>Build requires product build" }
+		else {
+				println ">>>>>>Build does not requires product build" }
+		}
 		
 		/*println "3>>>>>>>>>>>>>>>>>>"
 		buildStatus = getCIBuild(env.CHANGE_TARGET,BuildPropertiesFile)
@@ -120,11 +130,11 @@ Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
 	println "*****************************"
 	println "buildProps[commitKey] = ${buildProps[commitKey]}"  //<--- this gives LSB commit id
 	//println "getCommitHash[origin/${targetBranch}] = ${getCommitHash("origin/${targetBranch}")}"
-	println "getCommitHash[origin/${sourceBranch}] = ${getCommitHash("origin/${sourceBranch}")}"
+	//println "getCommitHash[origin/${sourceBranch}] = ${getCommitHash("origin/${sourceBranch}")}"
 	println "*****************************"
 
     //if (buildProps[commitKey] == getCommitHash("origin/${targetBranch}")) {
-	currentCommit = getCommitHash("origin/${sourceBranch}")
+	currentCommit = getCommitHash('HEAD')
 	  if (buildProps[commitKey] == currentCommit) {
         println "The last successful CI build ${targetCIJob} is up to date."
     } else {
