@@ -2,6 +2,7 @@ final String BuildPropertiesFile = 'build.properties'
 
 final String lsbCommitId
 
+
 node {       
 	
 	stage ('Build') {		
