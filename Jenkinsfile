@@ -58,9 +58,10 @@ node {
 		skipBuild = buildStatus
 		println "1>>>>>>>>> ${skipBuild}"
 		if(!skipBuild) {
-			println ">>>>>>Build requires product build" }
+			println ">>>>>>Build requires product build"
+		}
 		else {
-				println ">>>>>>Build does not requires product build" }
+				println ">>>>>>Build does not requires product build"
 		}
 		
 		println "2>>>>>>>>>>>>>>>>>>"
@@ -71,9 +72,10 @@ node {
 		skipBuild = buildStatus
 		println "2>>>>>>>>> ${skipBuild}"
 		if(!skipBuild) {
-			println ">>>>>>Build requires product build" }
+			println ">>>>>>Build requires product build"
+		}
 		else {
-				println ">>>>>>Build does not requires product build" }
+				println ">>>>>>Build does not requires product build" 
 		}
 		
 		/*println "3>>>>>>>>>>>>>>>>>>"
