@@ -8,7 +8,7 @@ node {
 	stage ('Build') {		
 		cleanWs()
 		
-		git branch: 'branch11-1', url: 'https://github.com/dachyut/MavenProject.git'
+		git branch: 'branch-1', url: 'https://github.com/dachyut/multibranch-1'
 		
 		echo "******** I am in branch11-1********"
 		echo "BRANCH_NAME: ${env.BRANCH_NAME}"
