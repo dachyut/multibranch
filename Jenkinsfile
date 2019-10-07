@@ -8,7 +8,7 @@ node {
 	stage ('Build') {		
 		cleanWs()
 		
-		git branch: 'branch-1', url: 'https://github.com/dachyut/multibranch-1'
+		git branch: 'branch-3', url: 'https://github.com/dachyut/multibranch-1'
 		
 		echo "******** Environemental variables ********"
 		echo "BRANCH_NAME: ${env.BRANCH_NAME}"
