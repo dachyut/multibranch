@@ -24,6 +24,8 @@ node {
 		Random random = new Random()
 		ranStr = "RandomStr-" + random.nextInt(10000)
 		
+		echo "Random number: $ranStr"
+		
 		bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"
 		bat "echo COMMIT=$myCommit >> build.properties"		
 		bat "echo DCPROTECT_MAC_INSTALLER=http://artifacts.carb.lab/EndpointMidmarket/Shared/Midmarket-New-Build_Hermes/PR >> build.properties"
