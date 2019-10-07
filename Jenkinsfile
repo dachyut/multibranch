@@ -1,85 +1,88 @@
 final String BuildPropertiesFile = 'build.properties'
-
+	
 final String lsbCommitId
+
 
 node {       
 	
 	stage ('Build') {		
 		cleanWs()
 		
-		git branch: 'branch11-1', url: 'https://github.com/dachyut/MavenProject.git'
+		git branch: 'branch-1', url: 'https://github.com/dachyut/multibranch-1'
 		
-		echo "******** I am in branch11-1********"
+		echo "******** Environemental variables ********"
 		echo "BRANCH_NAME: ${env.BRANCH_NAME}"
 		echo "CHANGE_TARGET: ${env.CHANGE_TARGET}"
 		echo "CHANGE_BRANCH: ${env.CHANGE_BRANCH}"
 		echo "JOB_BASE_NAME: ${env.JOB_BASE_NAME}"		
-	
-		println "${JENKINS_URL}"
-		println "${env.BRANCH_NAME}"
+		println "${JENKINS_URL}"		
 					
 		sh "git rev-parse HEAD >./commit_id"
 		String myCommit = readFile('./commit_id').replaceAll('\\W', '')
 		println myCommit
 		
+		Random random = new Random()
+		ranStr = "RandomStr-" + random.nextInt(10000)
+		
+		echo "Random number: $ranStr"
+		
 		bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"
 		bat "echo COMMIT=$myCommit >> build.properties"		
 		bat "echo DCPROTECT_MAC_INSTALLER=http://artifacts.carb.lab/EndpointMidmarket/Shared/Midmarket-New-Build_Hermes/PR >> build.properties"
+		bat "echo RandomString=$ranStr >> build.properties"
+		bat "echo BuildNumber=${env.BUILD_NUMBER} >> build.properties"		
 		
-		//sh 'echo "BRANCH=3fde0df43603023269315c2fa816bed21d5aa360" > build.properties'
-		//sh 'echo "COMMIT=${commit}" >> build.properties'
-		//sh 'echo "DCPROTECT_MAC_INSTALLER= " >> build.properties'
 		archiveArtifacts artifacts: 'build.properties', fingerprint: true
 		
-		//httpRequest authentication: '669a0175-39d9-487f-92e4-6fbf1723599a', outputFile: 'output.txt', responseHandle: 'NONE', url: "${JENKINS_URL}job/MultiBranchPipeline/job/${env.BRANCH_NAME}/lastSuccessfulBuild/artifact/build.properties"
 		
-		//String suiteFile = readFile('output.txt')
-		// split lines
-		//skipComponentsList = (((suiteFile.split('\n')
-				// remove blank lines
-		//		.findAll { item -> !item.isEmpty() })
-				// find line contains '='
-		//		.findAll { it.contains('=') })
-				// collections of switches
-		//		.collectEntries{ [(it.split("=")[0].trim()): it.split("=")[1].trim()] })
-		//		.findAll{ it.key == 'COMMIT' }
-
-		//println skipComponentsList.get('COMMIT')
 		
-		println "****************************************************"
-		println "****************************************************"
+		println "****************************************************"		
 	
-		println "1>>>>>>>>>>>>>>>>>>"
-		buildStatus = getCIBuild(env.BRANCH_NAME,BuildPropertiesFile,env.CHANGE_BRANCH)
-		println "==============>${env.BRANCH_NAME} build: ${buildStatus}"
+		println "1>>>>>>>>>>>>>>>>>> Checking LSB in current tree - PR"
+		skipBuild = getCIBuild(env.BRANCH_NAME,BuildPropertiesFile,env.CHANGE_BRANCH)
+		println "==============>${env.BRANCH_NAME} build: ${skipBuild}" //skipBuild=False - requires product build
 		println "--------${env.BRANCH_NAME} prop file:"
-		sh "cat ${BuildPropertiesFile}"
-		skipBuild = lsbCommitId
-		println "1>>>>>>>>> ${skipBuild}"
+		sh "cat ${BuildPropertiesFile}"				
+		if(!skipBuild) {
+			println ">>>>>>Either it is first PR build or No LSB commit or no LSB artifacts or there are non-automation changes"
+			println "2>>>>>>>>>>>>>>>>>> Checking LSB in parent tree - CI"
+			skipBuild = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,'HEAD')
+			println "==============>${env.CHANGE_BRANCH} build: ${skipBuild}"
+			println "--------${env.CHANGE_BRANCH} prop file:"
+			sh "cat ${BuildPropertiesFile}"				
+			if(!skipBuild) {
+				println ">>>>>>Build requires product build"
+			}
+		}
 		
-		println "2>>>>>>>>>>>>>>>>>>"
-		buildStatus = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,env.CHANGE_TARGET)
-		println "==============>${env.CHANGE_BRANCH} build: ${buildStatus}"
-		println "--------${env.CHANGE_BRANCH} prop file:"
-		sh "cat ${BuildPropertiesFile}"
-		skipBuild = lsbCommitId
-		println "2>>>>>>>>> ${skipBuild}"
+		if (skipBuild) {
+			println ">>>>>>Build does not requires product build -Automation changes only"
+			println "Using lastSuccessfulBuild"
+			archiveArtifacts artifacts:  BuildPropertiesFile, fingerprint: true
+		}
 		
-		/*println "3>>>>>>>>>>>>>>>>>>"
-		buildStatus = getCIBuild(env.CHANGE_TARGET,BuildPropertiesFile)
-		println "==============>${env.CHANGE_TARGET} build: ${buildStatus}"
-		println "--------${env.CHANGE_TARGET} prop file:"
-		sh "cat ${BuildPropertiesFile}"
-		skipBuild = lsbCommitId
-		println "3>>>>>>>>> ${skipBuild}"*/
-		
+		/*if (!skipBuild) {
+			println "2>>>>>>>>>>>>>>>>>> Checking LSB in parent tree - CI"
+			skipBuild = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,'HEAD')
+			println "==============>${env.CHANGE_BRANCH} build: ${skipBuild}"
+			println "--------${env.CHANGE_BRANCH} prop file:"
+			sh "cat ${BuildPropertiesFile}"				
+			if(!skipBuild) {
+				println ">>>>>>Build requires product build"
+			}
+			else {
+					println ">>>>>>Build does not requires product build" 
+			}	
+		}*/
+			
+		println "****************************************************"
 	}			
 }
 
 Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
     final String commitKey = 'COMMIT'
     final String artifactKey = 'DCPROTECT_MAC_INSTALLER'
-    final String targetCIJob =  '//MultiBranchPipeline/' + targetBranch
+    final String targetCIJob =  '//MultiBranchPipelien2/' + targetBranch
 
     try {
         step([$class: 'CopyArtifact',
@@ -96,7 +99,7 @@ Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
 
     def buildProps = readProperties file:buildPropertiesFile
 	
-	println ">>>>>>>>>>> ${buildProps[commitKey]}"
+	println ">>>>>>>>>>> LSB commit ID:- ${buildProps[commitKey]}"
 	lsbCommitId = buildProps[commitKey]
 	
     if (!buildProps.containsKey(commitKey)) {
@@ -116,19 +119,22 @@ Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
         return false
     }
 
+	currentCommit = getCommitHash('HEAD')
+	lsbCommit = buildProps[commitKey]
 	println "*****************************"
-	println "buildProps[commitKey] = ${buildProps[commitKey]}"  //<--- this gives LSB commit id
+	println "LSB commit id:- ${lsbCommit}"  //<--- this gives LSB commit id
 	//println "getCommitHash[origin/${targetBranch}] = ${getCommitHash("origin/${targetBranch}")}"
-	println "getCommitHash[origin/${sourceBranch}] = ${getCommitHash("origin/${sourceBranch}")}"
+	//println "getCommitHash[origin/${sourceBranch}] = ${getCommitHash("origin/${sourceBranch}")}"
+	println "Current commit:- ${currentCommit}"
 	println "*****************************"
 
     //if (buildProps[commitKey] == getCommitHash("origin/${targetBranch}")) {
-	currentCommit = getCommitHash("origin/${sourceBranch}")
-	  if (buildProps[commitKey] == currentCommit) {
+	
+	  if (lsbCommit == currentCommit) {
         println "The last successful CI build ${targetCIJob} is up to date."
     } else {
         //String[] changedFiles = getChangedFiles(buildProps[commitKey], "origin/${targetBranch}")
-		String[] changedFiles = getChangedFiles(buildProps[commitKey], currentCommit)
+		String[] changedFiles = getChangedFiles(lsbCommit, currentCommit)
         if (!isOnlyAutomation(changedFiles)) {
             println "Target branch ${targetBranch} has non-automation commits not included in the last successful CI build ${targetCIJob}."
             return false
@@ -222,7 +228,7 @@ Boolean isOnlyAutomation(changedFiles) {
 	println "###### Automation changes, Copy from LSB #######"
     return true
 }
-
+//
 //commit1
 //commits in branch11-1
 //
