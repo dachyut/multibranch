@@ -1,5 +1,5 @@
 final String BuildPropertiesFile = 'build.properties'
-
+	
 final String lsbCommitId
 
 
@@ -10,54 +10,37 @@ node {
 		
 		git branch: 'branch-1', url: 'https://github.com/dachyut/multibranch-1'
 		
-		echo "******** I am in branch11-1********"
+		echo "******** Environemental variables ********"
 		echo "BRANCH_NAME: ${env.BRANCH_NAME}"
 		echo "CHANGE_TARGET: ${env.CHANGE_TARGET}"
 		echo "CHANGE_BRANCH: ${env.CHANGE_BRANCH}"
 		echo "JOB_BASE_NAME: ${env.JOB_BASE_NAME}"		
-	
-		println "${JENKINS_URL}"
-		println "${env.BRANCH_NAME}"
+		println "${JENKINS_URL}"		
 					
 		sh "git rev-parse HEAD >./commit_id"
 		String myCommit = readFile('./commit_id').replaceAll('\\W', '')
 		println myCommit
 		
+		Random random = new Random()
+		ranStr = "RandomStr - " + random.nextInt(10000)
+		
 		bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"
 		bat "echo COMMIT=$myCommit >> build.properties"		
 		bat "echo DCPROTECT_MAC_INSTALLER=http://artifacts.carb.lab/EndpointMidmarket/Shared/Midmarket-New-Build_Hermes/PR >> build.properties"
+		bat "echo RandomString=$ranStr >> build.properties"
+		bat "echo BuildNumber=${env.BUILD_NUMBER} >> build.properties"		
 		
-		//sh 'echo "BRANCH=3fde0df43603023269315c2fa816bed21d5aa360" > build.properties'
-		//sh 'echo "COMMIT=${commit}" >> build.properties'
-		//sh 'echo "DCPROTECT_MAC_INSTALLER= " >> build.properties'
 		archiveArtifacts artifacts: 'build.properties', fingerprint: true
 		
-		//httpRequest authentication: '669a0175-39d9-487f-92e4-6fbf1723599a', outputFile: 'output.txt', responseHandle: 'NONE', url: "${JENKINS_URL}job/MultiBranchPipeline/job/${env.BRANCH_NAME}/lastSuccessfulBuild/artifact/build.properties"
-		//
-		//
-		//String suiteFile = readFile('output.txt')
-		// split lines
-		//skipComponentsList = (((suiteFile.split('\n')
-				// remove blank lines
-		//		.findAll { item -> !item.isEmpty() })
-				// find line contains '='
-		//		.findAll { it.contains('=') })
-				// collections of switches
-		//		.collectEntries{ [(it.split("=")[0].trim()): it.split("=")[1].trim()] })
-		//		.findAll{ it.key == 'COMMIT' }
-
-		//println skipComponentsList.get('COMMIT')
 		
-		println "****************************************************"
-		println "****************************************************"
+		
+		println "****************************************************"		
 	
-		println "1>>>>>>>>>>>>>>>>>>"
-		buildStatus = getCIBuild(env.BRANCH_NAME,BuildPropertiesFile,env.CHANGE_BRANCH)
-		println "==============>${env.BRANCH_NAME} build: ${buildStatus}" //buildStatus=False - requires product build
+		println "1>>>>>>>>>>>>>>>>>> Checking LSB in current tree - PR"
+		skipBuild = getCIBuild(env.BRANCH_NAME,BuildPropertiesFile,env.CHANGE_BRANCH)
+		println "==============>${env.BRANCH_NAME} build: ${skipBuild}" //skipBuild=False - requires product build
 		println "--------${env.BRANCH_NAME} prop file:"
-		sh "cat ${BuildPropertiesFile}"
-		skipBuild = buildStatus
-		println "1>>>>>>>>> ${skipBuild}"
+		sh "cat ${BuildPropertiesFile}"				
 		if(!skipBuild) {
 			println ">>>>>>Build requires product build"
 		}
@@ -65,28 +48,19 @@ node {
 				println ">>>>>>Build does not requires product build"
 		}
 		
-		println "2>>>>>>>>>>>>>>>>>>"
-		buildStatus = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,'HEAD')
-		println "==============>${env.CHANGE_BRANCH} build: ${buildStatus}"
+		println "2>>>>>>>>>>>>>>>>>> Checking LSB in parent tree - CI"
+		skipBuild = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,'HEAD')
+		println "==============>${env.CHANGE_BRANCH} build: ${skipBuild}"
 		println "--------${env.CHANGE_BRANCH} prop file:"
-		sh "cat ${BuildPropertiesFile}"
-		skipBuild = buildStatus
-		println "2>>>>>>>>> ${skipBuild}"
+		sh "cat ${BuildPropertiesFile}"				
 		if(!skipBuild) {
 			println ">>>>>>Build requires product build"
 		}
 		else {
 				println ">>>>>>Build does not requires product build" 
-		}
-		
-		/*println "3>>>>>>>>>>>>>>>>>>"
-		buildStatus = getCIBuild(env.CHANGE_TARGET,BuildPropertiesFile)
-		println "==============>${env.CHANGE_TARGET} build: ${buildStatus}"
-		println "--------${env.CHANGE_TARGET} prop file:"
-		sh "cat ${BuildPropertiesFile}"
-		skipBuild = lsbCommitId
-		println "3>>>>>>>>> ${skipBuild}"*/
-		
+		}	
+			
+		println "****************************************************"
 	}			
 }
 
