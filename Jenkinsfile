@@ -53,12 +53,12 @@ node {
 			if(!skipBuild) {
 				println ">>>>>>Build requires product build"
 			}
-			else {
-					println ">>>>>>Build does not requires product build" 
-			}
 		}
-		else {
-				println ">>>>>>Build does not requires product build -Automation changes only"
+		
+		if (skipBuild) {
+			println ">>>>>>Build does not requires product build -Automation changes only"
+			println "Using lastSuccessfulBuild of ${targetBranch}"
+			archiveArtifacts artifacts:  BuildPropertiesFile, fingerprint: true
 		}
 		
 		/*if (!skipBuild) {
