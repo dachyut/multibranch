@@ -46,7 +46,7 @@ node {
 		if(!skipBuild) {
 			println ">>>>>>Either it is first PR build or No LSB commit or no LSB artifacts or there are non-automation changes"
 			println "2>>>>>>>>>>>>>>>>>> Checking LSB in parent tree - CI"
-			skipBuild = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,'HEAD')
+			skipBuild = getCIBuild(env.	,BuildPropertiesFile,'HEAD')
 			println "==============>${env.CHANGE_BRANCH} build: ${skipBuild}"
 			println "--------${env.CHANGE_BRANCH} prop file:"
 			sh "cat ${BuildPropertiesFile}"				
@@ -70,7 +70,7 @@ node {
 			if(!skipBuild) {
 				println ">>>>>>Build requires product build"
 			}
-			else {
+			else { 
 					println ">>>>>>Build does not requires product build" 
 			}	
 		}*/
