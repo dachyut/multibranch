@@ -22,7 +22,7 @@ node {
 		println myCommit
 		
 		Random random = new Random()
-		ranStr = "RandomStr - " + random.nextInt(10000)
+		ranStr = "RandomStr-" + random.nextInt(10000)
 		
 		bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"
 		bat "echo COMMIT=$myCommit >> build.properties"		
@@ -48,17 +48,19 @@ node {
 				println ">>>>>>Build does not requires product build"
 		}
 		
-		println "2>>>>>>>>>>>>>>>>>> Checking LSB in parent tree - CI"
-		skipBuild = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,'HEAD')
-		println "==============>${env.CHANGE_BRANCH} build: ${skipBuild}"
-		println "--------${env.CHANGE_BRANCH} prop file:"
-		sh "cat ${BuildPropertiesFile}"				
-		if(!skipBuild) {
-			println ">>>>>>Build requires product build"
+		if (!skipBuild) {
+			println "2>>>>>>>>>>>>>>>>>> Checking LSB in parent tree - CI"
+			skipBuild = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,'HEAD')
+			println "==============>${env.CHANGE_BRANCH} build: ${skipBuild}"
+			println "--------${env.CHANGE_BRANCH} prop file:"
+			sh "cat ${BuildPropertiesFile}"				
+			if(!skipBuild) {
+				println ">>>>>>Build requires product build"
+			}
+			else {
+					println ">>>>>>Build does not requires product build" 
+			}	
 		}
-		else {
-				println ">>>>>>Build does not requires product build" 
-		}	
 			
 		println "****************************************************"
 	}			
