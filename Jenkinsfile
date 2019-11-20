@@ -7,7 +7,9 @@ properties([
             booleanParam (name: 'RUN_BUILD', defaultValue: true,
                 description: 'If true, run Build stage.'),
             booleanParam (name: 'DEPLOY_VAULT_AND_RUN_REGRESSION_TEST', defaultValue: true,
-                description: 'If true, run Deploy Valut and Smoke, Regression tests.')
+                description: 'If true, run Deploy Valut and Smoke, Regression tests.'),
+			string (name: 'Build_NO', defaultValue: copyArtifacts(projectName: 'sourceproject'),
+			description: 'Last Successful Build.')
     ]),
     disableConcurrentBuilds()
 ])
