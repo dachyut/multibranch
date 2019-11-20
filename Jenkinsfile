@@ -40,7 +40,7 @@ node {
 		stage ('Test') {
 			
 			getCIBuild("branch-5",BuildPropertiesFile)
-			error ("Kill this stage")
+			//error ("Kill this stage")
 			println "Test stage completed"
 		}
 	}
