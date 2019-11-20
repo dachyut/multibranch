@@ -6,76 +6,9 @@ final String lsbCommitId
 node {       
 	
 	stage ('Build') {		
-		cleanWs()
-		
+		cleanWs()		
 		git branch: 'branch-4', url: 'https://github.com/dachyut/multibranch-1'
-		
-		echo "******** Environemental variables ********"
-		echo "BRANCH_NAME: ${env.BRANCH_NAME}"
-		echo "CHANGE_TARGET: ${env.CHANGE_TARGET}"
-		echo "CHANGE_BRANCH: ${env.CHANGE_BRANCH}"
-		echo "JOB_BASE_NAME: ${env.JOB_BASE_NAME}"		
-		println "${JENKINS_URL}"		
-					
-		sh "git rev-parse HEAD >./commit_id"
-		String myCommit = readFile('./commit_id').replaceAll('\\W', '')
-		println myCommit
-		
-		Random random = new Random()
-		ranStr = "RandomStr-" + random.nextInt(10000)
-		
-		echo "Random number: $ranStr"
-		
-		bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"
-		bat "echo COMMIT=$myCommit >> build.properties"		
-		bat "echo DCPROTECT_MAC_INSTALLER=http://artifacts.carb.lab/EndpointMidmarket/Shared/Midmarket-New-Build_Hermes/PR >> build.properties"
-		bat "echo RandomString=$ranStr >> build.properties"
-		bat "echo BuildNumber=${env.BUILD_NUMBER} >> build.properties"		
-		
-		archiveArtifacts artifacts: 'build.properties', fingerprint: true
-		
-		
-		
-		println "****************************************************"		
-	
-		println "1>>>>>>>>>>>>>>>>>> Checking LSB in current tree - PR"
-		skipBuild = getCIBuild(env.BRANCH_NAME,BuildPropertiesFile,env.CHANGE_BRANCH)
-		println "==============>${env.BRANCH_NAME} build: ${skipBuild}" //skipBuild=False - requires product build
-		println "--------${env.BRANCH_NAME} prop file:"
-		sh "cat ${BuildPropertiesFile}"				
-		if(!skipBuild) {
-			println ">>>>>>Either it is first PR build or No LSB commit or no LSB artifacts or there are non-automation changes"
-			println "2>>>>>>>>>>>>>>>>>> Checking LSB in parent tree - CI"
-			skipBuild = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,'HEAD')
-			println "==============>${env.CHANGE_BRANCH} build: ${skipBuild}"
-			println "--------${env.CHANGE_BRANCH} prop file:"
-			sh "cat ${BuildPropertiesFile}"				
-			if(!skipBuild) {
-				println ">>>>>>Build requires product build"
-			}
-		}
-		
-		if (skipBuild) {
-			println ">>>>>>Build does not requires product build -Automation changes only"
-			println "Using lastSuccessfulBuild"
-			archiveArtifacts artifacts:  BuildPropertiesFile, fingerprint: true
-		}
-		
-		/*if (!skipBuild) {
-			println "2>>>>>>>>>>>>>>>>>> Checking LSB in parent tree - CI"
-			skipBuild = getCIBuild(env.CHANGE_BRANCH,BuildPropertiesFile,'HEAD')
-			println "==============>${env.CHANGE_BRANCH} build: ${skipBuild}"
-			println "--------${env.CHANGE_BRANCH} prop file:"
-			sh "cat ${BuildPropertiesFile}"				
-			if(!skipBuild) {  
-				println ">>>>>>Build requires product build"
-			}
-			else {
-					println ">>>>>>Build does not requires product build" 
-			}	
-		}*/
-			
-		println "****************************************************"
+		println "Build stage completed"		
 	}	
 		
 	stage ('Test') {
