@@ -12,19 +12,20 @@ node {
 	}	
 		
 	stage ('Test') {
+		
+		getCIBuild("branch-5")
 		error ("Kill this stage")
 		println "Test stage completed"
 	}
 }
 
-Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
+Boolean getCIBuild(targetBranch) {
     final String commitKey = 'COMMIT'
     final String artifactKey = 'DCPROTECT_MAC_INSTALLER'
     final String targetCIJob =  '//MultiBranchPipelien2/' + targetBranch
 
     try {
         step([$class: 'CopyArtifact',
-            filter: "${buildPropertiesFile}",
             fingerprintArtifacts: true,
             flatten: true,
             selector: lastSuccessful(),
@@ -33,55 +34,7 @@ Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
         println "Could not find last successful build properties for job:  ${targetCIJob}"
         println e
         return false
-    }
-
-    def buildProps = readProperties file:buildPropertiesFile
-	
-	println ">>>>>>>>>>> LSB commit ID:- ${buildProps[commitKey]}"
-	lsbCommitId = buildProps[commitKey]
-	
-    if (!buildProps.containsKey(commitKey)) {
-        println "Could not find what commit was used in the last successful CI build of target ${targetCIJob}."
-        return false
-    }
-
-    // Verify existence of the artifacts download location
-    if (!buildProps.containsKey(artifactKey)) {
-        println "Could not find the artifacts location for the last successful CI build of target ${targetCIJob}."
-        return false
-    }
-    String artifactsCmd = 'curl --head --fail ' + buildProps[artifactKey]
-    def myStatus = sh(returnStatus: true, script: artifactsCmd)
-    if (myStatus != 0) {
-        println "Artifacts location does not exist or is unreachable for the last successful CI build of target ${targetCIJob}: ${buildProps[artifactKey]}"
-        return false
-    }
-
-	currentCommit = getCommitHash('HEAD')
-	lsbCommit = buildProps[commitKey]
-	println "*****************************"
-	println "LSB commit id:- ${lsbCommit}"  //<--- this gives LSB commit id
-	//println "getCommitHash[origin/${targetBranch}] = ${getCommitHash("origin/${targetBranch}")}"
-	//println "getCommitHash[origin/${sourceBranch}] = ${getCommitHash("origin/${sourceBranch}")}"
-	println "Current commit:- ${currentCommit}"
-	println "*****************************"
-
-    //if (buildProps[commitKey] == getCommitHash("origin/${targetBranch}")) {
-	
-	  if (lsbCommit == currentCommit) {
-        println "The last successful CI build ${targetCIJob} is up to date."
-    } else {
-        //String[] changedFiles = getChangedFiles(buildProps[commitKey], "origin/${targetBranch}")
-		String[] changedFiles = getChangedFiles(lsbCommit, currentCommit)
-        if (!isOnlyAutomation(changedFiles)) {
-            println "Target branch ${targetBranch} has non-automation commits not included in the last successful CI build ${targetCIJob}."
-            return false
-        }
-    }
-	
-	println "**********"
-    //sh "mv ${buildPropertiesFile} ${env.WORKSPACE}"
-	println "**********"
+    }    
     return true
 }
 
