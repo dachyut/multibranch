@@ -27,6 +27,7 @@ Boolean getCIBuild(targetBranch) {
     try {
         step([$class: 'CopyArtifact',
             fingerprintArtifacts: true,
+			filter: "pom.xml",
             flatten: true,
             selector: lastSuccessful(),
             projectName: targetCIJob])
