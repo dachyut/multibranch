@@ -76,7 +76,11 @@ node {
 		}*/
 			
 		println "****************************************************"
-	}			
+	}	
+		
+	stage ('Test') {
+		println "Test stage completed"
+	}
 }
 
 Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
