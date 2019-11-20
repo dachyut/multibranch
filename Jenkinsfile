@@ -7,8 +7,6 @@ final String lsbCommitId
 properties([
   parameters([
     [$class: 'BuildSelectorParameter', defaultSelector: lastSuccessful(), description: 'Last Successful build', name: 'LAST_SUCCESSFUL_BUILD'],
-	string (name: 'BUILD_LABEL', defaultValue: 'CEB-NewBuild',
-                description: "Builds will run on this Jenkins label."),
 	booleanParam (name: 'RUN_BUILD', defaultValue: true,
                 description: "Run build."),
 	booleanParam (name: 'DEPLOY_VAULT_AND_RUN_REGRESSION_TEST', defaultValue: true,
@@ -25,6 +23,7 @@ node {
 			
 			println "***********************"
 			println params.LAST_SUCCESSFUL_BUILD
+			copyArtifacts fingerprintArtifacts: false, flatten: true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
 			println "***********************"
 			
 			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"		
