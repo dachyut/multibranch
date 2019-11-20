@@ -22,8 +22,10 @@ node {
 			git branch: 'branch-4', url: 'https://github.com/dachyut/multibranch-1'
 			
 			println "***********************"
+			
+			copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
+			
 			println params.LAST_SUCCESSFUL_BUILD
-			copyArtifacts fingerprintArtifacts: false, flatten: true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
 			println "***********************"
 			
 			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"		
