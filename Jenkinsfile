@@ -4,17 +4,10 @@ final String lsbCommitId
 
 //def String buildno = copyArtifacts(projectName: 'sourceproject')
 
-properties([ 
-	parameters([
-		string (name: 'BUILD_TYPE', defaultValue: [$class: 'CopyArtifact',
-            filter: "${BuildPropertiesFile}",
-            fingerprintArtifacts: true,
-            flatten: true,
-            selector: lastSuccessful(),
-            projectName: env.BRANCH_NAME
-			],             
-			description: "Specify build")
-	])
+properties([
+  parameters([
+    [$class: 'BuildSelectorParameter', defaultSelector: lastSuccessful(), description: 'Upstream project', name: 'UPSTREAM'],
+  ])
 ])
 
 node {       
