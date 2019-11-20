@@ -9,11 +9,7 @@ properties([
             booleanParam (name: 'DEPLOY_VAULT_AND_RUN_REGRESSION_TEST', defaultValue: true,
                 description: 'If true, run Deploy Valut and Smoke, Regression tests.')
     ]),
-    disableConcurrentBuilds(),  // Dont let more than one instance of this pipeline run at a time so we don't freeze out everyone else
-    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: buildsToKeep)),
-    pipelineTriggers([cron(cronString)]),
-    [$class: 'WebhookJobProperty', webhooks: [generateCEBWebhook (branchName),
-                                              generateBB8Webhook (branchName)] ]
+    disableConcurrentBuilds()
 ])
 
 
