@@ -2,23 +2,42 @@ final String BuildPropertiesFile = 'build.properties'
 	
 final String lsbCommitId
 
+properties([
+    parameters([
+            booleanParam (name: 'RUN_BUILD', defaultValue: true,
+                description: 'If true, run Build stage.'),
+            booleanParam (name: 'DEPLOY_VAULT_AND_RUN_REGRESSION_TEST', defaultValue: true,
+                description: 'If true, run Deploy Valut and Smoke, Regression tests.')
+    ]),
+    disableConcurrentBuilds(),  // Dont let more than one instance of this pipeline run at a time so we don't freeze out everyone else
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: buildsToKeep)),
+    pipelineTriggers([cron(cronString)]),
+    [$class: 'WebhookJobProperty', webhooks: [generateCEBWebhook (branchName),
+                                              generateBB8Webhook (branchName)] ]
+])
+
+
 
 node {       
 	
-	stage ('Build') {		
-		cleanWs()		
-		git branch: 'branch-4', url: 'https://github.com/dachyut/multibranch-1'
+	if(params.RUN_BUILD) {
+		stage ('Build') {		
+			cleanWs()		
+			git branch: 'branch-4', url: 'https://github.com/dachyut/multibranch-1'
+			
+			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"		
+			archiveArtifacts artifacts: 'build.properties', fingerprint: true
+			println "Build stage completed"		
+		}	
+	}
 		
-		bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"		
-		archiveArtifacts artifacts: 'build.properties', fingerprint: true
-		println "Build stage completed"		
-	}	
-		
-	stage ('Test') {
-		
-		getCIBuild("branch-5")
-		//error ("Kill this stage")
-		println "Test stage completed"
+	if(params.DEPLOY_VAULT_AND_RUN_REGRESSION_TEST) {   	
+		stage ('Test') {
+			
+			getCIBuild("branch-5")
+			error ("Kill this stage")
+			println "Test stage completed"
+		}
 	}
 }
 
