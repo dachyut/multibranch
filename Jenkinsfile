@@ -30,14 +30,14 @@ node {
 	if(params.DEPLOY_VAULT_AND_RUN_REGRESSION_TEST) {   	
 		stage ('Test') {
 			
-			getCIBuild("branch-5")
+			getCIBuild("branch-5",BuildPropertiesFile)
 			//error ("Kill this stage")
 			println "Test stage completed"
 		}
 	}
 }
 
-Boolean getCIBuild(targetBranch) {
+Boolean getCIBuild(targetBranch,BuildPropertiesFile) {
     final String commitKey = 'COMMIT'
     final String artifactKey = 'DCPROTECT_MAC_INSTALLER'
     final String targetCIJob =  '//MultiBranchPipelien2/' + targetBranch
