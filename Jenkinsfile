@@ -21,6 +21,9 @@ node {
 			cleanWs()		
 			git branch: 'branch-4', url: 'https://github.com/dachyut/multibranch-1'
 			
+			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"		
+			archiveArtifacts artifacts: 'build.properties', fingerprint: true
+			
 			println "***********************"
 			
 			copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
@@ -28,8 +31,7 @@ node {
 			println params.LAST_SUCCESSFUL_BUILD
 			println "***********************"
 			
-			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"		
-			archiveArtifacts artifacts: 'build.properties', fingerprint: true
+			
 			println "Build stage completed"		
 		}	
 	}
