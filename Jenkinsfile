@@ -6,7 +6,7 @@ final String lsbCommitId
 
 properties([
   parameters([
-    [$class: 'BuildSelectorParameter', defaultSelector: lastSuccessful(), description: 'Upstream project', name: 'UPSTREAM'],
+    [$class: 'BuildSelectorParameter', defaultSelector: lastSuccessful(), description: 'Last Successful build', name: 'LAST_SUCCESSFUL_BUILD'],
 	string (name: 'BUILD_LABEL', defaultValue: 'CEB-NewBuild',
                 description: "Builds will run on this Jenkins label."),
 	booleanParam (name: 'RUN_BUILD', defaultValue: true,
@@ -24,8 +24,7 @@ node {
 			git branch: 'branch-4', url: 'https://github.com/dachyut/multibranch-1'
 			
 			println "***********************"
-			println params
-			println buildParameter('UPSTREAM')
+			println params.LAST_SUCCESSFUL_BUILD
 			println "***********************"
 			
 			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"		
