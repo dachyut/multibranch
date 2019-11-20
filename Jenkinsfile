@@ -8,6 +8,9 @@ node {
 	stage ('Build') {		
 		cleanWs()		
 		git branch: 'branch-4', url: 'https://github.com/dachyut/multibranch-1'
+		
+		bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"		
+		archiveArtifacts artifacts: 'build.properties', fingerprint: true
 		println "Build stage completed"		
 	}	
 		
@@ -26,6 +29,7 @@ Boolean getCIBuild(targetBranch) {
 
     try {
         step([$class: 'CopyArtifact',
+			filter: "${buildPropertiesFile}",
             fingerprintArtifacts: true,
 			filter: "pom.xml",
             flatten: true,
