@@ -12,6 +12,7 @@ node {
 	}	
 		
 	stage ('Test') {
+		error ("Kill this stage")
 		println "Test stage completed"
 	}
 }
