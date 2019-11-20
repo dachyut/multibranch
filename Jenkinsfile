@@ -35,6 +35,11 @@ node {
 			println "Build stage completed"		
 		}	
 	}
+	else {
+		copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: true, projectName: 'branch-5', selector: buildParameter(params.LAST_SUCCESSFUL_BUILD) 
+			
+			println params.LAST_SUCCESSFUL_BUILD
+	}
 		
 	if(params.DEPLOY_VAULT_AND_RUN_REGRESSION_TEST) {   	
 		stage ('Test') {
