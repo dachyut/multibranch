@@ -2,7 +2,7 @@ final String BuildPropertiesFile = 'build.properties'
 	
 final String lsbCommitId
 
-def String buildno = copyArtifacts(projectName: 'sourceproject')
+//def String buildno = copyArtifacts(projectName: 'sourceproject')
 
 properties([[$class: 'CopyArtifactPermissionProperty', projectNames: '*']])
 
