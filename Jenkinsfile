@@ -2,6 +2,31 @@ final String BuildPropertiesFile = 'build.properties'
 	
 final String lsbCommitId
 
+def cronString = ''  // default to no build schedule, since this is a resource hog
+switch (branchName) {
+    case 'master':
+        cronString = '*0/05 * * * *'  
+        break
+    case 'branch-2':
+        cronString = '*0/10 * * * *'  
+        break
+    default:
+        break
+}
+
+// job properties including parameters and triggers
+properties([
+    parameters([
+            string (name: 'TFSBUILDTYPE', defaultValue: 'NightlyLite',
+                choices: 'NightlyLite\nNightlyFull',
+                description: "Another build type parameter, where 'NightlyLite' goes with BUILD_TYPE FAST and 'NightlyFull' goes with BUILD_TYPE NIGHTLY.")
+    ]),
+    disableConcurrentBuilds(),  // Dont let more than one instance of this pipeline run at a time so we don't freeze out everyone else
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: buildsToKeep)),
+    pipelineTriggers([cron(cronString)]),
+    [$class: 'WebhookJobProperty', webhooks: [generateCEBWebhook (branchName),
+                                              generateBB8Webhook (branchName)] ]
+])
 
 node {       
 	
