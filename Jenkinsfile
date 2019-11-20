@@ -31,7 +31,7 @@ node {
 		stage ('Test') {
 			
 			getCIBuild("branch-5")
-			//error ("Kill this stage")
+			error ("Kill this stage")
 			println "Test stage completed"
 		}
 	}
@@ -46,7 +46,6 @@ Boolean getCIBuild(targetBranch) {
         step([$class: 'CopyArtifact',
 			filter: "${buildPropertiesFile}",
             fingerprintArtifacts: true,
-			filter: "pom.xml",
             flatten: true,
             selector: lastSuccessful(),
             projectName: targetCIJob])
