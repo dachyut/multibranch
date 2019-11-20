@@ -4,17 +4,7 @@ final String lsbCommitId
 
 def String buildno = copyArtifacts(projectName: 'sourceproject')
 
-properties([
-    parameters([
-            booleanParam (name: 'RUN_BUILD', defaultValue: true,
-                description: 'If true, run Build stage.'),
-            booleanParam (name: 'DEPLOY_VAULT_AND_RUN_REGRESSION_TEST', defaultValue: true,
-                description: 'If true, run Deploy Valut and Smoke, Regression tests.'),
-			string (name: 'Build_NO', defaultValue: buildno,
-			description: 'Last Successful Build.')
-    ]),
-    disableConcurrentBuilds()
-])
+properties([[$class: 'CopyArtifactPermissionProperty', projectNames: '*']])
 
 
 
