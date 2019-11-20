@@ -26,7 +26,7 @@ node {
 			
 			println "***********************"
 			
-			copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
+			//copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: //true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
 			
 			println params.LAST_SUCCESSFUL_BUILD
 			println "***********************"
