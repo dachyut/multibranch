@@ -7,6 +7,8 @@ final String lsbCommitId
 properties([
   parameters([
     [$class: 'BuildSelectorParameter', defaultSelector: lastSuccessful(), description: 'Upstream project', name: 'UPSTREAM'],
+	string (name: 'BUILD_LABEL', defaultValue: 'CEB-NewBuild',
+                description: "Builds will run on this Jenkins label.")
   ])
 ])
 
@@ -16,6 +18,11 @@ node {
 		stage ('Build') {		
 			cleanWs()		
 			git branch: 'branch-4', url: 'https://github.com/dachyut/multibranch-1'
+			
+			println "***********************"
+			println params
+			println buildParameter('UPSTREAM')
+			println "***********************"
 			
 			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"		
 			archiveArtifacts artifacts: 'build.properties', fingerprint: true
