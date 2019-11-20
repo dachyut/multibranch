@@ -8,7 +8,11 @@ properties([
   parameters([
     [$class: 'BuildSelectorParameter', defaultSelector: lastSuccessful(), description: 'Upstream project', name: 'UPSTREAM'],
 	string (name: 'BUILD_LABEL', defaultValue: 'CEB-NewBuild',
-                description: "Builds will run on this Jenkins label.")
+                description: "Builds will run on this Jenkins label."),
+	booleanParam (name: 'RUN_BUILD', defaultValue: true,
+                description: "Run build."),
+	booleanParam (name: 'DEPLOY_VAULT_AND_RUN_REGRESSION_TEST', defaultValue: true,
+                description: "Run test.")
   ])
 ])
 
