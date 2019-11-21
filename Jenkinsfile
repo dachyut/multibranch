@@ -43,6 +43,7 @@ node {
 		
 		//println params.LAST_SUCCESSFUL_BUILD
 		println "***********************"
+		archiveArtifacts artifacts: 'build.properties', fingerprint: true	
 	}
 		
 	if(params.DEPLOY_VAULT_AND_RUN_REGRESSION_TEST) {   	
