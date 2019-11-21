@@ -23,7 +23,12 @@ node {
 			cleanWs()		
 			git branch: 'branch-5', url: 'https://github.com/dachyut/multibranch-1'
 			
-			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"		
+			Random random = new Random()
+			ranStr = "RandomStr-" + random.nextInt(10000)
+			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"	
+			bat "echo RandomString=$ranStr >> build.properties"
+			bat "echo BuildNumber=${env.BUILD_NUMBER} >> build.properties"
+			
 			archiveArtifacts artifacts: 'build.properties', fingerprint: true
 			
 			println "***********************"
@@ -48,7 +53,7 @@ node {
 	if(params.DEPLOY_VAULT_AND_RUN_REGRESSION_TEST) {   	
 		stage ('Test') {
 			
-			getCIBuild("branch-5",BuildPropertiesFile)
+			//getCIBuild("branch-5",BuildPropertiesFile)
 			//error ("Kill this stage")
 			println "Test stage completed"
 		}
