@@ -28,7 +28,7 @@ node {
 			
 			println "***********************"
 			
-			getCIBuildNew('branch-5',BuildPropertiesFile,39)
+			getCIBuildNew('branch-5',BuildPropertiesFile,'39')
 			
 			//copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: //true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
 			
