@@ -83,7 +83,7 @@ Boolean getCIBuildNew(targetBranch,BuildPropertiesFile,buildToUse) {
 		selector1 = "lastSuccessful()"
 	}
 	else {
-		selector1 = "specific(${buildToUse})"		
+		selector1 = "specific('${buildToUse}')"		
 	}
 	
     try {
@@ -91,7 +91,7 @@ Boolean getCIBuildNew(targetBranch,BuildPropertiesFile,buildToUse) {
 			filter: "${BuildPropertiesFile}",
             fingerprintArtifacts: true,
             flatten: true,
-            selector: specific('39'),
+            selector: "${selector1}",
             projectName: targetCIJob])
     } catch (Exception e) {
         println "Could not find last successful build properties for job:  ${targetCIJob}"
