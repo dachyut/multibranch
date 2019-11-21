@@ -83,7 +83,7 @@ Boolean getCIBuildNew(targetBranch,BuildPropertiesFile,buildToUse) {
 		selector = "lastSuccessful()"
 	}
 	else {
-		selector = "specific(buildToUse)"		
+		selector = "specific(${buildToUse})"		
 	}
 	
     try {
