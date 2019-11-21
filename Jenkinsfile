@@ -28,7 +28,7 @@ node {
 			
 			println "***********************"
 			
-			getCIBuildNew('branch-5',BuildPropertiesFile,'39')
+			getCIBuildNew('branch-5',BuildPropertiesFile,params.BUILD_NUMBER_TO_USE)
 			
 			//copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: //true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
 			
@@ -81,12 +81,22 @@ Boolean getCIBuildNew(targetBranch,BuildPropertiesFile,buildToUse) {
     final String targetCIJob =  '//MultiBranchPipelien2/' + targetBranch	
 	
     try {
-        step([$class: 'CopyArtifact',
+		if (buildToUse == "Last Successful build") {
+			step([$class: 'CopyArtifact',
+			filter: "${BuildPropertiesFile}",
+            fingerprintArtifacts: true,
+            flatten: true,
+            selector: lastSuccessful(),
+            projectName: targetCIJob])
+		}
+        else {
+			step([$class: 'CopyArtifact',
 			filter: "${BuildPropertiesFile}",
             fingerprintArtifacts: true,
             flatten: true,
             selector: specific(buildToUse),
             projectName: targetCIJob])
+		}
     } catch (Exception e) {
         println "Could not find last successful build properties for job:  ${targetCIJob}"
         println e
