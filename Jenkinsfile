@@ -11,6 +11,8 @@ properties([
                 description: "Run build."),
 	booleanParam (name: 'DEPLOY_VAULT_AND_RUN_REGRESSION_TEST', defaultValue: true,
                 description: "Run test.")
+	string (name: 'BUILD_NUMBER_TO_USE', defaultValue: 'Last Successful build',
+                description: 'Build number to use if Build stage is skipped. Default uses Last successful build')   
   ])
 ])
 
@@ -25,6 +27,7 @@ node {
 			archiveArtifacts artifacts: 'build.properties', fingerprint: true
 			
 			println "***********************"
+			getCIBuildNew('39')
 			
 			//copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: //true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
 			
@@ -62,6 +65,33 @@ Boolean getCIBuild(targetBranch,BuildPropertiesFile) {
             fingerprintArtifacts: true,
             flatten: true,
             selector: lastSuccessful(),
+            projectName: targetCIJob])
+    } catch (Exception e) {
+        println "Could not find last successful build properties for job:  ${targetCIJob}"
+        println e
+        return false
+    }    
+    return true
+}
+
+Boolean getCIBuildNew(targetBranch,BuildPropertiesFile,buildToUse) {
+    final String commitKey = 'COMMIT'
+    final String artifactKey = 'DCPROTECT_MAC_INSTALLER'
+    final String targetCIJob =  '//MultiBranchPipelien2/' + targetBranch
+	def selector
+	if (buildToUse == "lastSuccessful") {
+		selector = "lastSuccessful()"
+	}
+	else {
+		selector = "specific(buildToUse)"		
+	}
+	
+    try {
+        step([$class: 'CopyArtifact',
+			filter: "${BuildPropertiesFile}",
+            fingerprintArtifacts: true,
+            flatten: true,
+            selector: "${selector}",
             projectName: targetCIJob])
     } catch (Exception e) {
         println "Could not find last successful build properties for job:  ${targetCIJob}"
