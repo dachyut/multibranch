@@ -2,6 +2,8 @@ final String BuildPropertiesFile = 'build.properties'
 	
 final String lsbCommitId
 
+String targetBranch = 'branch-5' 
+
 //def String buildno = copyArtifacts(projectName: 'sourceproject')
 
 properties([
@@ -53,6 +55,12 @@ node {
 			//error ("Kill this stage")
 			println "Test stage completed"
 		}
+	}
+	
+	stage ('Misc') {
+		def changedFiles = getChangedFiles("origin/${targetBranch}", 'HEAD')
+		def length = changedFiles.size()
+		println "Changes length: ${length}"
 	}
 }
 
