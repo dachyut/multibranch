@@ -78,12 +78,12 @@ Boolean getCIBuildNew(targetBranch,BuildPropertiesFile,buildToUse) {
     final String commitKey = 'COMMIT'
     final String artifactKey = 'DCPROTECT_MAC_INSTALLER'
     final String targetCIJob =  '//MultiBranchPipelien2/' + targetBranch
-	def selector
+	def selector1
 	if (buildToUse == "lastSuccessful") {
-		selector = "lastSuccessful()"
+		selector1 = "lastSuccessful()"
 	}
 	else {
-		selector = "specific(${buildToUse})"		
+		selector1 = "specific(${buildToUse})"		
 	}
 	
     try {
@@ -91,7 +91,7 @@ Boolean getCIBuildNew(targetBranch,BuildPropertiesFile,buildToUse) {
 			filter: "${BuildPropertiesFile}",
             fingerprintArtifacts: true,
             flatten: true,
-            selector: specific(39),
+            selector: lastSuccessful(),
             projectName: targetCIJob])
     } catch (Exception e) {
         println "Could not find last successful build properties for job:  ${targetCIJob}"
