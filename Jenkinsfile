@@ -64,6 +64,7 @@ node {
 	}
 }
 
+
 Boolean getCIBuild(targetBranch,BuildPropertiesFile) {
     final String commitKey = 'COMMIT'
     final String artifactKey = 'DCPROTECT_MAC_INSTALLER'
