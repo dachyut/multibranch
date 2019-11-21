@@ -27,12 +27,12 @@ node {
 			archiveArtifacts artifacts: 'build.properties', fingerprint: true
 			
 			println "***********************"
-			t = buildParameter(params.LAST_SUCCESSFUL_BUILD)
-			getCIBuildNew('branch-5',BuildPropertiesFile,t)
+			
+			getCIBuildNew('branch-5',BuildPropertiesFile,39)
 			
 			//copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: //true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
 			
-			println params.LAST_SUCCESSFUL_BUILD
+			//println params.LAST_SUCCESSFUL_BUILD
 			println "***********************"
 			
 			
@@ -78,22 +78,14 @@ Boolean getCIBuild(targetBranch,BuildPropertiesFile) {
 Boolean getCIBuildNew(targetBranch,BuildPropertiesFile,buildToUse) {
     final String commitKey = 'COMMIT'
     final String artifactKey = 'DCPROTECT_MAC_INSTALLER'
-    final String targetCIJob =  '//MultiBranchPipelien2/' + targetBranch
-	final String t = buildToUse
-	def selector1
-	if (buildToUse == "lastSuccessful") {
-		selector1 = "lastSuccessful()"
-	}
-	else {
-		selector1 = "specific('${buildToUse}')"		
-	}
+    final String targetCIJob =  '//MultiBranchPipelien2/' + targetBranch	
 	
     try {
         step([$class: 'CopyArtifact',
 			filter: "${BuildPropertiesFile}",
             fingerprintArtifacts: true,
             flatten: true,
-            selector: t,
+            selector: selector('${buildToUse}'),
             projectName: targetCIJob])
     } catch (Exception e) {
         println "Could not find last successful build properties for job:  ${targetCIJob}"
