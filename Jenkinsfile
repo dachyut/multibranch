@@ -61,6 +61,11 @@ node {
 		def changedFiles = getChangedFiles("origin/${targetBranch}", 'HEAD')
 		def length = changedFiles.size()
 		println "Changes length: ${length}"
+		
+		for (int ii = 0; ii < changedFiles.size(); ii++) {
+			println changedFiles[ii]
+		}
+		println "***********"
 	}
 }
 
