@@ -29,25 +29,20 @@ node {
 			bat "echo RandomString=$ranStr >> build.properties"
 			bat "echo BuildNumber=${env.BUILD_NUMBER} >> build.properties"
 			
-			archiveArtifacts artifacts: 'build.properties', fingerprint: true
-			
-			println "***********************"
-			
-			getCIBuildNew('branch-5',BuildPropertiesFile,params.BUILD_NUMBER_TO_USE)
-			
-			//copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: //true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
-			
-			//println params.LAST_SUCCESSFUL_BUILD
-			println "***********************"
+			archiveArtifacts artifacts: 'build.properties', fingerprint: true			
 			
 			
 			println "Build stage completed"		
 		}	
 	}
 	else {
-		copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: true, projectName: 'branch-5', selector: buildParameter(params.LAST_SUCCESSFUL_BUILD) 
-			
-			println params.LAST_SUCCESSFUL_BUILD
+		println "***********************"			
+		getCIBuildNew('branch-5',BuildPropertiesFile,params.BUILD_NUMBER_TO_USE)
+		
+		//copyArtifacts filter: "${BuildPropertiesFile}", fingerprintArtifacts: true, flatten: //true, projectName: 'branch-5', selector: buildParameter('LAST_SUCCESSFUL_BUILD') 
+		
+		//println params.LAST_SUCCESSFUL_BUILD
+		println "***********************"
 	}
 		
 	if(params.DEPLOY_VAULT_AND_RUN_REGRESSION_TEST) {   	
