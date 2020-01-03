@@ -4,6 +4,8 @@ final String lsbCommitId
 
 String targetBranch = 'branch-5' 
 
+final String buildNumber = 'Last Successful Build'
+
 //def String buildno = copyArtifacts(projectName: 'sourceproject')
 
 properties([
@@ -19,6 +21,10 @@ properties([
 ])
 
 node {       
+
+	println "In node. BuildNumber: ${buildNumber}"
+	printLastSuccessfulBuild()
+	println "*********************"
 	
 	if(params.RUN_BUILD) {
 		stage ('Build') {		
@@ -69,6 +75,10 @@ node {
 	}
 }
 
+
+Boolean printLastSuccessfulBuild() {
+	println "In Function. BuildNumber: ${buildNumber}"
+}
 
 Boolean getCIBuild(targetBranch,BuildPropertiesFile) {
     final String commitKey = 'COMMIT'
