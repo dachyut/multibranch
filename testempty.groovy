@@ -9,7 +9,7 @@ import java.util.concurrent.CancellationException
 // Get the out variable
 //def out = getBinding().out
 
-class Demo {                                  
+class Demo  implements Serializable {                                  
     String name = 'develop'
 
 	def execprint() {
