@@ -1,15 +1,33 @@
 #!groovy
 import java.lang.String
- 
+import hudson.model.*
+import hudson.AbortException
+import hudson.console.HyperlinkNote
+import java.util.concurrent.CancellationException
+  
 
 class Demo {                                  
     String name = 'develop'
     
     def exec() {        
         final String buildSubJob = 'job3'
-        def buildResult = build job: buildSubJob,
-            propagate: false
-	
+        //def buildResult = build job: buildSubJob,
+        //    propagate: false
+		// Start another job
+		def job = Hudson.instance.getJob('job3')
+		def anotherBuild
+		try {
+			def params = [
+			  new StringParameterValue('FOO', foo),
+			]
+			def future = job.scheduleBuild2(0, new Cause.UpstreamCause(build), new ParametersAction(params))
+			println "Waiting for the completion of " + HyperlinkNote.encodeTo('/' + job.url, job.fullDisplayName)
+			anotherBuild = future.get()
+		} catch (CancellationException x) {
+			throw new AbortException("${job.fullDisplayName} aborted.")
+		}
+		println HyperlinkNote.encodeTo('/' + anotherBuild.url, anotherBuild.fullDisplayName) + " completed. Result was " + anotherBuild.result
+ 
         println "** Completed ***"
     }
 	
