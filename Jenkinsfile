@@ -1,7 +1,9 @@
 #!groovy
+@Library('somelib')
+import testempty.groovy
 
 import java.lang.String
-import testempty.groovy
+
 
 node() {
         stage('run') {
