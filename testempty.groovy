@@ -36,6 +36,7 @@ class Demo {
 		println HyperlinkNote.encodeTo('/' + anotherBuild.url, anotherBuild.fullDisplayName) + " completed. Result was " + anotherBuild.result
 		println anotherBuild.result
         println "** Completed ***"
+		return this
     }
 	
 	def call() {
