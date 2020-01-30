@@ -16,6 +16,11 @@ class Demo {
 		// Start another job
 		def job = Hudson.instance.getJob('job3')
 		def anotherBuild
+		// get current thread / Executor
+		def thr = Thread.currentThread()
+		// get current build
+		def build = thr?.executable
+
 		try {
 			
 			def future = job.scheduleBuild2(0, new Cause.UpstreamCause(build), new ParametersAction(params))
