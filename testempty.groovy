@@ -10,14 +10,21 @@ import java.util.concurrent.CancellationException
 //def out = getBinding().out
 
 class Demo {                                  
-    String name = 'develop'
+    String branchOrCommit='CEB-13964'
+    String buildType='FAST'
+    String buildScope='CI'    
+    Boolean pushArtifactsToAzure=true
+    Boolean isNotarized=false	
 
 	def execprint() {
 		println "HELLO"
 		File file = new File("out.txt")
-		file.write "First line\n"
-		file << "Second line\n"
-		file << "$name\n"
+		file.write "Parameter details\n"
+		file << "$branchOrCommit\n"
+		file << "$buildType\n"
+		file << "$buildScope\n"
+		file << "$pushArtifactsToAzure\n"
+		file << "$isNotarized\n"
 		def lines = file.text
 		return lines
 	}

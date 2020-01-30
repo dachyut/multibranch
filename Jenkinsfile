@@ -6,14 +6,16 @@ node() {
         stage('run') {
 			cleanWs()		
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
-            println "Running run stage"            
+            println "Loading groovy file"            
 			def buildit = load 'testempty.groovy'
-            println "Calling func"
-            //def n = new buildit()
-			buildit.name = 'master'
-			def m = buildit.execprint()
-            //def m = buildit.execprint(name: "master")
-			print "$m"
-            
+			
+            println "Setting parameters"            
+			buildit.branchOrCommit='CEB-5555'
+			buildit.buildType='Nightly'            
+			buildit.pushArtifactsToAzure=false
+						
+			println "Calling Class.Method"
+			def result = buildit.execprint()
+			print "$result"            
         }
 }
