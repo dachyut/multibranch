@@ -66,5 +66,5 @@ class Demo {
 // d.build = "dsfsdfsdf"
 // d.exec()
 println "outside class"
-//return new Demo()
-return this
+return new Demo()
+//return this
