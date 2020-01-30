@@ -42,6 +42,10 @@ class Demo {
 	def buildResult = build job: buildSubJob,
 		propagate: false
 }
+	public String toString() {
+		println "Inside tostring method"
+	}
+
 }
 
 // Demo d = new Demo()
