@@ -10,7 +10,7 @@ class Demo {
     String name = 'develop'
 	
 	// Get the out variable
-	//def out = getBinding().out;
+	def out = getBinding()
     
     def exec() {        
         final String buildSubJob = 'job3'
@@ -19,15 +19,15 @@ class Demo {
 		// Start another job
 		def job = Hudson.instance.getJob('job3')
 		def anotherBuild
-		out.println "$job"
+		println "$job"
 		def runs = job.getBuilds()		
 		def currentBuild = runs[0]
-		out.println "$currentBuild"
+		println "$currentBuild"
 		
 		try {
 			
 			def future = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild))
-			out.println "Waiting for the completion of " + HyperlinkNote.encodeTo('/' + job.url, job.fullDisplayName)
+			println "Waiting for the completion of " + HyperlinkNote.encodeTo('/' + job.url, job.fullDisplayName)
 			anotherBuild = future.get()
 		} catch (CancellationException x) {
 			throw new AbortException("${job.fullDisplayName} aborted.")
@@ -55,7 +55,7 @@ class Demo {
 // d.branch = "jhf"
 // d.build = "dsfsdfsdf"
 // d.exec()
-out.println "outside class"
+println "outside class"
 return new Demo()
 //def obj = new Demo()
 //obj.exec()
