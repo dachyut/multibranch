@@ -16,14 +16,14 @@ class Demo {
 		// Start another job
 		def job = Hudson.instance.getJob('job3')
 		def anotherBuild
-		// get current thread / Executor
-		def thr = Thread.currentThread()
-		// get current build
-		def build = thr?.executable
-
+		println "$job"
+		def runs = job.getBuilds()		
+		def currentBuild = runs[0]
+		println "$currentBuild"
+		
 		try {
 			
-			def future = job.scheduleBuild2(0, new Cause.UpstreamCause(build), new ParametersAction(params))
+			def future = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
 			println "Waiting for the completion of " + HyperlinkNote.encodeTo('/' + job.url, job.fullDisplayName)
 			anotherBuild = future.get()
 		} catch (CancellationException x) {
