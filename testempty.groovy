@@ -4,7 +4,8 @@ import hudson.model.*
 import hudson.AbortException
 import hudson.console.HyperlinkNote
 import java.util.concurrent.CancellationException
-  
+jenkins = Jenkins.instance
+
 	
 // Get the out variable
 def out = getBinding().out
