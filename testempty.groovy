@@ -8,6 +8,9 @@ import java.util.concurrent.CancellationException
 
 class Demo {                                  
     String name = 'develop'
+	
+	// Get the out variable
+	def out = getBinding().out;
     
     def exec() {        
         final String buildSubJob = 'job3'
@@ -16,15 +19,15 @@ class Demo {
 		// Start another job
 		def job = Hudson.instance.getJob('job3')
 		def anotherBuild
-		println "$job"
+		out.println "$job"
 		def runs = job.getBuilds()		
 		def currentBuild = runs[0]
-		println "$currentBuild"
+		out.println "$currentBuild"
 		
 		try {
 			
 			def future = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild))
-			println "Waiting for the completion of " + HyperlinkNote.encodeTo('/' + job.url, job.fullDisplayName)
+			out.println "Waiting for the completion of " + HyperlinkNote.encodeTo('/' + job.url, job.fullDisplayName)
 			anotherBuild = future.get()
 		} catch (CancellationException x) {
 			throw new AbortException("${job.fullDisplayName} aborted.")
@@ -52,7 +55,7 @@ class Demo {
 // d.branch = "jhf"
 // d.build = "dsfsdfsdf"
 // d.exec()
-
+println "outside class"
 return new Demo()
 //def obj = new Demo()
 //obj.exec()
