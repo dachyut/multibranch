@@ -55,7 +55,7 @@ class Demo {
 // d.branch = "jhf"
 // d.build = "dsfsdfsdf"
 // d.exec()
-println "outside class"
+out.println "outside class"
 return new Demo()
 //def obj = new Demo()
 //obj.exec()
