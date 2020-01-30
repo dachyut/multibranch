@@ -30,7 +30,7 @@ class Demo {
 			throw new AbortException("${job.fullDisplayName} aborted.")
 		}
 		println HyperlinkNote.encodeTo('/' + anotherBuild.url, anotherBuild.fullDisplayName) + " completed. Result was " + anotherBuild.result
- 
+		println anotherBuild.result
         println "** Completed ***"
     }
 	
