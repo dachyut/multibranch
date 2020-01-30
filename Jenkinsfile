@@ -9,9 +9,10 @@ node() {
             println "Running run stage"            
 			def buildit = load 'testempty.groovy'
             println "Calling func"
-            
-            def m = buildit.execprint(name: "master")
-			print "$m"
+            def n = new buildit()
+			n.execprint()
+            //def m = buildit.execprint(name: "master")
+			//print "$m"
             
         }
 }
