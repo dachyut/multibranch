@@ -21,4 +21,4 @@ class Demo {
 // d.exec()
 
 //return new Demo()
-return this
+return new Demo()
