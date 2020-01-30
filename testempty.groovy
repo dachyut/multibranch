@@ -9,15 +9,14 @@ import java.util.concurrent.CancellationException
 // Get the out variable
 //def out = getBinding().out
 
-class Demo  implements Serializable {                                  
+class Demo {                                  
     String name = 'develop'
 
 	def execprint() {
-		System.out.println "HELLO"
-		L:{ System.out.println ("HELLO1"); }
+		println "HELLO $develop"
+		echo "Hello1"
 	}
-    
-    
+        
     def exec() {        
         final String buildSubJob = 'job3'
         //def buildResult = build job: buildSubJob,
