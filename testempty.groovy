@@ -13,8 +13,12 @@ class Demo {
     String name = 'develop'
 
 	def execprint() {
-		println "HELLO $develop"
-		echo "Hello1"
+		println "HELLO"
+		File file = new File("out.txt")
+		file.write "First line\n"
+		file << "Second line\n"
+		def lines = file.readLines()
+		return lines
 	}
         
     def exec() {        
