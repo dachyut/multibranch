@@ -10,7 +10,7 @@ node() {
 			def buildit = load 'testempty.groovy'
             println "Calling func"
             
-            def m = buildit.execprint()
+            def m = buildit.execprint(name: "master")
 			print "$m"
             
         }

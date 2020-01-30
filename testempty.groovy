@@ -17,6 +17,7 @@ class Demo {
 		File file = new File("out.txt")
 		file.write "First line\n"
 		file << "Second line\n"
+		file << "$name\n"
 		def lines = file.text
 		return lines
 	}
