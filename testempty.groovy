@@ -18,6 +18,9 @@ class Demo {
     // Any valid steps can be called from this code, just like in other
     // Scripted Pipeline
     println "Hello Achyut."
+	final String buildSubJob = 'job3'
+	def buildResult = build job: buildSubJob,
+    propagate: false
 }
 }
 
