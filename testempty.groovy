@@ -12,6 +12,11 @@ import java.util.concurrent.CancellationException
 class Demo {                                  
     String name = 'develop'
 
+	def execprint() {
+		System.out.println "HELLO"
+		{ System.out.println ("HELLO1"); }
+	}
+    
     
     def exec() {        
         final String buildSubJob = 'job3'
@@ -36,7 +41,6 @@ class Demo {
 		println HyperlinkNote.encodeTo('/' + anotherBuild.url, anotherBuild.fullDisplayName) + " completed. Result was " + anotherBuild.result
 		println anotherBuild.result
         println "** Completed ***"
-		return this
     }
 	
 	def call() {
