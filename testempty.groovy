@@ -1,9 +1,5 @@
 #!groovy
 import java.lang.String
-import hudson.model.*
-import hudson.AbortException
-import hudson.console.HyperlinkNote
-import java.util.concurrent.CancellationException
  
 
 class Demo {                                  
