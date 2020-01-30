@@ -4,11 +4,10 @@ import hudson.model.*
 import hudson.AbortException
 import hudson.console.HyperlinkNote
 import java.util.concurrent.CancellationException
-jenkins = Jenkins.instance
 
 	
 // Get the out variable
-def out = getBinding().out
+//def out = getBinding().out
 
 class Demo {                                  
     String name = 'develop'
@@ -21,7 +20,7 @@ class Demo {
 		// Start another job
 		def job = Hudson.instance.getJob('job3')
 		def anotherBuild
-		out.println "$job"
+		System.out..println "$job"
 		def runs = job.getBuilds()		
 		def currentBuild = runs[0]
 		println "$currentBuild"
