@@ -5,12 +5,13 @@ import hudson.AbortException
 import hudson.console.HyperlinkNote
 import java.util.concurrent.CancellationException
   
+	
+// Get the out variable
+def out = getBinding().out
 
 class Demo {                                  
     String name = 'develop'
-	
-	// Get the out variable
-	def out = getBinding()
+
     
     def exec() {        
         final String buildSubJob = 'job3'
@@ -19,7 +20,7 @@ class Demo {
 		// Start another job
 		def job = Hudson.instance.getJob('job3')
 		def anotherBuild
-		println "$job"
+		out.println "$job"
 		def runs = job.getBuilds()		
 		def currentBuild = runs[0]
 		println "$currentBuild"
