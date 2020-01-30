@@ -10,7 +10,7 @@ class Demo {
     String name = 'develop'
 	
 	// Get the out variable
-	def out = getBinding().out;
+	//def out = getBinding().out;
     
     def exec() {        
         final String buildSubJob = 'job3'
