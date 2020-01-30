@@ -14,7 +14,7 @@ class Demo {
 
 	def execprint() {
 		System.out.println "HELLO"
-		{ System.out.println ("HELLO1"); }
+		L:{ System.out.println ("HELLO1"); }
 	}
     
     
