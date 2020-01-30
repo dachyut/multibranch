@@ -20,7 +20,7 @@ class Demo {
 		// Start another job
 		def job = Hudson.instance.getJob('job3')
 		def anotherBuild
-		System.out..println "$job"
+		System.out.println "$job"
 		def runs = job.getBuilds()		
 		def currentBuild = runs[0]
 		println "$currentBuild"
