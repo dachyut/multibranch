@@ -32,6 +32,6 @@ class Demo {
 // d.build = "dsfsdfsdf"
 // d.exec()
 
-//return new Demo()
-def obj = new Demo()
-obj.exec()
+return new Demo()
+//def obj = new Demo()
+//obj.exec()
