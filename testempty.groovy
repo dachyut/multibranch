@@ -12,7 +12,7 @@
 import hudson.model.*
 
 System.out = getBinding().out;
-def out = getBinding().out;
+//def out = getBinding().out;
 
 
 class Demo {                                  
