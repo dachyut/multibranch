@@ -9,12 +9,23 @@
 // Get the out variable
 //def out = getBinding().out
 
+import hudson.model.*
+
+System.out = getBinding().out;
+def out = getBinding().out;
+
+
 class Demo {                                  
     String branchOrCommit='Default-branchOrCommit'
     String buildType='Default-buildType'
     String buildScope='Default-buildScope'    
     Boolean pushArtifactsToAzure=true
     Boolean isNotarized=true	
+
+	Demo(out)  // Have to pass the out variable to the class
+    {
+        out.println ("Inside class")
+    }
 
 	def execprint() {
 		println "HELLO"
@@ -39,7 +50,8 @@ class Demo {
 		System.out.println "$job"
 		def runs = job.getBuilds()		
 		def currentBuild = runs[0]
-		println "$currentBuild"
+		out.println "$currentBuild"
+		out.println "Inside method"
 		
 		try {
 			def params = [
