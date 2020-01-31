@@ -16,6 +16,6 @@ node() {
                         
             // Calling Class.Method
             def result = buildit.execprint()
-            print "$result            
+            println "$result            
         }
 }
