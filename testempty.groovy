@@ -1,9 +1,9 @@
 #!groovy
-import java.lang.String
-import hudson.model.*
-import hudson.AbortException
-import hudson.console.HyperlinkNote
-import java.util.concurrent.CancellationException
+// import java.lang.String
+// import hudson.model.*
+// import hudson.AbortException
+// import hudson.console.HyperlinkNote
+// import java.util.concurrent.CancellationException
 
 	
 // Get the out variable
@@ -30,11 +30,11 @@ class Demo {
 	}
         
     def exec() {        
-        final String buildSubJob = 'job3'
+        final String buildSubJob = 'job1'
         //def buildResult = build job: buildSubJob,
         //    propagate: false
 		// Start another job
-		def job = Hudson.instance.getJob('job1')
+		def job = Hudson.instance.getJob(buildSubJob)
 		def anotherBuild
 		System.out.println "$job"
 		def runs = job.getBuilds()		
