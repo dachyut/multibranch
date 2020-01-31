@@ -22,10 +22,10 @@ class Demo {
     Boolean pushArtifactsToAzure=true
     Boolean isNotarized=true	
 
-	Demo(out)  // Have to pass the out variable to the class
-    {
-        out.println ("Inside class")
-    }
+	// Demo(out)  // Have to pass the out variable to the class
+    // {
+    //     out.println ("Inside class")
+    // }
 
 	def execprint() {
 		println "HELLO"
@@ -50,8 +50,8 @@ class Demo {
 		System.out.println "$job"
 		def runs = job.getBuilds()		
 		def currentBuild = runs[0]
-		out.println "$currentBuild"
-		out.println "Inside method"
+		println "$currentBuild"
+		println "Inside method"
 		
 		try {
 			def params = [
