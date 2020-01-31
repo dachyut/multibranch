@@ -9,7 +9,7 @@ node() {
             println "Loading groovy file"            
 			def buildit = load 'buildnew.groovy'
 			
-			buildit.exec(myCode, params.BUILD_TYPE, buildLevel, params.BUILD_LABEL, params.PUSH_ARTIFACTS_TO_AZURE, params.IS_NOTARIZED, skipComponents, clientDownloadLocation)
+			buildit.exec("myCode", "FAST", "CI", "CEB-1234", false, false, "skipComponents", "path")
 
             // // Passing required parameters to class object
             // buildit.branchOrCommit='CEB-5555'
