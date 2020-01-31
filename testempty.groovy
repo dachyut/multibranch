@@ -49,8 +49,10 @@ class Demo {
 			def future = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
 			println "Waiting for the completion of " + HyperlinkNote.encodeTo('/' + job.url, job.fullDisplayName)
 			anotherBuild = future.get()
-		} catch (CancellationException x) {
-			throw new AbortException("${job.fullDisplayName} aborted.")
+		} //catch (CancellationException x) {
+			catch (Exception e) {
+			//throw new AbortException("${job.fullDisplayName} aborted.")
+			throw(e)
 		}
 		println HyperlinkNote.encodeTo('/' + anotherBuild.url, anotherBuild.fullDisplayName) + " completed. Result was " + anotherBuild.result
 		println anotherBuild.result
