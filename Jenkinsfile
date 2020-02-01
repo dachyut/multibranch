@@ -13,7 +13,7 @@ node() {
 			//buildit.exec()
 
 			println "calling demo.a()"
-			def result = buildit.a()
+			def result = buildit.runnew()
 
 			//This  works.....
 			//def buildit = load 'buildnew.groovy'			

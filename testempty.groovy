@@ -1,5 +1,7 @@
 #!groovy
 import java.lang.String
+import org.codehaus.groovy.runtime.InvokerHelper
+
 // import hudson.model.*
 // import hudson.AbortException
 // import hudson.console.HyperlinkNote
@@ -15,7 +17,7 @@ import java.lang.String
 //def out = getBinding().out;
 
 
-class Demo extends Script {                                  
+class testempty extends Script {                                  
     String branchOrCommit='Default-branchOrCommit'
     String buildType='Default-buildType'
     String buildScope='Default-buildScope'    
@@ -28,10 +30,14 @@ class Demo extends Script {
     // }
 
 	//this is working; class retrun shoud be like this <return new Demo(script:this)>
-	Script script;
+	//Script script;
 
 	def run() {
 		println 'Groovy world!'
+	}
+
+	def runnew() {
+		InvokerHelper.runScript(testempty)
 	}
 
     def a() {
