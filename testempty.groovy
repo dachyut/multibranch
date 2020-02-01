@@ -32,8 +32,8 @@ class Demo {
     public void a() {
         script.echo("Hello-AAAAAA")
 		final String buildSubJob = 'job1'
-        def buildResult = build job: buildSubJob,
-            propagate: false
+        def buildResult = build job: buildSubJob
+        //    propagate: false
     }
 
 	def execprint() {
