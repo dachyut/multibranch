@@ -32,7 +32,8 @@ class Demo {
     public void a() {
         script.echo("Hello-AAAAAA")
 		//final String buildSubJob = 'job1'
-        build job: 'job1', parameters: [string(name: 'name', value: 'jen-job1'), booleanParam(name: 'build', value: true)]
+        //build job: 'job1', parameters: [string(name: 'name', value: 'jen-job1'), booleanParam(name: 'build', value: true)]
+		build job: 'job1'
     }
 
 	def execprint() {
