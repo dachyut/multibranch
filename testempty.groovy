@@ -27,6 +27,7 @@ class Demo {
     //     out.println ("Inside class")
     // }
 
+	//this is working
 	Script script;
     public void a() {
         script.echo("Hello-AAAAAA")
@@ -95,5 +96,5 @@ class Demo {
 // d.build = "dsfsdfsdf"
 // d.exec()
 println "outside class"
-return new Demo(script:this)
+return new Demo()
 //return this
