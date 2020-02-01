@@ -1,6 +1,6 @@
 #!groovy
 import java.lang.String
-import org.codehaus.groovy.runtime.InvokerHelper
+import org.codehaus.groovy.runtime
 
 // import hudson.model.*
 // import hudson.AbortException
