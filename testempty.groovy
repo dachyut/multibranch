@@ -36,8 +36,8 @@ class testempty extends Script {
 		println 'Groovy world!'
 	}
 
-	def runnew(String[] args) {
-		InvokerHelper.runScript(testempty,args)
+	def runnew() {
+		InvokerHelper.runScript(testempty)
 		buildResult = build job: 'job3'
 	}
 
