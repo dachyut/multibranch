@@ -9,13 +9,13 @@
 // Get the out variable
 //def out = getBinding().out
 
-import hudson.model.*
+//import hudson.model.*
 
 //System.out = getBinding().out;
 //def out = getBinding().out;
 
 
-class Demo {                                  
+class Demo extends Script {                                  
     String branchOrCommit='Default-branchOrCommit'
     String buildType='Default-buildType'
     String buildScope='Default-buildScope'    
@@ -29,8 +29,14 @@ class Demo {
 
 	//this is working; class retrun shoud be like this <return new Demo(script:this)>
 	Script script;
+
+	def run() {
+		println 'Groovy world!'
+	}
+
     def a() {
         script.echo("Hello-AAAAAA")
+		println ("Hello-CCCCCCC")
 		//final String buildSubJob = 'job1'
         //build job: 'job1', parameters: [string(name: 'name', value: 'jen-job1'), booleanParam(name: 'build', value: true)]
 		def buildResult = build job: 'job3'
