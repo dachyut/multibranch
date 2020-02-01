@@ -29,11 +29,13 @@ class Demo {
 
 	//this is working; class retrun shoud be like this <return new Demo(script:this)>
 	Script script;
-    public void a() {
+    def a() {
         script.echo("Hello-AAAAAA")
 		//final String buildSubJob = 'job1'
         //build job: 'job1', parameters: [string(name: 'name', value: 'jen-job1'), booleanParam(name: 'build', value: true)]
 		def buildResult = build job: 'job1'
+		script.echo(buildResult)
+		script.echo("Hello-BBBBBB")
 		return buildResult
     }
 
