@@ -1,6 +1,6 @@
 #!groovy
 import java.lang.String
-import org.codehaus.groovy.runtime
+import org.codehaus.groovy.runtime.InvokerHelper
 
 // import hudson.model.*
 // import hudson.AbortException
@@ -36,8 +36,8 @@ class testempty extends Script {
 		println 'Groovy world!'
 	}
 
-	def runnew() {
-		InvokerHelper.runScript(testempty)
+	def runnew(String[] args) {
+		InvokerHelper.runScript(testempty,args)
 	}
 
     def a() {
