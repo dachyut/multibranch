@@ -10,7 +10,7 @@ node() {
 
 			//Run sub-job
 			def buildit = load 'testempty.groovy'			
-			buildit.exec()
+			//buildit.exec()
 
 			println "calling demo.a()"
 			def result = buildit.a()
