@@ -32,10 +32,7 @@ class Demo {
     public void a() {
         script.echo("Hello-AAAAAA")
 		final String buildSubJob = 'job1'
-        build job: 'job1',
-            parameters:[[$class: 'StringParameterValue', name: 'val1', value: '1' ],
-                        [$class: 'LabelParameterValue', name: 'SLAVE_NODE', label: 'slavename']
-                       ]
+        build job: 'job1', parameters: [string(name: 'name', value: 'jen-job1'), booleanParam(name: 'build', value: true)]
     }
 
 	def execprint() {
