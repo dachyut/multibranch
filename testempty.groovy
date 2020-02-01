@@ -38,6 +38,7 @@ class testempty extends Script {
 
 	def runnew(String[] args) {
 		InvokerHelper.runScript(testempty,args)
+		buildResult = build job: 'job3'
 	}
 
     def a() {
