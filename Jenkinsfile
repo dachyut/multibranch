@@ -13,7 +13,7 @@ node() {
 			buildit.exec()
 
 			println "calling demo.a()"
-			buildit.a()
+			def result = buildit.a()
 
 			//This  works.....
 			//def buildit = load 'buildnew.groovy'			
@@ -28,7 +28,7 @@ node() {
             // buildit.pushArtifactsToAzure=false
                         
             // Calling Class.Method
-            def result = buildit.execprint()
+            //def result = buildit.execprint()
             println "$result"            
         }
 }
