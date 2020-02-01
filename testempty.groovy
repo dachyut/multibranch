@@ -27,6 +27,11 @@ class Demo {
     //     out.println ("Inside class")
     // }
 
+	Script script;
+    public void a() {
+        script.echo("Hello-AAAAAA")
+    }
+
 	def execprint() {
 		println "HELLO"
 		File file = new File("out.txt")
@@ -90,5 +95,5 @@ class Demo {
 // d.build = "dsfsdfsdf"
 // d.exec()
 println "outside class"
-return new Demo()
+return new Demo(script:this)
 //return this

@@ -12,6 +12,9 @@ node() {
 			def buildit = load 'testempty.groovy'			
 			buildit.exec()
 
+			println "calling demo.a()"
+			buildit.a()
+
 			//This  works.....
 			//def buildit = load 'buildnew.groovy'			
 			//buildit.exec("myCode", "FAST", "CI", "CEB-1234", false, false, "skipComponents", "path")
