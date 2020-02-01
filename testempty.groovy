@@ -32,8 +32,10 @@ class Demo {
     public void a() {
         script.echo("Hello-AAAAAA")
 		final String buildSubJob = 'job1'
-        def buildResult = build job: buildSubJob
-        //    propagate: false
+        build job: 'job1',
+            parameters:[[$class: 'StringParameterValue', name: 'val1', value: '1' ],
+                        [$class: 'LabelParameterValue', name: 'SLAVE_NODE', label: 'slavename']
+                       ]
     }
 
 	def execprint() {
