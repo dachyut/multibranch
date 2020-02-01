@@ -27,10 +27,13 @@ class Demo {
     //     out.println ("Inside class")
     // }
 
-	//this is working
+	//this is working; class retrun shoud be like this <return new Demo(script:this)>
 	Script script;
     public void a() {
         script.echo("Hello-AAAAAA")
+		final String buildSubJob = 'job1'
+        def buildResult = build job: buildSubJob,
+            propagate: false
     }
 
 	def execprint() {
@@ -96,5 +99,5 @@ class Demo {
 // d.build = "dsfsdfsdf"
 // d.exec()
 println "outside class"
-return new Demo()
+return new Demo(script:this)
 //return this
