@@ -34,8 +34,8 @@ class Demo {
 		//final String buildSubJob = 'job1'
         //build job: 'job1', parameters: [string(name: 'name', value: 'jen-job1'), booleanParam(name: 'build', value: true)]
 		def buildResult = build job: 'job1'
-		script.echo(buildResult)
 		script.echo("Hello-BBBBBB")
+		script.echo("$buildResult")		
 		return buildResult
     }
 
