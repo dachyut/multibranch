@@ -8,9 +8,9 @@ import org.codehaus.groovy.runtime.InvokerHelper
 // import java.util.concurrent.CancellationException
 
 	
+
 // Get the out variable
 //def out = getBinding().out
-
 //import hudson.model.*
 
 //System.out = getBinding().out;
@@ -114,5 +114,5 @@ class testempty extends Script {
 // d.build = "dsfsdfsdf"
 // d.exec()
 println "outside class"
-return new testempty(tnis)
+return new testempty()
 //return this
