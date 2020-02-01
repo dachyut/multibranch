@@ -114,5 +114,5 @@ class testempty extends Script {
 // d.build = "dsfsdfsdf"
 // d.exec()
 println "outside class"
-return new testempty()
+return new testempty(tnis)
 //return this
