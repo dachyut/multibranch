@@ -19,5 +19,4 @@ class OutputClass
 }
 
 out.println("Outside class")
-output = new OutputClass()
-return output
+return new OutputClass()
