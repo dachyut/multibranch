@@ -5,6 +5,7 @@ def out = new Binding()
 
 class OutputClass
 {
+    def out = new Binding()
     OutputClass(out)  // Have to pass the out variable to the class
     {
         out.println ("Inside class OutoutClass")
