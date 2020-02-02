@@ -10,7 +10,7 @@ node() {
 
 			def out = new Binding()
 			def buildit = load 'build1.groovy'			
-			buildit.exec(out)
+			buildit.exec()
 
 			//Run sub-job
 			//def buildit = load 'testempty.groovy'			
