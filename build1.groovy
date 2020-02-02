@@ -3,7 +3,7 @@
 // Get the out variable
 def out = new Binding()
 
-class OutputClass
+class OutputClass implements Serializable
 {
     def out = new Binding()
     OutputClass(out)  // Have to pass the out variable to the class
