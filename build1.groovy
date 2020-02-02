@@ -19,4 +19,4 @@ class OutputClass
 }
 
 out.println("Outside class")
-return new OutputClass(out)
+return new OutputClass(manager.listener.logger)
