@@ -40,9 +40,9 @@ class testempty extends Script {
 		buildResult = build job: 'job3'
 	}
 
-	def runnew(String[] args) {
+	def runnew() {
 		out.println "helloooooooooooo"
-		InvokerHelper.runScript(testempty,args)
+		//InvokerHelper.runScript(testempty,args)
 		
 	}
 
