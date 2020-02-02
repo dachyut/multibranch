@@ -34,11 +34,12 @@ class testempty extends Script {
 
 	def run() {
 		println 'Groovy world!'
+		buildResult = build job: 'job3'
 	}
 
 	def runnew() {
 		InvokerHelper.runScript(testempty)
-		buildResult = build job: 'job3'
+		
 	}
 
     def a() {
