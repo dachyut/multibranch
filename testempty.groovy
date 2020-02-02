@@ -16,6 +16,7 @@ import org.codehaus.groovy.runtime.InvokerHelper
 //System.out = getBinding().out;
 //def out = getBinding().out;
 
+def out = new Binding()
 
 class testempty extends Script {                                  
     String branchOrCommit='Default-branchOrCommit'
@@ -38,6 +39,7 @@ class testempty extends Script {
 	}
 
 	def runnew(String[] args) {
+		out.println "helloooooooooooo"
 		InvokerHelper.runScript(testempty,args)
 		
 	}
