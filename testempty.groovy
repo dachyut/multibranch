@@ -16,7 +16,7 @@ import org.codehaus.groovy.runtime.InvokerHelper
 //System.out = getBinding().out;
 //def out = getBinding().out;
 
-def out = new Binding()
+
 
 class testempty extends Script {                                  
     String branchOrCommit='Default-branchOrCommit'
@@ -33,8 +33,10 @@ class testempty extends Script {
 	//this is working; class retrun shoud be like this <return new Demo(script:this)>
 	//Script script;
 
+	def out = new Binding()
+
 	def run() {
-		println 'Groovy world!'
+		out.println 'Groovy world!'
 		buildResult = build job: 'job3'
 	}
 
