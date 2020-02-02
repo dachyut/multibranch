@@ -8,8 +8,9 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy file"            
 
+			def out = new Binding()
 			def buildit = load 'build1.groovy'			
-			buildit()
+			buildit(out)
 
 			//Run sub-job
 			//def buildit = load 'testempty.groovy'			
