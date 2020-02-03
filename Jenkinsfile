@@ -9,7 +9,7 @@ node() {
             println "Loading groovy file"          
 
 			def buildit = load 'buildnew.groovy'			
-			buildit.exec()  
+			buildit.exec("myCode", "params.BUILD_TYPE", "buildLevel", "params.BUILD_LABEL", true, false, "skipComponents", "clientDownloadLocation")  
 
 			//def out = new Binding()
 			//def buildit = load 'build1.groovy'			
