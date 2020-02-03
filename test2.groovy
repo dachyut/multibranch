@@ -1,40 +1,35 @@
 #!groovy
 import java.lang.String
 
-//def out = new Binding()
-
 class Demo{
 	String branchOrCommit='Default'	
-	String buildType='FAST'
+	Boolean pushArtifactsToAzure=true
 
     Script script;    
     
 	def exec() {    
-        script.echo ("Inside class exec")
+        script.echo ("Inside class exec() method")
 		final String buildSubJob = 'job1'
         // Start another job
         def job = Hudson.instance.getJob(buildSubJob)
-        def buildResult	
-        def getjob	
         def runs = job.getBuilds()		
         def currentBuild = runs[0]
+        def buildResult	
+        def getjob	        
         try {
             def params = [
-                new StringParameterValue('name', 'from jenkins'),
-                new BooleanParameterValue('build', false)
+                new StringParameterValue('name', branchOrCommit),
+                new BooleanParameterValue('build', pushArtifactsToAzure)
             ]
             def runjob = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
-            //println "Waiting for the completion of " + HyperlinkNote.encodeTo('/' + job.url, job.fullDisplayName)
             getjob = runjob.get()                
-        } //catch (CancellationException x) {
-        catch (Exception e) {
-            //throw new AbortException("${job.fullDisplayName} aborted.")
+        } catch (Exception e) {
             throw(e)
-        }        
+        }     
         buildResult = getjob.result
         script.echo("Job status: ${buildResult}")
     }
 }
 
-println("Outside class Demo")
+println("Outside class Demo()")
 return new Demo(script:this)

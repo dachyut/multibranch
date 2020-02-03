@@ -6,11 +6,12 @@ node() {
         stage('run') {
 			cleanWs()		
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
-            println "Loading groovy file"          
-			def workspace = pwd()
-			println workspace
-
+            println "Loading groovy Class file"          
 			def buildit = load 'test2.groovy'			
+			println "Setting class varibales"
+			buildit.branchOrCommit = 'myCode'
+			buildit.pushArtifactsToAzure = false
+			println "Executing method inside class"
 			buildit.exec()
 			//buildit.exec("myCode", "params.BUILD_TYPE", "buildLevel", "params.BUILD_LABEL", true, false, "skipComponents", "clientDownloadLocation")  
 
