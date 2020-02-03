@@ -32,4 +32,4 @@ class Demo{
 }
 
 println("Outside class Demo")
-return new Demo()
+return new Demo(script:this)
