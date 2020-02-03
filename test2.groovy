@@ -27,7 +27,8 @@ class Demo{
 		//def buildit = load 'test1.groovy'			
 		GroovyShell shell = new GroovyShell()
 	    def tools = shell.parse(new File('test1.groovy'))
-	    tools.exec("code","slow")
+	    script.echo(tools)
+        tools.exec("code","slow")
     }
 }
 
