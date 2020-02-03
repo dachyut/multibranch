@@ -10,10 +10,10 @@ class Demo{
     Script script;    
     //def out = new Binding()	
 
-    def run() {
-		script.echo 'Groovy world!'
-		//buildResult = build job: 'job3'
-	}
+    // def run() {
+	// 	script.echo 'Groovy world!'
+	// 	//buildResult = build job: 'job3'
+	// }
 
     // def Demo()  // Have to pass the out variable to the class
     // {
@@ -21,7 +21,7 @@ class Demo{
     //     out.println ("Inside class OutoutClass")
     // }
 
-	def execprint(out) {
+	def execprint() {
         script.echo("Hello-BBBBBBBBB")
         script.echo ("Inside class exec")
 		//def buildit = load 'test1.groovy'			
