@@ -23,3 +23,5 @@ void myMapExec (Map<String, Object> myParams) {
     println myParams.pushArtifactsToAzure as java.lang.Object
     println myParams.isNotarized as java.lang.Object
 }
+
+return this
