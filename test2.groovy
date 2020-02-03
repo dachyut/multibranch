@@ -11,5 +11,5 @@ class Demo {
     }
 }
 
-out.println("Outside class Demo")
+println("Outside class Demo")
 return new Demo()
