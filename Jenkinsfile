@@ -6,11 +6,14 @@ node() {
         stage('run') {
 			cleanWs()		
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
-            println "Loading groovy file"            
+            println "Loading groovy file"          
 
-			def out = new Binding()
-			def buildit = load 'build1.groovy'			
-			buildit.exec(manager.listener.logger)
+			def buildit = load 'buildnew.groovy'			
+			buildit.exec()  
+
+			//def out = new Binding()
+			//def buildit = load 'build1.groovy'			
+			//buildit.exec(manager.listener.logger)
 
 			//Run sub-job
 			//def buildit = load 'testempty.groovy'			

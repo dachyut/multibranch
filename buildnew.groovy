@@ -16,7 +16,7 @@ def exec(String branchOrCommit,
          Boolean checkmarxScan=false,
          Boolean whitesourceScan=false) {
 
-	final String buildSubJob = 'EndpointMidmarket/Shared/Midmarket-New-Build_Hermes'
+	final String buildSubJob = 'job1'
     final String failedBuildArtifacts = 'Build.log, Failure.txt, **/Failure*.txt'
     final String buildArtifacts = 'Build.log, Failure.txt, build.properties, build_times.csv, git_commits.log, **/TEST*.xml, **/ui/coverage/cobertura-coverage.xml, **/junit-results.xml, **/TestResults/*.trx'
     final String buildLog = 'Build.log'
@@ -24,18 +24,8 @@ def exec(String branchOrCommit,
     def buildResult = build job: buildSubJob,
             propagate: false,
             parameters: [
-                [$class: 'StringParameterValue', name: 'BUILD_TYPE', value: buildType],
-                [$class: 'StringParameterValue', name: 'TFSBUILDTYPE', value: 'NightlyLite'],  //no longer used, but not yet removed
-                [$class: 'StringParameterValue', name: 'BUILD_BRAND_INDEX', value: buildBrandIndex],
-                [$class: 'StringParameterValue', name: 'BRANCH', value: branchOrCommit],
-                [$class: 'StringParameterValue', name: 'BUILD_LEVEL', value: buildScope],
-                [$class: 'LabelParameterValue', name: 'BUILD_LABEL', label: buildLabel],
-                [$class: 'BooleanParameterValue', name: 'PUSH_ARTIFACTS_TO_AZURE', value: pushArtifactsToAzure],
-                [$class: 'BooleanParameterValue', name: 'IS_NOTARIZED', value: isNotarized],
-                [$class: 'StringParameterValue', name: 'SKIP_COMPONENTS', value: skipComponents],
-                [$class: 'StringParameterValue', name: 'CLIENT_DOWNLOAD_LOCATION', value: clientDownloadLocation],
-                [$class: 'BooleanParameterValue', name: 'CHECKMARX_FULL_SCAN', value: checkmarxScan],
-                [$class: 'BooleanParameterValue', name: 'WHITESOURCE_SCAN', value: whitesourceScan]
+                [$class: 'StringParameterValue', name: 'name', value: buildLabel],
+                [$class: 'BooleanParameterValue', name: 'build', value: isNotarized]                
             ]
 
     if (buildResult.result != 'SUCCESS') {
