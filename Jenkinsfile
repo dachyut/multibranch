@@ -8,8 +8,9 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy file"          
 
-			def buildit = load 'buildnew.groovy'			
-			buildit.exec("myCode", "params.BUILD_TYPE", "buildLevel", "params.BUILD_LABEL", true, false, "skipComponents", "clientDownloadLocation")  
+			def buildit = load 'test2.groovy'			
+			buildit.execprint()
+			//buildit.exec("myCode", "params.BUILD_TYPE", "buildLevel", "params.BUILD_LABEL", true, false, "skipComponents", "clientDownloadLocation")  
 
 			//def out = new Binding()
 			//def buildit = load 'build1.groovy'			
