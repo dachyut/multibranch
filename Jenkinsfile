@@ -10,11 +10,12 @@ node() {
 			
 			// Daniel hash map code
 			def buildit = load 'test4.groovy'
-			buildit.myMapExec(branchOrCommit: 'Wow!')
-			buildit.myMapExec(buildScope: 'Super!')
-			buildit.myMapExec(isNotarized: false)
+			
+			//buildit.myMapExec(branchOrCommit: 'Wow!')
+			//buildit.myMapExec(buildScope: 'Super!')
+			//buildit.myMapExec(isNotarized: false)
 			buildit.myMapExec(buildScope: 'YOWZAA', pushArtifactsToAzure: false, buildType: 'Yeeeee-HAW!')
-			buildit.myMapExec(notReallyAKey: 77)   // Validate keys
+			//buildit.myMapExec(notReallyAKey: 77)   // Validate keys
 
 			/* Working Code .........
 			// def buildit = load 'test2.groovy'			

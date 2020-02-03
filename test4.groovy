@@ -22,6 +22,8 @@ void myMapExec (Map<String, Object> myParams) {
     println myParams.buildScope as java.lang.Object
     println myParams.pushArtifactsToAzure as java.lang.Object
     println myParams.isNotarized as java.lang.Object
+
+    def buildResult = build job: 'job3'
 }
 
 return this
