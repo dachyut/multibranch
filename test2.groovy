@@ -8,7 +8,7 @@ class Demo {
 	def execprint() {
 		//def buildit = load 'test1.groovy'			
 		GroovyShell shell = new GroovyShell()
-	    def tools = shell.parse(new File('./test1.groovy'))
+	    def tools = shell.parse(new File('test1.groovy'))
 	    tools.exec("code","slow")
     }
 }
