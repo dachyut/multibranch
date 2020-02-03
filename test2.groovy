@@ -14,7 +14,8 @@ class Demo{
 		final String buildSubJob = 'job1'
         // Start another job
         def job = Hudson.instance.getJob(buildSubJob)
-        def buildResult		
+        def buildResult	
+        def anotherBuild	
         def runs = job.getBuilds()		
         def currentBuild = runs[0]
         try {
@@ -24,12 +25,13 @@ class Demo{
                 ]
                 def future = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
                 //println "Waiting for the completion of " + HyperlinkNote.encodeTo('/' + job.url, job.fullDisplayName)
-                buildResult = future.get()
+                anotherBuild = future.get()                
         } //catch (CancellationException x) {
         catch (Exception e) {
             //throw new AbortException("${job.fullDisplayName} aborted.")
             throw(e)
         }        
+        buildResult = anotherBuild.result
         script.echo("Job status: ${buildResult}")
     }
 }
