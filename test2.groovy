@@ -26,8 +26,9 @@ class Demo{
         script.echo ("Inside class exec")
 		//def buildit = load 'test1.groovy'			
 		GroovyShell shell = new GroovyShell()
-	    def tools = shell.parse(new File('test1.groovy'))
-	    script.echo("${tools}")
+	    //def tools = shell.parse(new File('test1.groovy'))
+	    def tools = build job: 'job3'
+        script.echo("${tools}")
         tools.exec("code","slow")
     }
 }
