@@ -4,7 +4,7 @@ import java.lang.String
 /***********************
  Jenkins pipeline stage to build the product
  ************************/
-def exec(String branchOrCommit,
+def exec(String branchOrCommit='code',
          String buildType='FAST') {
 
     println "inside exec"
