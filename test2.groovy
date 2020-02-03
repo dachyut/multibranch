@@ -8,6 +8,12 @@ class Demo extends Script {
 	String buildType='FAST'
     
     //def out = new Binding()	
+
+    def run() {
+		out.println 'Groovy world!'
+		//buildResult = build job: 'job3'
+	}
+
     Demo(out)  // Have to pass the out variable to the class
     {
         script.echo("Hello-AAAAAA")
