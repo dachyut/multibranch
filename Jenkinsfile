@@ -11,7 +11,7 @@ node() {
 			println workspace
 
 			def buildit = load 'test2.groovy'			
-			buildit.execprint()
+			buildit.exec()
 			//buildit.exec("myCode", "params.BUILD_TYPE", "buildLevel", "params.BUILD_LABEL", true, false, "skipComponents", "clientDownloadLocation")  
 
 			//def out = new Binding()
