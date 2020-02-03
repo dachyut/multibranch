@@ -14,12 +14,12 @@ class Demo{
 		final String buildSubJob = 'job1'
         // Start another job
         def job = Hudson.instance.getJob(buildSubJob)
-        def anotherBuild		
+        def buildResult		
         def runs = job.getBuilds()		
         def currentBuild = runs[0]
         try {
                 def params = [
-                    new StringParameterValue('name', 'my-name'),
+                    new StringParameterValue('name', 'from jenkins'),
                     new BooleanParameterValue('build', false)
                 ]
                 def future = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
@@ -30,7 +30,7 @@ class Demo{
             //throw new AbortException("${job.fullDisplayName} aborted.")
             throw(e)
         }        
-        script.echo("Job status: ${result}")
+        script.echo("Job status: ${buildResult}")
     }
 }
 
