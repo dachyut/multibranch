@@ -3,14 +3,15 @@ import java.lang.String
 
 //def out = new Binding()
 
-class Demo extends Script {
+class Demo{
 	String branchOrCommit='Default'	
 	String buildType='FAST'
-    
+
+    Script script;    
     //def out = new Binding()	
 
     def run() {
-		out.println 'Groovy world!'
+		script.echo 'Groovy world!'
 		//buildResult = build job: 'job3'
 	}
 
@@ -22,7 +23,7 @@ class Demo extends Script {
 
 	def execprint(out) {
         script.echo("Hello-BBBBBBBBB")
-        out.println ("Inside class exec")
+        script.echo ("Inside class exec")
 		//def buildit = load 'test1.groovy'			
 		GroovyShell shell = new GroovyShell()
 	    def tools = shell.parse(new File('test1.groovy'))
