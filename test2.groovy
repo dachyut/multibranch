@@ -27,7 +27,7 @@ class Demo{
             throw(e)
         }     
         buildResult = getjob.result
-        script.echo("Job status: ${buildResult}")
+        script.echo("Sub-Job status: ${buildResult}")
     }
 }
 
