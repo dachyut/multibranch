@@ -7,6 +7,8 @@ node() {
 			cleanWs()		
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy file"          
+			def workspace = pwd()
+			println workspace
 
 			def buildit = load 'test2.groovy'			
 			buildit.execprint()
