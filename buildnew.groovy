@@ -27,6 +27,7 @@ def exec(String branchOrCommit,
                 [$class: 'StringParameterValue', name: 'name', value: buildLabel],
                 [$class: 'BooleanParameterValue', name: 'build', value: isNotarized]                
             ]
+    prinntln "Result: ${buildResult.result}"        
 }
 
 return this
