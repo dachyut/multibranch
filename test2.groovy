@@ -1,7 +1,7 @@
 #!groovy
 import java.lang.String
 
-def out = new Binding()
+//def out = new Binding()
 
 class Demo extends Script {
 	String branchOrCommit='Default'	
@@ -14,7 +14,7 @@ class Demo extends Script {
 		//buildResult = build job: 'job3'
 	}
 
-    def Demo(out)  // Have to pass the out variable to the class
+    def Demo()  // Have to pass the out variable to the class
     {
         script.echo("Hello-AAAAAA")
         out.println ("Inside class OutoutClass")
