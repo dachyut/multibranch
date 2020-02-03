@@ -8,29 +8,29 @@ class Demo{
 	String buildType='FAST'
 
     Script script;    
-    //def out = new Binding()	
-
-    // def run() {
-	// 	script.echo 'Groovy world!'
-	// 	//buildResult = build job: 'job3'
-	// }
-
-    // def Demo()  // Have to pass the out variable to the class
-    // {
-    //     script.echo("Hello-AAAAAA")
-    //     out.println ("Inside class OutoutClass")
-    // }
-
-	def execprint() {
-        script.echo("Hello-BBBBBBBBB")
+    
+	def execprint() {    
         script.echo ("Inside class exec")
-		//def buildit = load 'test1.groovy'			
-		GroovyShell shell = new GroovyShell()
-	    def tools = shell.parse(new File('test1.groovy'))
-	    //def tools = load 'test1.groovy'
-        script.echo("${tools}")
-        def result = tools.exec("code","slow")
-        script.echo("${result}")
+		final String buildSubJob = 'job1'
+        // Start another job
+        def job = Hudson.instance.getJob(buildSubJob)
+        def anotherBuild		
+        def runs = job.getBuilds()		
+        def currentBuild = runs[0]
+        try {
+                def params = [
+                    new StringParameterValue('name', 'my-name'),
+                    new BooleanParameterValue('build', false)
+                ]
+                def future = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
+                //println "Waiting for the completion of " + HyperlinkNote.encodeTo('/' + job.url, job.fullDisplayName)
+                buildResult = future.get()
+        } //catch (CancellationException x) {
+        catch (Exception e) {
+            //throw new AbortException("${job.fullDisplayName} aborted.")
+            throw(e)
+        }        
+        script.echo("Job status: ${result}")
     }
 }
 
