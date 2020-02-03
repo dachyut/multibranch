@@ -29,7 +29,8 @@ class Demo{
 	    def tools = shell.parse(new File('test1.groovy'))
 	    //def tools = load 'test1.groovy'
         script.echo("${tools}")
-        tools.exec("code","slow")
+        def result = tools.exec("code","slow")
+        script.echo("${result}")
     }
 }
 
