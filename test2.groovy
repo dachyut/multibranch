@@ -14,11 +14,11 @@ class Demo extends Script {
 		//buildResult = build job: 'job3'
 	}
 
-    def Demo()  // Have to pass the out variable to the class
-    {
-        script.echo("Hello-AAAAAA")
-        out.println ("Inside class OutoutClass")
-    }
+    // def Demo()  // Have to pass the out variable to the class
+    // {
+    //     script.echo("Hello-AAAAAA")
+    //     out.println ("Inside class OutoutClass")
+    // }
 
 	def execprint(out) {
         script.echo("Hello-BBBBBBBBB")
