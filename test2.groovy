@@ -2,17 +2,17 @@
 import java.lang.String
 
 class Demo{
-	String branchOrCommit='Default'	
-	String buildType='FAST'
-    String buildScope='CI'
-    String buildLabel='CEB-NewBuild'
+	// String branchOrCommit='Default'	
+	// String buildType='FAST'
+    // String buildScope='CI'
+    // String buildLabel='CEB-NewBuild'
     Boolean pushArtifactsToAzure=true
-    Boolean isNotarized=false
-    String skipComponents=''
-    String clientDownloadLocation='Default'
-    String buildBrandIndex='0'
-    Boolean checkmarxScan=false
-    Boolean whitesourceScan=false
+    // Boolean isNotarized=false
+    // String skipComponents=''
+    // String clientDownloadLocation='Default'
+    // String buildBrandIndex='0'
+    // Boolean checkmarxScan=false
+     Boolean whitesourceScan=false
 
      Script script;    
     
