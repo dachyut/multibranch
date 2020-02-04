@@ -58,7 +58,7 @@ class Demo{
                 fingerprintArtifacts: false,
                 flatten             : true,
                 optional            : true,
-                selector            : specific(buildResult.id),
+                selector            : specific(buildResult.id.toInteger()),
                 projectName         : buildSubJob])
             archiveArtifacts artifacts: failedBuildArtifacts, fingerprint: true
             error('Build sub-job failed')
