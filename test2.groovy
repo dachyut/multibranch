@@ -1,5 +1,7 @@
 #!groovy
 import java.lang.String
+import hudson.plugins.copyartifact
+import hudson.model.*
 
 class Demo{
 	String branchOrCommit='Default'	
