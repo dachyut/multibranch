@@ -8,7 +8,7 @@ class Demo{
     String buildLabel='CEB-NewBuild'
     Boolean pushArtifactsToAzure=true
     Boolean isNotarized=false
-    String skipComponents=''
+    String skipComponents='Default'
     String clientDownloadLocation='Default'
     String buildBrandIndex='0'
     Boolean checkmarxScan=false
