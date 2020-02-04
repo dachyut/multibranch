@@ -32,7 +32,10 @@ class Demo{
         try {
             def params = [
                 new StringParameterValue('BUILD_TYPE', buildType),
-                new StringParameterValue('BUILD_BRAND_INDEX', buildBrandIndex),                
+                new StringParameterValue('BUILD_BRAND_INDEX', buildBrandIndex),
+                new StringParameterValue('BRANCH', branchOrCommit),
+                new StringParameterValue('BUILD_LEVEL', buildScope),
+                new BooleanParameterValue('CHECKMARX_FULL_SCAN', checkmarxScan),
                 new BooleanParameterValue('WHITESOURCE_SCAN', whitesourceScan)
             ]
             def runjob = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
