@@ -24,7 +24,8 @@ class Demo{
         final String buildLog = 'Build.log'
         
         // Start another job
-        def job = Hudson.instance.getJob(buildSubJob)
+        // def job = Hudson.instance.getJob(buildSubJob)  -- depricated
+        def job = Jenkins.instance.getItemByFullName(buildSubJob)
         def runs = job.getBuilds()		
         def currentBuild = runs[0]
         def buildResult	
