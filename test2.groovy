@@ -14,7 +14,7 @@ class Demo{
     // Boolean checkmarxScan=false
     // Boolean whitesourceScan=false
 
-     Script script;    
+    // Script script;    
     
 	def exec() {    
     //     script.echo ("Inside class exec() method")
@@ -41,4 +41,5 @@ class Demo{
 }
 
 // println("Outside class Demo()")
-return new Demo(script:this)
+// return new Demo(script:this)
+return new Demo()
