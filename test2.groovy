@@ -50,19 +50,27 @@ class Demo{
         }     
 
         script.echo("Sub-Job status: ${buildResult.result}")
+        def bSelector = buildResult.id as BuildSelector
         
-        if (buildResult != 'SUCCESS') {
+        if (buildResult.result != 'SUCCESS') {
             // Try to grab the logs if the build failed
             step([$class              : 'CopyArtifact',
                 filter              : failedBuildArtifacts,
                 fingerprintArtifacts: false,
                 flatten             : true,
                 optional            : true,
-                selector            : specific(buildResult.id.toInteger()),
+                selector            : specific(bSelector),
                 projectName         : buildSubJob])
             archiveArtifacts artifacts: failedBuildArtifacts, fingerprint: true
             error('Build sub-job failed')
         }
+
+        step([$class          : 'CopyArtifact',
+          filter              : buildArtifacts,
+          fingerprintArtifacts: true,
+          flatten             : true,
+          selector            : specific(bSelector),
+          projectName         : buildSubJob])
     }
 }
 println("Outside class Demo()")
