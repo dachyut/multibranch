@@ -6,7 +6,7 @@ class Demo{
 	// String buildType='FAST'
     // String buildScope='CI'
     // String buildLabel='CEB-NewBuild'
-    Boolean pushArtifactsToAzure=true
+    // Boolean pushArtifactsToAzure=true
     // Boolean isNotarized=false
     // String skipComponents=''
     // String clientDownloadLocation='Default'
@@ -16,8 +16,8 @@ class Demo{
 
      Script script;    
     
-	// def exec() {    
-    //     script.echo ("Inside class exec() method")
+	def exec() {    
+        script.echo ("Inside class exec() method")
 	// 	final String buildSubJob = 'job1'
     //     // Start another job
     //     def job = Hudson.instance.getJob(buildSubJob)
@@ -37,7 +37,7 @@ class Demo{
     //     }     
     //     buildResult = getjob.result
     //     script.echo("Sub-Job status: ${buildResult}")
-    // }
+    }
 }
 
 // println("Outside class Demo()")
