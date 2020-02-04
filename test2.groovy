@@ -54,7 +54,7 @@ class Demo{
         script.echo("Sub-Job status: ${buildResult.result}")
         def bSelector = buildResult.getId()
        
-       steps.CopyArtifact('job3') {
+       CopyArtifact('job3') {
             includePatterns('*.xml', '*.properties')
             excludePatterns('test.xml', 'test.properties')
             targetDirectory('files')
