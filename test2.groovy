@@ -59,7 +59,7 @@ class Demo{
                 fingerprintArtifacts: false,
                 flatten             : true,
                 optional            : true,
-                selector            : specific(bSelector),
+                selector            : 19,
                 projectName         : buildSubJob])
             archiveArtifacts artifacts: failedBuildArtifacts, fingerprint: true
             error('Build sub-job failed')
