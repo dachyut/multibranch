@@ -35,8 +35,9 @@ class Demo{
                 new StringParameterValue('BUILD_BRAND_INDEX', buildBrandIndex),
                 new StringParameterValue('BRANCH', branchOrCommit),
                 new StringParameterValue('BUILD_LEVEL', buildScope),
-                new StringParameterValue('BUILD_LABEL', label: buildLabel),
-                
+                new StringParameterValue('BUILD_LABEL', buildLabel),
+                new StringParameterValue('SKIP_COMPONENTS', skipComponents),
+                new StringParameterValue('CLIENT_DOWNLOAD_LOCATION', clientDownloadLocation),
                 new BooleanParameterValue('PUSH_ARTIFACTS_TO_AZURE', pushArtifactsToAzure),
                 new BooleanParameterValue('IS_NOTARIZED', isNotarized),                
                 new BooleanParameterValue('CHECKMARX_FULL_SCAN', checkmarxScan),
