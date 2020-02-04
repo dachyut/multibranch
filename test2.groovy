@@ -31,7 +31,8 @@ class Demo{
         def getjob	        
         try {
             def params = [
-                new StringParameterValue('BUILD_TYPE', buildType),                
+                new StringParameterValue('BUILD_TYPE', buildType),
+                new StringParameterValue('BUILD_BRAND_INDEX', buildBrandIndex),                
                 new BooleanParameterValue('WHITESOURCE_SCAN', whitesourceScan)
             ]
             def runjob = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
