@@ -29,7 +29,7 @@ class Demo{
         def runs = job.getBuilds()		
         def currentBuild = runs[0]
         def buildResult	
-        def getjob	        
+        def buildResult	        
         try {
             def params = [
                 new StringParameterValue('BUILD_TYPE', buildType),
@@ -45,12 +45,12 @@ class Demo{
                 new BooleanParameterValue('WHITESOURCE_SCAN', whitesourceScan)
             ]
             def runjob = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
-            getjob = runjob.get()                
+            buildResult = runjob.get()                
         } catch (Exception e) {
             throw(e)
         }     
-        buildResult = getjob.result
-        script.echo("Sub-Job status: ${buildResult}")
+
+        script.echo("Sub-Job status: ${buildResult.result}")
         
         if (buildResult != 'SUCCESS') {
             // Try to grab the logs if the build failed
