@@ -18,7 +18,7 @@ class Demo{
     
 	def exec() {    
         script.echo ("Inside class exec() method")
-		final String buildSubJob = 'EndpointMidmarket/Shared/job/Midmarket-New-Build_Hermes'
+		final String buildSubJob = 'EndpointMidmarket/Shared/Midmarket-New-Build_Hermes'
         final String failedBuildArtifacts = 'Build.log, Failure.txt, **/Failure*.txt'
         final String buildArtifacts = 'Build.log, Failure.txt, build.properties, build_times.csv, git_commits.log, **/TEST*.xml, **/ui/coverage/cobertura-coverage.xml, **/junit-results.xml, **/TestResults/*.trx'
         final String buildLog = 'Build.log'
