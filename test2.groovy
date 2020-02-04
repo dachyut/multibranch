@@ -50,7 +50,7 @@ class Demo{
         }     
 
         script.echo("Sub-Job status: ${buildResult.result}")
-        def bSelector = buildResult.id
+        def bSelector = buildResult.getId()
         
         if (buildResult.result != 'SUCCESS') {
             // Try to grab the logs if the build failed
