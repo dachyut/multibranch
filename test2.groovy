@@ -18,7 +18,11 @@ class Demo{
     
 	def exec() {    
         script.echo ("Inside class exec() method")
-		final String buildSubJob = 'job1'
+		final String buildSubJob = 'EndpointMidmarket/Shared/job/Midmarket-New-Build_Hermes'
+        final String failedBuildArtifacts = 'Build.log, Failure.txt, **/Failure*.txt'
+        final String buildArtifacts = 'Build.log, Failure.txt, build.properties, build_times.csv, git_commits.log, **/TEST*.xml, **/ui/coverage/cobertura-coverage.xml, **/junit-results.xml, **/TestResults/*.trx'
+        final String buildLog = 'Build.log'
+        
         // Start another job
         def job = Hudson.instance.getJob(buildSubJob)
         def runs = job.getBuilds()		
@@ -27,8 +31,18 @@ class Demo{
         def getjob	        
         try {
             def params = [
-                new StringParameterValue('name', branchOrCommit),
-                new BooleanParameterValue('build', pushArtifactsToAzure)
+                new StringParameterValue('BUILD_TYPE', buildType)		
+                new StringParameterValue('TFSBUILDTYPE', NightlyLite)			
+                new StringParameterValue('BUILD_BRAND_INDEX', buildBrandIndex)
+                new StringParameterValue('BRANCH', branchOrCommit)
+                new StringParameterValue('BUILD_LEVEL', buildScope)
+                new StringParameterValue('BUILD_LABEL', label: buildLabel)
+                new BooleanParameterValue('PUSH_ARTIFACTS_TO_AZURE', pushArtifactsToAzure)
+                new BooleanParameterValue('IS_NOTARIZED', isNotarized)
+                new StringParameterValue('SKIP_COMPONENTS', skipComponents)
+                new StringParameterValue('CLIENT_DOWNLOAD_LOCATION', clientDownloadLocation)
+                new BooleanParameterValue('CHECKMARX_FULL_SCAN', checkmarxScan)
+                new BooleanParameterValue('WHITESOURCE_SCAN', whitesourceScan)
             ]
             def runjob = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
             getjob = runjob.get()                
