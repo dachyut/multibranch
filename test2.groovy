@@ -28,8 +28,7 @@ class Demo{
         def job = Jenkins.instance.getItemByFullName(buildSubJob)
         def runs = job.getBuilds()		
         def currentBuild = runs[0]
-        def buildResult	
-        def buildResult	        
+        def buildResult     
         try {
             def params = [
                 new StringParameterValue('BUILD_TYPE', buildType),
