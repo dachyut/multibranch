@@ -31,16 +31,7 @@ class Demo{
         def getjob	        
         try {
             def params = [
-                new StringParameterValue('BUILD_TYPE', buildType),			
-                new StringParameterValue('BUILD_BRAND_INDEX', buildBrandIndex),
-                new StringParameterValue('BRANCH', branchOrCommit),
-                new StringParameterValue('BUILD_LEVEL', buildScope),
-                new StringParameterValue('BUILD_LABEL', label: buildLabel),
-                new BooleanParameterValue('PUSH_ARTIFACTS_TO_AZURE', pushArtifactsToAzure),
-                new BooleanParameterValue('IS_NOTARIZED', isNotarized),
-                new StringParameterValue('SKIP_COMPONENTS', skipComponents),
-                new StringParameterValue('CLIENT_DOWNLOAD_LOCATION', clientDownloadLocation),
-                new BooleanParameterValue('CHECKMARX_FULL_SCAN', checkmarxScan),
+                new StringParameterValue('BUILD_TYPE', buildType),                
                 new BooleanParameterValue('WHITESOURCE_SCAN', whitesourceScan)
             ]
             def runjob = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
