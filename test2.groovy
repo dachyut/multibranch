@@ -1,6 +1,6 @@
 #!groovy
 import java.lang.String
-import hudson.plugins.copyartifact
+import java.lang.Object
 import hudson.model.*
 
 class Demo{
