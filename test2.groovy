@@ -37,7 +37,7 @@ class Demo{
     //     }     
     //     buildResult = getjob.result
     //     script.echo("Sub-Job status: ${buildResult}")
-    }
+    // }
 }
 
 // println("Outside class Demo()")
