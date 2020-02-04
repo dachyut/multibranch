@@ -17,8 +17,8 @@ class Demo{
      Script script;    
     
 	def exec() {    
-        script.echo ("Inside class exec() method")
-	// 	final String buildSubJob = 'job1'
+    //     script.echo ("Inside class exec() method")
+		final String buildSubJob = 'job1'
     //     // Start another job
     //     def job = Hudson.instance.getJob(buildSubJob)
     //     def runs = job.getBuilds()		
