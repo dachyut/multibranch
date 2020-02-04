@@ -9,21 +9,22 @@ node() {
             println "Loading groovy Class file"          
 			
 			// Daniel hash map code
-			def buildit = load 'test4.groovy'
+			//def buildit = load 'test4.groovy'
 			
 			//buildit.myMapExec(branchOrCommit: 'Wow!')
 			//buildit.myMapExec(buildScope: 'Super!')
 			//buildit.myMapExec(isNotarized: false)
-			buildit.myMapExec(buildScope: 'YOWZAA', pushArtifactsToAzure: false, buildType: 'Yeeeee-HAW!')
+			//buildit.myMapExec(buildScope: 'YOWZAA', pushArtifactsToAzure: false, buildType: 'Yeeeee-HAW!')
 			//buildit.myMapExec(notReallyAKey: 77)   // Validate keys
 
-			/* Working Code .........
-			// def buildit = load 'test2.groovy'			
-			// println "Setting class varibales"
-			// buildit.branchOrCommit = 'myCode'
-			// buildit.pushArtifactsToAzure = false
-			// println "Executing method inside class"
-			// buildit.exec()
+			//* Working Code .........
+			def buildit = load 'test2.groovy'			
+			println "Setting class varibales"
+			buildit.branchOrCommit = 'myCode'
+			buildit.pushArtifactsToAzure = false
+									
+			println "Executing method inside class"
+			buildit.exec()
 			//buildit.exec("myCode", "params.BUILD_TYPE", "buildLevel", "params.BUILD_LABEL", true, false, "skipComponents", "clientDownloadLocation")  
 			//Working Code */
 
