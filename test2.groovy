@@ -12,7 +12,7 @@ class Demo{
     // String clientDownloadLocation='Default'
     // String buildBrandIndex='0'
     // Boolean checkmarxScan=false
-     Boolean whitesourceScan=false
+    // Boolean whitesourceScan=false
 
      Script script;    
     
