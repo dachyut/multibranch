@@ -51,8 +51,20 @@ class Demo{
         }     
         buildResult = getjob.result
         script.echo("Sub-Job status: ${buildResult}")
+        
+        if (buildResult != 'SUCCESS') {
+            // Try to grab the logs if the build failed
+            step([$class              : 'CopyArtifact',
+                filter              : failedBuildArtifacts,
+                fingerprintArtifacts: false,
+                flatten             : true,
+                optional            : true,
+                selector            : specific(buildResult.id),
+                projectName         : buildSubJob])
+            archiveArtifacts artifacts: failedBuildArtifacts, fingerprint: true
+            error('Build sub-job failed')
+        }
     }
 }
-
 println("Outside class Demo()")
 return new Demo(script:this)
