@@ -5,7 +5,7 @@ class Demo{
 	String branchOrCommit='Default'	
 	String buildType='FAST'
     String buildScope='CI'
-    String buildLabel='CEB-NewBuild'
+    String buildLabel='Agent'
     Boolean pushArtifactsToAzure=true
     Boolean isNotarized=false
     String skipComponents='Default'
