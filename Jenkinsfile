@@ -17,7 +17,7 @@ node() {
         stage('run') {
 			cleanWs()	
 			println "Files before..."
-			sh "ls -la ${pwd()}"	
+			sh "ls -la"	
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 			
