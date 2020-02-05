@@ -3,6 +3,17 @@ import java.lang.String
 
 
 node() {
+
+		stage('artifacts') {
+			Random random = new Random()
+			ranStr = "RandomStr-" + random.nextInt(10000)
+			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"	
+			bat "echo RandomString=$ranStr >> build.properties"
+			bat "echo BuildNumber=${env.BUILD_NUMBER} >> build.properties"
+			
+			//	archiveArtifacts artifacts: 'build.properties', fingerprint: true
+		}
+
         stage('run') {
 			cleanWs()		
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
