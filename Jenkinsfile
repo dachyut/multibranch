@@ -15,7 +15,9 @@ node() {
 		}
 
         stage('run') {
-			cleanWs()		
+			cleanWs()	
+			println "Files before..."
+			sh "ls -la ${pwd()}"	
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 			
@@ -71,6 +73,9 @@ node() {
                         
             // Calling Class.Method
             //def result = buildit.execprint()
-            //println "$result"            
+            //println "$result"      
+
+			println "Files after..."
+			sh "ls -la ${pwd()}"	      
         }
 }
