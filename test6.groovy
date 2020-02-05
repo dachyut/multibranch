@@ -5,23 +5,23 @@ class MyClass {
         ////echo "Inside exec method"
         def name = "PipelineJob2"
         def archiveName = 'build.properties'
-        try {
-            script.echo("CopyArtifacts.........")
-            step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: name, selector: lastSuccessful(), filter: 'build.properties',fingerprintArtifacts: true, target: 'd:\\artifacts')
-            copyArtifacts(
-                projectName: name,
-                filter: 'build.properties',
-                fingerprintArtifacts: true,
-                target: 'd:\\artifacts',
-                flatten: true,
-                selector:  lastSuccessful()
-            )
+        //try {
+        script.echo("CopyArtifacts.........")
+        step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: name, selector: lastSuccessful(), filter: 'build.properties',fingerprintArtifacts: true, target: 'd:\\artifacts')
+        // copyArtifacts(
+        //     projectName: name,
+        //     filter: 'build.properties',
+        //     fingerprintArtifacts: true,
+        //     target: 'd:\\artifacts',
+        //     flatten: true,
+        //     selector:  lastSuccessful()
+        // )
             //script.echo("Archive artifacts")
             //step(archiveArtifacts(artifacts: archiveName, fingerprint: true))
-        } catch (none) {
+        //} catch (none) {
             ////echo 'No artifact to copy from ' + name 
             //writeFile file: archiveName, text: '3'
-        }
+        //}
         script.echo("Listing files......")
         // def rootFiles = new File("test").listRoots() 
         // rootFiles.each { file -> script.echo(file.absolutePath) }
