@@ -15,16 +15,13 @@ class MyClass {
             //writeFile file: archiveName, text: '3'
         }
         script.echo("Listing files......")
-        def rootFiles = new File("test").listRoots() 
-        rootFiles.each { file -> script.echo(file.absolutePath) }
+        // def rootFiles = new File("test").listRoots() 
+        // rootFiles.each { file -> script.echo(file.absolutePath) }
 
-        script.echo("File contents.......")
-        File file = new File(archiveName)
-        def lines = file.text
-        script.echo("File : ${archiveName}")
-        //return lines
-        //def content = readFile(archiveName).trim()
-        //echo 'value archived: '
+        // script.echo("File contents.......")
+        // File file = new File(archiveName)
+        // def lines = file.text
+        // script.echo("File : ${archiveName}")        
     }
 }
 
