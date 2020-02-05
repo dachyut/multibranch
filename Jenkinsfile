@@ -18,16 +18,22 @@ node() {
 			//buildit.myMapExec(notReallyAKey: 77)   // Validate keys
 
 			//* Working Code .........
-			def buildit = load 'test2.groovy'			
-			println "Setting class varibales"
-			buildit.branchOrCommit = 'myCode'
-			buildit.pushArtifactsToAzure = false
+			// def buildit = load 'test2.groovy'			
+			// println "Setting class varibales"
+			// buildit.branchOrCommit = 'myCode'
+			// buildit.pushArtifactsToAzure = false
 									
-			println "Executing method inside class"
-			buildit.exec()
+			// println "Executing method inside class"
+			// buildit.exec()
 			//buildit.exec("myCode", "params.BUILD_TYPE", "buildLevel", "params.BUILD_LABEL", true, false, "skipComponents", "clientDownloadLocation")  
 			//Working Code */
 
+			//* Copyartifacts Code .........
+			def buildit = load 'test6.groovy'			
+			
+			println "Executing method inside class"
+			buildit.exec()			
+			// Code */
 
 			//def out = new Binding()
 			//def buildit = load 'build1.groovy'			
