@@ -12,3 +12,5 @@ def exec() {
     def content = readFile(archiveName).trim()
     echo 'value archived: ' + content
 }
+
+return this
