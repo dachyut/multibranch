@@ -1,3 +1,7 @@
+#!groovy
+import java.lang.String
+
+
 class MyClass {
     Script script;
 
@@ -7,15 +11,15 @@ class MyClass {
         def archiveName = 'build.properties'
         //try {
         script.echo("CopyArtifacts.........")
-        step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: name,  filter: 'build.properties',fingerprintArtifacts: true, target: 'd:\\artifacts')
-        // copyArtifacts(
-        //     projectName: name,
-        //     filter: 'build.properties',
-        //     fingerprintArtifacts: true,
-        //     target: 'd:\\artifacts',
-        //     flatten: true,
-        //     selector:  lastSuccessful()
-        // )
+        //step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: name,  filter: 'build.properties',fingerprintArtifacts: true, target: 'd:\\artifacts')
+        copyArtifacts(
+            projectName: name,
+            filter: 'build.properties',
+            fingerprintArtifacts: true,
+            target: 'd:\\artifacts',
+            flatten: true,
+            selector:  lastSuccessful()
+        )
             //script.echo("Archive artifacts")
             //step(archiveArtifacts(artifacts: archiveName, fingerprint: true))
         //} catch (none) {
