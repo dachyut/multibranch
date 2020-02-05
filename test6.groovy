@@ -7,7 +7,7 @@ class MyClass {
         def archiveName = 'build.properties'
         //try {
         script.echo("CopyArtifacts.........")
-        step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: name, selector: lastSuccessful(), filter: 'build.properties',fingerprintArtifacts: true, target: 'd:\\artifacts')
+        step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: name,  filter: 'build.properties',fingerprintArtifacts: true, target: 'd:\\artifacts')
         // copyArtifacts(
         //     projectName: name,
         //     filter: 'build.properties',

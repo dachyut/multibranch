@@ -2,15 +2,15 @@
         ////echo "Inside exec method"
         def name = "PipelineJob2"
         def archiveName = 'build.properties'
-        try {
+        //try {
             println("CopyArtifacts.........")
             step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: name, selector: lastSuccessful(), filter: 'build.properties',fingerprintArtifacts: true, target: 'd:\\artifacts')
             println("Archive artifacts")
             //step(archiveArtifacts(artifacts: archiveName, fingerprint: true))
-        } catch (none) {
+        //} catch (none) {
             ////echo 'No artifact to copy from ' + name 
             //writeFile file: archiveName, text: '3'
-        }
+        //}
         println("Current dirctory......")
         def currentDir = new File(".").getAbsolutePath()
         println currentDir
