@@ -17,8 +17,7 @@ class MyClass {
             filter: 'build.properties',
             fingerprintArtifacts: true,
             target: 'd:\\artifacts',
-            flatten: true,
-            selector:  lastSuccessful()
+            flatten: true
         )
             //script.echo("Archive artifacts")
             //step(archiveArtifacts(artifacts: archiveName, fingerprint: true))
