@@ -47,10 +47,10 @@ node() {
 			//Working Code */
 
 			//* Copyartifacts Code .........
-			def buildit = load 'test6.groovy'			
+			// def buildit = load 'test6.groovy'			
 			
-			println "Executing method inside class"
-			buildit.exec()			
+			// println "Executing method inside class"
+			// buildit.exec()			
 			// Code */
 
 			//def out = new Binding()
