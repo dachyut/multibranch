@@ -1,4 +1,5 @@
 class MyClass {
+    Script script;
 
     def exec() {
         ////echo "Inside exec method"
@@ -12,9 +13,13 @@ class MyClass {
             //writeFile file: archiveName, text: '3'
         }
 
-        def content = readFile(archiveName).trim()
+        File file = new File(archiveName)
+        def lines = file.text
+        script.echo("File : ${archiveName}")
+        //return lines
+        //def content = readFile(archiveName).trim()
         //echo 'value archived: '
     }
 }
 
-return new MyClass()
+return new MyClass(script:this)
