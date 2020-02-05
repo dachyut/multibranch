@@ -4,15 +4,15 @@ import java.lang.String
 
 node() {
 
-		stage('artifacts') {
-			Random random = new Random()
-			ranStr = "RandomStr-" + random.nextInt(10000)
-			bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"	
-			bat "echo RandomString=$ranStr >> build.properties"
-			bat "echo BuildNumber=${env.BUILD_NUMBER} >> build.properties"
+		// stage('artifacts') {
+		// 	Random random = new Random()
+		// 	ranStr = "RandomStr-" + random.nextInt(10000)
+		// 	bat "echo BRANCH=${env.BRANCH_NAME} > build.properties"	
+		// 	bat "echo RandomString=$ranStr >> build.properties"
+		// 	bat "echo BuildNumber=${env.BUILD_NUMBER} >> build.properties"
 			
-			//	archiveArtifacts artifacts: 'build.properties', fingerprint: true
-		}
+		// 	//	archiveArtifacts artifacts: 'build.properties', fingerprint: true
+		// }
 
         stage('run') {
 			//cleanWs()	
@@ -21,9 +21,9 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 			
-			// def buildit = load 'test7.groovy'				
-			// println "Executing method inside class"
-			// buildit.exec()	
+			def buildit = load 'test7.groovy'				
+			println "Executing method inside class"
+			buildit.exec()	
 
 			// Daniel hash map code
 			//def buildit = load 'test4.groovy'
@@ -46,9 +46,9 @@ node() {
 			//Working Code */
 
 			//* Copyartifacts Code .........
-			def buildit = load 'test6.groovy'				
-			println "Executing method inside class"
-			buildit.exec()			
+			// def buildit = load 'test6.groovy'				
+			// println "Executing method inside class"
+			// buildit.exec()			
 			// Code */
 
 			//def out = new Binding()
