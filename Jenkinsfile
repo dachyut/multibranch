@@ -76,6 +76,6 @@ node() {
             //println "$result"      
 
 			println "Files after..."
-			sh "ls -la ${pwd()}"	      
+			sh "ls -la"	      
         }
 }
