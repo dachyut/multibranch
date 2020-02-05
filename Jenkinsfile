@@ -21,10 +21,10 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 			
-			def buildit = load 'test7.groovy'			
+			// def buildit = load 'test7.groovy'			
 			
-			println "Executing method inside class"
-			buildit.exec()	
+			// println "Executing method inside class"
+			// buildit.exec()	
 
 			// Daniel hash map code
 			//def buildit = load 'test4.groovy'
@@ -47,10 +47,9 @@ node() {
 			//Working Code */
 
 			//* Copyartifacts Code .........
-			// def buildit = load 'test6.groovy'			
-			
-			// println "Executing method inside class"
-			// buildit.exec()			
+			def buildit = load 'test6.groovy'				
+			println "Executing method inside class"
+			buildit.exec()			
 			// Code */
 
 			//def out = new Binding()
