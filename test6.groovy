@@ -12,7 +12,7 @@ class MyClass {
         //try {
         script.echo("CopyArtifacts.........")
         //step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: name,  filter: 'build.properties',fingerprintArtifacts: true, target: 'd:\\artifacts')
-        copyArtifacts(
+        step.copyArtifacts(
             projectName: name,
             filter: 'build.properties',
             fingerprintArtifacts: true,
