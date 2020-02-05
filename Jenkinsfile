@@ -15,12 +15,17 @@ node() {
 		}
 
         stage('run') {
-			cleanWs()	
+			//cleanWs()	
 			println "Files before..."
 			sh "ls -la"	
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 			
+			def buildit = load 'test7.groovy'			
+			
+			println "Executing method inside class"
+			buildit.exec()	
+
 			// Daniel hash map code
 			//def buildit = load 'test4.groovy'
 			
