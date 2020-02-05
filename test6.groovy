@@ -2,7 +2,7 @@ class MyClass {
 
     def exec() {
         println "Inside exec method"
-        name = "PipelineJob2"
+        def name = "PipelineJob2"
         def archiveName = 'build.properties'
         try {
             step($class: 'hudson.plugins.copyartifact.CopyArtifact',  name, selector: lastSuccessful(), filter: archiveName, fingerprintArtifacts: true)
