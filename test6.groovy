@@ -16,4 +16,4 @@ class MyClass {
     }
 }
 
-return new MyClass
+return new MyClass()
