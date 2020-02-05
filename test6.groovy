@@ -8,6 +8,14 @@ class MyClass {
         try {
             script.echo("CopyArtifacts.........")
             step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: name, selector: lastSuccessful(), filter: 'build.properties',fingerprintArtifacts: true, target: 'd:\\artifacts')
+            copyArtifacts(
+                projectName: name,
+                filter: 'build.properties',
+                fingerprintArtifacts: true,
+                target: 'd:\\artifacts',
+                flatten: true,
+                selector:  lastSuccessful()
+            )
             //script.echo("Archive artifacts")
             //step(archiveArtifacts(artifacts: archiveName, fingerprint: true))
         } catch (none) {
