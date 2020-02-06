@@ -57,4 +57,4 @@ class MyClass {
 
 } //class
 
-return new Demo(script:this)
+return new MyClass(script:this)
