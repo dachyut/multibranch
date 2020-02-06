@@ -51,7 +51,8 @@ class MyClass {
                 filter              : failedBuildArtifacts,
                 fingerprintArtifacts: false,
                 flatten             : true,
-                optional            : true,                
+                optional            : true,     
+                selector            : specific(buildResult.id),           
                 projectName         : buildSubJob
             )
             
