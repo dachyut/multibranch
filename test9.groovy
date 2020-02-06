@@ -9,7 +9,7 @@ def exec() {
     def j1EnvVariables = job1_props.getBuildVariables();
     println "${j1EnvVariables["BUILD_ID"]}" 
     println "${j1EnvVariables["BUILD_ID"].getClass()}" 
-    def n = BuildSelector(j1EnvVariables["BUILD_ID"].getClass())
+    def n = specific("9")
 }
 
 return this
