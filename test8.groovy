@@ -79,7 +79,10 @@ class MyClass {
             projectName         : buildSubJob
         )
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
-        script.warnings parserConfigurations: [[parserName: 'MSBuild', pattern: buildLog]]
+        script.parserConfigurations: [[parserName: 'MSBuild', pattern: buildLog]]
+
+
+
     } //exec
 
 } //class
