@@ -44,33 +44,33 @@ class MyClass {
         script.println("Sub-Job status: ${buildResult.result}")
         //def bSelector = buildResult.number     
         //script.println("Build ID: ${bSelector.getClass()}")   
-        
-        def specificBuild = script.specific(buildResult.id)
-        script.copyArtifacts(
-            projectName: buildSubJob,
-            filter: failedBuildArtifacts,
-            fingerprintArtifacts: true,
-            selector : specificBuild,
-            flatten: true
-        )
 
-        // if (buildResult.result != 'SUCCESS') {
-        //     // Try to grab the logs if the build failed
-        //     script.copyArtifacts(
-        //         filter              : failedBuildArtifacts,
-        //         fingerprintArtifacts: false,
-        //         flatten             : true,
-        //         optional            : true,     
-        //         selector            : buildResult.id,           
-        //         projectName         : buildSubJob
-        //     )
+        // script.copyArtifacts(
+        //     projectName: buildSubJob,
+        //     filter: failedBuildArtifacts,
+        //     fingerprintArtifacts: true,
+        //     selector : specificBuild,
+        //     flatten: true
+        // )
+
+        def specificBuild = script.specific(buildResult.id)
+        if (buildResult.result != 'SUCCESS') {
+            // Try to grab the logs if the build failed
+            script.copyArtifacts(
+                filter              : failedBuildArtifacts,
+                fingerprintArtifacts: false,
+                flatten             : true,
+                optional            : true,     
+                selector            : specificBuild,           
+                projectName         : buildSubJob
+            )
             
-        //     script.archiveArtifacts(
-        //         artifacts: failedBuildArtifacts,
-        //         fingerprint: true
-        //     )
-        //     script.error('Build sub-job failed')
-        // }
+            script.archiveArtifacts(
+                artifacts: failedBuildArtifacts,
+                fingerprint: true
+            )
+            script.error('Build sub-job failed')
+        }
     } //exec
 
 } //class
