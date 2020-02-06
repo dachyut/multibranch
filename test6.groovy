@@ -16,6 +16,7 @@ class MyClass {
             projectName: name,
             filter: 'build.properties',
             fingerprintArtifacts: true,
+            selector : specific(5)
             flatten: true
         )
         script.println("Archive artifacts")
