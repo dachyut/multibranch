@@ -17,42 +17,33 @@ class MyClass {
     Boolean whitesourceScan=false
 
     def exec() {
-        script.echo ("Inside class exec() method")
+        script.println("Inside class exec() method")
 		final String buildSubJob = 'EndpointMidmarket/Shared/Midmarket-New-Build_Hermes'
         final String failedBuildArtifacts = 'Build.log, Failure.txt, **/Failure*.txt'
         final String buildArtifacts = 'Build.log, Failure.txt, build.properties, build_times.csv, git_commits.log, **/TEST*.xml, **/ui/coverage/cobertura-coverage.xml, **/junit-results.xml, **/TestResults/*.trx'
         final String buildLog = 'Build.log'
         
         // Start another job
-        // def job = Hudson.instance.getJob(buildSubJob)  -- depricated
-        def job = Jenkins.instance.getItemByFullName(buildSubJob)
-        def runs = job.getBuilds()		
-        def currentBuild = runs[0]
-        def buildResult     
-        try {
-            def params = [
-                new StringParameterValue('BUILD_TYPE', buildType),
-                new StringParameterValue('BUILD_BRAND_INDEX', buildBrandIndex),
-                new StringParameterValue('BRANCH', branchOrCommit),
-                new StringParameterValue('BUILD_LEVEL', buildScope),
-                new StringParameterValue('BUILD_LABEL', buildLabel),
-                new StringParameterValue('SKIP_COMPONENTS', skipComponents),
-                new StringParameterValue('CLIENT_DOWNLOAD_LOCATION', clientDownloadLocation),
-                new BooleanParameterValue('PUSH_ARTIFACTS_TO_AZURE', pushArtifactsToAzure),
-                new BooleanParameterValue('IS_NOTARIZED', isNotarized),                
-                new BooleanParameterValue('CHECKMARX_FULL_SCAN', checkmarxScan),
-                new BooleanParameterValue('WHITESOURCE_SCAN', whitesourceScan)
-            ]
-            def runjob = job.scheduleBuild2(0, new Cause.UpstreamCause(currentBuild), new ParametersAction(params))
-            buildResult = runjob.get()          
-        } catch (Exception e) {
-            script.echo("Exception: ${e}")  
-            throw(e)
-        }     
+        def buildResult = script.build job: buildSubJob,
+                propagate: false,
+                parameters: [
+                    [$class: 'StringParameterValue', name: 'BUILD_TYPE', value: buildType],
+                    [$class: 'StringParameterValue', name: 'TFSBUILDTYPE', value: 'NightlyLite'],  //no longer used, but not yet removed
+                    [$class: 'StringParameterValue', name: 'BUILD_BRAND_INDEX', value: buildBrandIndex],
+                    [$class: 'StringParameterValue', name: 'BRANCH', value: branchOrCommit],
+                    [$class: 'StringParameterValue', name: 'BUILD_LEVEL', value: buildScope],
+                    [$class: 'LabelParameterValue', name: 'BUILD_LABEL', label: buildLabel],
+                    [$class: 'BooleanParameterValue', name: 'PUSH_ARTIFACTS_TO_AZURE', value: pushArtifactsToAzure],
+                    [$class: 'BooleanParameterValue', name: 'IS_NOTARIZED', value: isNotarized],
+                    [$class: 'StringParameterValue', name: 'SKIP_COMPONENTS', value: skipComponents],
+                    [$class: 'StringParameterValue', name: 'CLIENT_DOWNLOAD_LOCATION', value: clientDownloadLocation],
+                    [$class: 'BooleanParameterValue', name: 'CHECKMARX_FULL_SCAN', value: checkmarxScan],
+                    [$class: 'BooleanParameterValue', name: 'WHITESOURCE_SCAN', value: whitesourceScan]
+                ]     
 
-        script.echo("Sub-Job status: ${buildResult.result}")
-        def bSelector = buildResult.getId()        
-        script.echo("Build ID: ${bSelector}")      
+        script.println("Sub-Job status: ${buildResult.result}")
+        def bSelector = buildResult.id       
+        script.println("Build ID: ${bSelector}")      
     } //exec
 
 } //class
