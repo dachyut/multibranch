@@ -47,7 +47,7 @@ class MyClass {
 
         if (buildResult.result != 'SUCCESS') {
             // Try to grab the logs if the build failed
-            script.CopyArtifacts(
+            script.copyArtifacts(
                 filter              : failedBuildArtifacts,
                 fingerprintArtifacts: false,
                 flatten             : true,
