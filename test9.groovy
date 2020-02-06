@@ -1,6 +1,6 @@
 import hudson.plugins.copyartifact.BuildSelector
 import java.lang.Object
-import hudson.model
+import hudson.model.*
 import hudson.*
 
 def exec() {
