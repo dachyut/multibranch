@@ -51,8 +51,7 @@ class MyClass {
                 filter              : failedBuildArtifacts,
                 fingerprintArtifacts: false,
                 flatten             : true,
-                optional            : true,
-                selector            : script.specific("${buildResult.number}"),
+                optional            : true,                
                 projectName         : buildSubJob
             )
             
