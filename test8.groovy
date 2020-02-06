@@ -54,7 +54,7 @@ class MyClass {
         // )
 
         def specificBuild = script.specific(buildResult.id)
-        if (buildResult.result != 'SUCCESS') {
+        //if (buildResult.result != 'SUCCESS') {
             // Try to grab the logs if the build failed
             script.copyArtifacts(
                 filter              : failedBuildArtifacts,
@@ -70,7 +70,7 @@ class MyClass {
                 fingerprint: true
             )
             script.error('Build sub-job failed')
-        }
+        //}
     } //exec
 
 } //class
