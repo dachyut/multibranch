@@ -1,6 +1,6 @@
 #!groovy
 import java.lang.String
-
+import java.lang.Object
 
 class MyClass {
     Script script;
@@ -45,23 +45,31 @@ class MyClass {
         def bSelector = buildResult.number     
         //script.println("Build ID: ${bSelector.getClass()}")   
 
-        if (buildResult.result != 'SUCCESS') {
-            // Try to grab the logs if the build failed
-            script.copyArtifacts(
-                filter              : failedBuildArtifacts,
-                fingerprintArtifacts: false,
-                flatten             : true,
-                optional            : true,     
-                selector            : buildResult.id,           
-                projectName         : buildSubJob
-            )
+        script.copyArtifacts(
+            projectName: name,
+            filter: failedBuildArtifacts,
+            fingerprintArtifacts: true,
+            selector : specific(5),
+            flatten: true
+        )
+
+        // if (buildResult.result != 'SUCCESS') {
+        //     // Try to grab the logs if the build failed
+        //     script.copyArtifacts(
+        //         filter              : failedBuildArtifacts,
+        //         fingerprintArtifacts: false,
+        //         flatten             : true,
+        //         optional            : true,     
+        //         selector            : buildResult.id,           
+        //         projectName         : buildSubJob
+        //     )
             
-            script.archiveArtifacts(
-                artifacts: failedBuildArtifacts,
-                fingerprint: true
-            )
-            script.error('Build sub-job failed')
-        }
+        //     script.archiveArtifacts(
+        //         artifacts: failedBuildArtifacts,
+        //         fingerprint: true
+        //     )
+        //     script.error('Build sub-job failed')
+        // }
     } //exec
 
 } //class
