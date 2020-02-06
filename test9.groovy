@@ -21,8 +21,8 @@ def exec() {
         filter: "*",
         fingerprintArtifacts: true,
         flatten: true,
-        selector: specific("55"),
-        projectName: "job3"])
+        selector: specific("6"),
+        projectName: "PipelineJob2"])
 }
 
 return this
