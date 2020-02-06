@@ -19,8 +19,8 @@ class MyClass {
             target: 'd:\\artifacts',
             flatten: true
         )
-            //script.echo("Archive artifacts")
-            //step(archiveArtifacts(artifacts: archiveName, fingerprint: true))
+        script.println("Archive artifacts")
+        script.step(archiveArtifacts(artifacts: archiveName, fingerprint: true))
         //} catch (none) {
             ////echo 'No artifact to copy from ' + name 
             //writeFile file: archiveName, text: '3'
