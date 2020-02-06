@@ -9,6 +9,7 @@ def exec() {
     def j1EnvVariables = job1_props.getBuildVariables();
     println "${j1EnvVariables["BUILD_ID"]}" 
     println "${j1EnvVariables["BUILD_ID"].getClass()}" 
+    def n = (j1EnvVariables["BUILD_ID"].getClass()) as  hudson.plugins.copyartifact.BuildSelector
 }
 
 return this
