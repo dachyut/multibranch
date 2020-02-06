@@ -45,11 +45,12 @@ class MyClass {
         //def bSelector = buildResult.number     
         //script.println("Build ID: ${bSelector.getClass()}")   
         
+        def specificBuild = script.specific(buildResult.id)
         script.copyArtifacts(
             projectName: buildSubJob,
             filter: failedBuildArtifacts,
             fingerprintArtifacts: true,
-            selector : specific(26),
+            selector : specificBuild,
             flatten: true
         )
 
