@@ -42,7 +42,7 @@ class MyClass {
                 ]     
 
         script.println("Sub-Job status: ${buildResult.result}")
-        def bSelector = buildResult.id       
+        def bSelector = buildResult.number     
         script.println("Build ID: ${bSelector.getClass()}")   
 
         if (buildResult.result != 'SUCCESS') {
@@ -52,7 +52,7 @@ class MyClass {
                 fingerprintArtifacts: false,
                 flatten             : true,
                 optional            : true,
-                selector            : specific(buildResult.id),
+                selector            : specific(buildResult.number),
                 projectName         : buildSubJob
             )
             
