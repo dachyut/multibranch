@@ -59,7 +59,7 @@ class MyClass {
                 artifacts: failedBuildArtifacts,
                 fingerprint: true
             )
-            error('Build sub-job failed')
+            script.error('Build sub-job failed')
         }
     } //exec
 
