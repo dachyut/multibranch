@@ -43,7 +43,25 @@ class MyClass {
 
         script.println("Sub-Job status: ${buildResult.result}")
         def bSelector = buildResult.id       
-        script.println("Build ID: ${bSelector}")      
+        script.println("Build ID: ${bSelector}")   
+
+        if (buildResult.result != 'SUCCESS') {
+            // Try to grab the logs if the build failed
+            script.CopyArtifacts(
+                filter              : failedBuildArtifacts,
+                fingerprintArtifacts: false,
+                flatten             : true,
+                optional            : true,
+                selector            : specific(buildResult.id),
+                projectName         : buildSubJob]
+            )
+            
+            script.archiveArtifacts(
+                artifacts: failedBuildArtifacts,
+                fingerprint: true
+            )
+            error('Build sub-job failed')
+        }
     } //exec
 
 } //class
