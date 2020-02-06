@@ -79,7 +79,11 @@ class MyClass {
             projectName         : buildSubJob
         )
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
-        script.parserConfigurations(parserName: 'MSBuild', pattern: buildLog)
+        script.recordIssues(
+            enabledForFailure: true, aggregatingResults: true, 
+            tools: [java(), checkStyle(pattern: buildLog, reportEncoding: 'UTF-8')]
+)
+        //script.parserConfigurations(parserName: 'MSBuild', pattern: buildLog)
 
 
 
