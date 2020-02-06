@@ -7,7 +7,7 @@ def exec() {
     println "In test9.groovy"
     def job1_props = build 'job1'
     def j1EnvVariables = job1_props.getBuildVariables();
-    print "${j1EnvVariables}" 
+    print "${j1EnvVariables["BUILD_ID"]}" 
 }
 
 return this
