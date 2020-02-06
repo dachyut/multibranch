@@ -52,7 +52,7 @@ class MyClass {
                 fingerprintArtifacts: false,
                 flatten             : true,
                 optional            : true,     
-                selector            : specific(buildResult.id),           
+                selector            : buildResult.id,           
                 projectName         : buildSubJob
             )
             
