@@ -25,6 +25,7 @@ class MyClass {
             ////echo 'No artifact to copy from ' + name 
             //writeFile file: archiveName, text: '3'
         //}
+        script.println("Hellooooooooooo")
         script.echo("Listing files......")
         // def rootFiles = new File("test").listRoots() 
         // rootFiles.each { file -> script.echo(file.absolutePath) }
