@@ -46,7 +46,7 @@ class MyClass {
         //script.println("Build ID: ${bSelector.getClass()}")   
 
         script.copyArtifacts(
-            projectName: name,
+            projectName: buildSubJob,
             filter: failedBuildArtifacts,
             fingerprintArtifacts: true,
             selector : specific(26),
