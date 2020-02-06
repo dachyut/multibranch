@@ -11,12 +11,16 @@ class MyClass {
         def archiveName = 'build.properties'
         //try {
         script.echo("CopyArtifacts.........")
-        //step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: name,  filter: 'build.properties',fingerprintArtifacts: true, target: 'd:\\artifacts')
+        
+        def n = script.specific("6")
+        script.println "n: ${n}"
+        script.println "n class: ${n.getClass()}"
+        
         script.copyArtifacts(
             projectName: name,
             filter: 'build.properties',
             fingerprintArtifacts: true,
-            selector : specific(5),
+            selector : n,
             flatten: true
         )
         script.println("Archive artifacts")
@@ -26,7 +30,7 @@ class MyClass {
             //writeFile file: archiveName, text: '3'
         //}
         script.println("Hellooooooooooo")
-        script.echo("Listing files......")
+        //script.echo("Listing files......")
         // def rootFiles = new File("test").listRoots() 
         // rootFiles.each { file -> script.echo(file.absolutePath) }
 

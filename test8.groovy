@@ -44,7 +44,7 @@ class MyClass {
         script.println("Sub-Job status: ${buildResult.result}")
         //def bSelector = buildResult.number     
         //script.println("Build ID: ${bSelector.getClass()}")   
-
+        
         script.copyArtifacts(
             projectName: buildSubJob,
             filter: failedBuildArtifacts,
