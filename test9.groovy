@@ -5,7 +5,7 @@ import hudson.*
 
 def exec() {
     println "In test9.groovy"
-    println getBuilds()
+    println getBuild("300")
 }
 
 return this
