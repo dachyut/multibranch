@@ -52,7 +52,7 @@ class MyClass {
                 fingerprintArtifacts: false,
                 flatten             : true,
                 optional            : true,
-                selector            : specific(buildResult.number),
+                selector            : script.specific("${buildResult.number}"),
                 projectName         : buildSubJob
             )
             
