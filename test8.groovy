@@ -49,7 +49,7 @@ class MyClass {
             projectName: name,
             filter: failedBuildArtifacts,
             fingerprintArtifacts: true,
-            selector : specific(5),
+            selector : specific(26),
             flatten: true
         )
 
