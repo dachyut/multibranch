@@ -43,7 +43,7 @@ class MyClass {
 
         script.println("Sub-Job status: ${buildResult.result}")
         def bSelector = buildResult.number     
-        script.println("Build ID: ${bSelector.getClass()}")   
+        //script.println("Build ID: ${bSelector.getClass()}")   
 
         if (buildResult.result != 'SUCCESS') {
             // Try to grab the logs if the build failed
