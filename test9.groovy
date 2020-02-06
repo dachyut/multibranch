@@ -5,23 +5,24 @@ import hudson.*
 
 def exec() {
     println "In test9.groovy"
-    def job1_props = build 'job1'
-    def j1EnvVariables = job1_props.getBuildVariables();
-    println "${j1EnvVariables["BUILD_ID"]}" 
-    println "${j1EnvVariables["BUILD_ID"].getClass()}" 
-    def n = specific("9")
-    println n
-    println n.getClass()
+    // def job1_props = build 'job1'
+    // def j1EnvVariables = job1_props.getBuildVariables();
+    // println "${j1EnvVariables["BUILD_ID"]}" 
+    // println "${j1EnvVariables["BUILD_ID"].getClass()}" 
+    
+    def n = specific("6")
+    println "n: ${n}"
+    println "n class: ${n.getClass()}"
 
     def l = lastSuccessful()
-    println l
-    println n.getClass()
+    println "l: ${l}"
+    println "l class: ${l.getClass()}"
 
     step([$class: 'CopyArtifact',
         filter: "*",
         fingerprintArtifacts: true,
         flatten: true,
-        selector: specific("6"),
+        selector: n,
         projectName: "PipelineJob2"])
 }
 
