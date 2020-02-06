@@ -10,6 +10,11 @@ def exec() {
     println "${j1EnvVariables["BUILD_ID"]}" 
     println "${j1EnvVariables["BUILD_ID"].getClass()}" 
     def n = specific("9")
+    println n
+    println n.getClass()
+
+    def l = lastSuccessful()
+    println l
     println n.getClass()
 }
 
