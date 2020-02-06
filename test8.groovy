@@ -19,8 +19,8 @@ class MyClass {
     def exec() {
         script.println("Inside class exec() method")
 		final String buildSubJob = 'EndpointMidmarket/Shared/Midmarket-New-Build_Hermes'
-        final String failedBuildArtifacts = 'Build.log, Failure.txt, **/Failure*.txt, test.txt, *'
-        final String buildArtifacts = '*, test.txt, Build.log, Failure.txt, build.properties, build_times.csv, git_commits.log, **/TEST*.xml, **/ui/coverage/cobertura-coverage.xml, **/junit-results.xml, **/TestResults/*.trx'
+        final String failedBuildArtifacts = 'test.txt'
+        final String buildArtifacts = 'test.txt'
         final String buildLog = 'Build.log'
         
         // Start another job
