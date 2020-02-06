@@ -16,6 +16,13 @@ def exec() {
     def l = lastSuccessful()
     println l
     println n.getClass()
+
+    step([$class: 'CopyArtifact',
+        filter: "*",
+        fingerprintArtifacts: true,
+        flatten: true,
+        selector: specific("55"),
+        projectName: "job3"])
 }
 
 return this
