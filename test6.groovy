@@ -1,6 +1,6 @@
 #!groovy
 import java.lang.String
-
+import io.jenkins.plugins.analysis.core.steps.*
 
 class MyClass {
     Script script;
