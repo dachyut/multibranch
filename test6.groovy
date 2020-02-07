@@ -11,8 +11,7 @@ class MyClass {
         script.println "Inside test6 exec method"
         final String buildLog = 'build.log, **/build.log'
     
-        Tool s = io.jenkins.plugins.analysis.core.model.Tool.setID("123")
-        Tool t = io.jenkins.plugins.analysis.core.model.Tool.getID()
+        def t = script.tool(name: 'MSBuild', type: 'hudson.plugins.msbuild.MsBuildInstallation')
         //recordIssues(tools: [msBuild(pattern: buildLog)])
 
         //def t = steps.RecordIssuesStep.setTools('msbuild')
