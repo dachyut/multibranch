@@ -16,7 +16,7 @@ class MyClass {
 
         //def t = steps.RecordIssuesStep.setTools('msbuild')
         //script.println "${t}"
-        script.recordIssues (tool : msbuild)
+        script.recordIssues (tool : MSBuild)
         //script.recordIssues(enabledForFailure: true, aggregatingResults: true,
         //    tools: t)
         //.msBuild(pattern: buildLog)
