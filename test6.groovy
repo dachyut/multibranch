@@ -3,7 +3,7 @@ import java.lang.String
 import io.jenkins.plugins.analysis.core.*
 import io.jenkins.plugins.analysis.core.steps.*
 import io.jenkins.plugins.analysis.core.model.*
-//import io.jenkins.plugins.analysis.core.model.Tools.*
+
 
 class MyClass extends Tool {
     Script script;
@@ -17,8 +17,9 @@ class MyClass extends Tool {
         id = name
     }
 
-    public void getId() {
+    public String getId() {
         script.println("ID:------ ${id}")
+        return id
     }
 
     def exec() {
