@@ -10,14 +10,8 @@ class MyClass {
         final String buildLog = 'build.log, **/build.log'
         
         //recordIssues(tools: [msBuild(pattern: buildLog)])
-        script.msbuild(
-            pattern: buildLog
-        )
-
-        script.recordIssues(
-            tools: msbuild,
-            pattern: build.log
-        ) //.msBuild(pattern: buildLog)
+        script.recordIssues(enabledForFailure: true, aggregatingResults: true, tool: msbuild)
+        //.msBuild(pattern: buildLog)
         //script.recordIssues(tools: msbld)
     }
 }
