@@ -22,7 +22,7 @@ class absClass extends Tool {
 class MyClass {
     Script script;
     
-    absClass ob = new absClass()
+    script.absClass ob = new script.absClass()
     
     def exec() {
         script.println "Inside test6 exec method"
