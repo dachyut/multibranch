@@ -11,7 +11,7 @@ class MyClass {
         script.println "Inside test6 exec method"
         final String buildLog = 'build.log, **/build.log'
     
-        Tool t = "msbuild"
+        Tool t = Tool.setID("msbuild")
         //recordIssues(tools: [msBuild(pattern: buildLog)])
 
         //def t = steps.RecordIssuesStep.setTools('msbuild')
