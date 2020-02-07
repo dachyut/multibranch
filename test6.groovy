@@ -12,7 +12,7 @@ class MyClass {
         //recordIssues(tools: [msBuild(pattern: buildLog)])
 
         script.recordIssues(
-            tools: msbuild
+            tools: msbuild,
             pattern: build.log
         ) //.msBuild(pattern: buildLog)
         //script.recordIssues(tools: msbld)
