@@ -4,14 +4,28 @@ import io.jenkins.plugins.analysis.core.*
 import io.jenkins.plugins.analysis.core.steps.*
 import io.jenkins.plugins.analysis.core.model.*
 
+// abstract class absClass extends Tool { 
+//     String id
+//     // def absClass() {
+//     //     super()
+//     // }
+//     public void setId(String name) {
+//         id = name
+//     }
+
+//     public String getId() {
+//         script.println("ID:------ ${id}")
+//         return id
+//     }
+// }
 
 class MyClass extends Tool {
     Script script;
     String id
 
-    def MyClass() {
-        super()
-    }
+    // def MyClass() {
+    //     super()
+    // }
 
     public void setId(String name) {
         id = name
