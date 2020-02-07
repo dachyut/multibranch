@@ -12,9 +12,9 @@ class MyClass {
         
         //recordIssues(tools: [msBuild(pattern: buildLog)])
 
-        def t = steps.RecordIssuesStep.setTools(msbuild)s
+        def t = steps.RecordIssuesStep.setTools(msbuild)
         script.println "${t}"
-        script.recordIssues (tool name: "msbuild")
+        script.recordIssues (tool : "msbuild")
         //script.recordIssues(enabledForFailure: true, aggregatingResults: true,
         //    tools: t)
         //.msBuild(pattern: buildLog)
