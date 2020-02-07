@@ -10,8 +10,10 @@ class MyClass {
         final String buildLog = 'build.log, **/build.log'
         
         //recordIssues(tools: [msBuild(pattern: buildLog)])
+
+        def t = steps.RecordIssuesStep.setTools(msbuild)
         script.recordIssues(enabledForFailure: true, aggregatingResults: true,
-            tools: 'msbuild')
+            tools: t)
         //.msBuild(pattern: buildLog)
         //script.recordIssues(tools: msbld)
     }
