@@ -9,7 +9,7 @@ class MyClass {
         script.println "Inside test6 exec method"
         final String buildLog = 'build.log, **/build.log'
         
-        script.recordIssues(tools: [msBuild(pattern: buildLog)])
+        script.recordIssues(tools: [script.recordIssues.msBuild(pattern: buildLog)])
     }
 }
 
