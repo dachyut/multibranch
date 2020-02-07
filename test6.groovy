@@ -11,12 +11,12 @@ class MyClass {
         script.println "Inside test6 exec method"
         final String buildLog = 'build.log, **/build.log'
     
-        def t = script.tool(name: 'msbuild', type: 'hudson.plugins.msbuild.MsBuildInstallation')
+        def t = script.tool(name: 'msbuild', type: 'io.jenkins.plugins.analysis.core.model.Tool')
         //recordIssues(tools: [msBuild(pattern: buildLog)])
 
         //def t = steps.RecordIssuesStep.setTools('msbuild')
         //script.println "${t}"
-        script.recordIssues (tools : t)
+        script.recordIssues (tool : msbuild)
         //script.recordIssues(enabledForFailure: true, aggregatingResults: true,
         //    tools: t)
         //.msBuild(pattern: buildLog)
