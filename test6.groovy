@@ -3,9 +3,9 @@ import java.lang.String
 import io.jenkins.plugins.analysis.core.*
 import io.jenkins.plugins.analysis.core.steps.*
 import io.jenkins.plugins.analysis.core.model.*
-import io.jenkins.plugins.analysis.core.model.Tools
+//import io.jenkins.plugins.analysis.core.model.Tools.*
 
-class MyClass extends Tools {
+class MyClass extends Tool {
     Script script;
     String id
 
