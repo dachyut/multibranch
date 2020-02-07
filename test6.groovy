@@ -11,7 +11,7 @@ class MyClass {
         
         //recordIssues(tools: [msBuild(pattern: buildLog)])
         script.recordIssues(enabledForFailure: true, aggregatingResults: true,
-            tools: msbuild)
+            tools: 'msbuild')
         //.msBuild(pattern: buildLog)
         //script.recordIssues(tools: msbld)
     }
