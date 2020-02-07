@@ -4,29 +4,11 @@
 //import io.jenkins.plugins.analysis.core.steps.*
 import io.jenkins.plugins.analysis.core.model.*
 
-// abstract class absClass extends Tool { 
-//     String id
-//     // def absClass() {
-//     //     super()
-//     // }
-//     public void setId(String name) {
-//         id = name
-//     }
-
-//     public String getId() {
-//         script.println("ID:------ ${id}")
-//         return id
-//     }
-// }
-
-class MyClass extends Tool {
-    Script script;
+class absClass extends Tool { 
     String id
-
-    // def MyClass() {
+    // def absClass() {
     //     super()
     // }
-
     public void setId(String name) {
         id = name
     }
@@ -35,16 +17,21 @@ class MyClass extends Tool {
         script.println("ID:------ ${id}")
         return id
     }
+}
 
+class MyClass {
+    Script script;
+    
+    absClass ob = new absClass()
+    
     def exec() {
         script.println "Inside test6 exec method"
         final String buildLog = 'build.log, **/build.log'
-        
-        def t = setId("125")
 
-        s = t.getID()
-        script.println "${s}"
-
+        ob.id = "123"
+        ob.setID("1234")
+        script.println(ob.getID())
+            
         //recordIssues(tools: [msBuild(pattern: buildLog)])
 
         //def t = steps.RecordIssuesStep.setTools('msbuild')
