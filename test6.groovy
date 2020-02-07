@@ -4,7 +4,7 @@ import io.jenkins.plugins.analysis.core.*
 import io.jenkins.plugins.analysis.core.steps.*
 import io.jenkins.plugins.analysis.core.model.*
 
-class MyClass extends absClass {
+class MyClass {
     Script script;       
     
     def exec() {
