@@ -5,7 +5,7 @@ import hudson.*
 
 def exec() {
     println "In test9.groovy"
-    final String buildLog = 'Build.log'
+    final String buildLog = 'build.log, **/build.log'
     //warnings parserConfigurations: [[parserName: 'MSBuild', pattern: buildLog]] //- deprecated
     recordIssues(tools: [msBuild(pattern: buildLog)])
 }
