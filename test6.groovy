@@ -11,12 +11,12 @@ class MyClass {
         script.println "Inside test6 exec method"
         final String buildLog = 'build.log, **/build.log'
     
-            
+        Tool t // = "msbuild"
         //recordIssues(tools: [msBuild(pattern: buildLog)])
 
         //def t = steps.RecordIssuesStep.setTools('msbuild')
         //script.println "${t}"
-        script.recordIssues (tools : "msbuild")
+        script.recordIssues (tools : t)
         //script.recordIssues(enabledForFailure: true, aggregatingResults: true,
         //    tools: t)
         //.msBuild(pattern: buildLog)
