@@ -2,6 +2,7 @@
 import java.lang.String
 import io.jenkins.plugins.analysis.core.*
 import io.jenkins.plugins.analysis.core.steps.*
+import io.jenkins.plugins.analysis.core.model.*
 
 class MyClass {
     Script script;
@@ -10,10 +11,16 @@ class MyClass {
         script.println "Inside test6 exec method"
         final String buildLog = 'build.log, **/build.log'
         
+        Tool t = new Tool()
+        t.setId("125")
+
+        s = t.getID()
+        script.println "${s}"
+
         //recordIssues(tools: [msBuild(pattern: buildLog)])
 
-        def t = steps.RecordIssuesStep.setTools('msbuild')
-        script.println "${t}"
+        //def t = steps.RecordIssuesStep.setTools('msbuild')
+        //script.println "${t}"
         //script.recordIssues (tool : "msbuild")
         //script.recordIssues(enabledForFailure: true, aggregatingResults: true,
         //    tools: t)
