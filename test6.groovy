@@ -11,8 +11,7 @@ class MyClass {
         script.println "Inside test6 exec method"
         final String buildLog = 'build.log, **/build.log'
         
-        Tool t = new Tool()
-        t.setId("125")
+        Tool t = Tool.setId("125")
 
         s = t.getID()
         script.println "${s}"
