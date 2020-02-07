@@ -4,14 +4,27 @@ import io.jenkins.plugins.analysis.core.*
 import io.jenkins.plugins.analysis.core.steps.*
 import io.jenkins.plugins.analysis.core.model.*
 
-class MyClass {
+class MyClass extends Tools {
     Script script;
+    String id
+
+    def MyClass() {
+        super()
+    }
+
+    public void setId(String name) {
+        id = name
+    }
+
+    public void getId() {
+        script.println("ID:------ ${id}")
+    }
 
     def exec() {
         script.println "Inside test6 exec method"
         final String buildLog = 'build.log, **/build.log'
         
-        Tool t = Tool.setId("125")
+        def t = setId("125")
 
         s = t.getID()
         script.println "${s}"
