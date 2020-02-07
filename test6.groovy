@@ -9,7 +9,8 @@ class MyClass {
         script.println "Inside test6 exec method"
         final String buildLog = 'build.log, **/build.log'
         
-        script.recordIssues(tools: [script.recordIssues.msBuild(pattern: buildLog)])
+        def msbld = script.msBuild(pattern: buildLog)
+        script.recordIssues(tools: msbld)
     }
 }
 
