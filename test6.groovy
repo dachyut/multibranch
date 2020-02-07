@@ -16,7 +16,10 @@ class MyClass {
 
         //def t = steps.RecordIssuesStep.setTools('msbuild')
         //script.println "${t}"
-        script.recordIssues (tool : pep8)
+        
+        //script.recordIssues (tool : pep8)
+        script.warnings(parserName: 'MSBuild', pattern: buildLog)
+        
         //script.recordIssues(enabledForFailure: true, aggregatingResults: true,
         //    tools: t)
         //.msBuild(pattern: buildLog)
