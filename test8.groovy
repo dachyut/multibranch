@@ -80,6 +80,7 @@ class MyClass {
         )
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
         
+        script.warnings(parserName: 'MSBuild', pattern: buildLog)
 
     } //exec
 

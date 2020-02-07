@@ -25,12 +25,12 @@ node() {
 			// println "Executing method inside class"
 			// buildit.exec()	
 
-			// def buildit = load 'test8.groovy'			
-			// println "Setting class varibales"
-			// buildit.branchOrCommit = 'myCode'
-			// buildit.pushArtifactsToAzure = false									
-			// println "Executing method inside class"
-			// buildit.exec()
+			def buildit = load 'test8.groovy'			
+			println "Setting class varibales"
+			buildit.branchOrCommit = 'myCode'
+			buildit.pushArtifactsToAzure = false									
+			println "Executing method inside class"
+			buildit.exec()
 		
 			// def buildit = load 'test7.groovy'				
 			// println "Executing method inside class"
@@ -56,9 +56,9 @@ node() {
 			//Working Code */
 
 			//* Copyartifacts Code ......... WORKING CODE
-			def buildit = load 'test6.groovy'				
-			println "Executing method inside class"
-			buildit.exec()			
+			// def buildit = load 'test6.groovy'				
+			// println "Executing method inside class"
+			// buildit.exec()			
 			// Code */
 
 			//def out = new Binding()
