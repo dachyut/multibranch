@@ -19,4 +19,4 @@ class Main extends Script {
     }
 }
 
-return new Main()
+return new Main(Script:this)
