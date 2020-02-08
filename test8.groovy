@@ -81,7 +81,7 @@ class MyClass {
         )
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
         script.warningsParsers(parserName: 'MSBuild', pattern: buildLog)
-        script.recordIssues(tools: msBuild)
+        script.recordIssues(tools: 'msBuild')
         //script.warnings(parserName: 'MSBuild', pattern: buildLog)
 
     } //exec
