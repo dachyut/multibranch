@@ -14,4 +14,4 @@ class Main extends Script {
     // }
 }
 
-return this
+return new Main()
