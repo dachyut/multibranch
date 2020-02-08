@@ -2,6 +2,7 @@
 import java.lang.String
 import java.lang.Object
 import com.github.javaparser.*
+import io.jenkins.plugins.analysis.core.model.*
 
 class MyClass {
     Script script;
@@ -80,8 +81,9 @@ class MyClass {
             projectName         : buildSubJob
         )
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
-        script.warningsParsers(parserName: 'MSBuild', pattern: buildLog)
-        script.recordIssues(tools: 'msBuild')
+        //script.warningsParsers(parserName: 'MSBuild', pattern: buildLog)
+        io.jenkins.plugins.analysis.core.model.Tool.
+        script.recordIssues(tools: msbuild 'MSBuild')
         //script.warnings(parserName: 'MSBuild', pattern: buildLog)
 
     } //exec
