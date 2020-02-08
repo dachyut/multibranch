@@ -24,17 +24,13 @@ node() {
 			// def buildit = load 'test9.groovy'				
 			// println "Executing method inside class"
 			// buildit.exec()	
-
-			def buildit = load 'test10.groovy'			
-			println "Setting class varibales"			
-			buildit.main()
-
-			// def buildit = load 'test8.groovy'			
-			// println "Setting class varibales"
-			// buildit.branchOrCommit = 'myCode'
-			// buildit.pushArtifactsToAzure = false									
-			// println "Executing method inside class"
-			// buildit.exec()
+			
+			def buildit = load 'test8.groovy'			
+			println "Setting class varibales"
+			buildit.branchOrCommit = 'myCode'
+			buildit.pushArtifactsToAzure = false									
+			println "Executing method inside class"
+			buildit.exec()
 		
 			// def buildit = load 'test7.groovy'				
 			// println "Executing method inside class"

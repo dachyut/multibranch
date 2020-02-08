@@ -81,6 +81,10 @@ class MyClass {
         )
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
         script.warningsParsers(parserName: 'MSBuild', pattern: buildLog)
+        script.recordIssues ( 
+            sourceCodeEncoding: 'UTF-8',
+            reportEncoding : 'ISO-8859-1',
+            tools: [[tool: [$class: 'Java']]])
         //script.warnings(parserName: 'MSBuild', pattern: buildLog)
 
     } //exec
