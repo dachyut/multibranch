@@ -8,10 +8,10 @@ class Main extends Script {
     def run1() {
 	println "In run1.."
     }	
-    static void main(String[] args) {           
-        InvokerHelper.runScript(Main, args)     
+    // static void main(String[] args) {           
+    //     InvokerHelper.runScript(Main, args)     
 
-    }
+    // }
 }
 
 return this
