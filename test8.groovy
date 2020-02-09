@@ -83,9 +83,13 @@ class MyClass {
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
         //script.warningsParsers(parserName: 'MSBuild', pattern: buildLog)
         //io.jenkins.plugins.analysis.core.model.Tool.
-        def t = script.tool('MSBuild')
+        script.Tool.setId("1234")
+        script.println (script.Tool.getId())
 
-        script.recordIssues(tools: t)
+
+        //def t = script.tool('MSBuild')
+
+        //script.recordIssues(tools: t)
         //script.warnings(parserName: 'MSBuild', pattern: buildLog)
 
     } //exec
