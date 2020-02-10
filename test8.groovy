@@ -86,7 +86,7 @@ class MyClass {
 
         script.class.declaredMethods
            .findAll { !it.synthetic }
-           .each { println "$it.name $it.parameters.name" }
+           .each { script.println "$it.name $it.parameters.name" }
 
         //script.recordIssues(tools: t)
         //script.warnings(parserName: 'MSBuild', pattern: buildLog)
