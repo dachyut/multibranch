@@ -83,11 +83,10 @@ class MyClass {
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
         //script.warningsParsers(parserName: 'MSBuild', pattern: buildLog)
         //io.jenkins.plugins.analysis.core.model.Tool.
-        def d = script.getDescriptor() 
-        script.println (d)
 
-
-        //def t = script.tool('MSBuild')
+        script.class.declaredMethods
+           .findAll { !it.synthetic }
+           .each { println "$it.name $it.parameters.name" }
 
         //script.recordIssues(tools: t)
         //script.warnings(parserName: 'MSBuild', pattern: buildLog)
