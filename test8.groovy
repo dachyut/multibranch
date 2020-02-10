@@ -84,9 +84,7 @@ class MyClass {
         //script.warningsParsers(parserName: 'MSBuild', pattern: buildLog)
         //io.jenkins.plugins.analysis.core.model.Tool.
 
-        script.class.declaredMethods
-           .findAll { !it.synthetic }
-           .each { script.println "$it.name $it.parameters.name" }
+        script.println script.MSTest()
 
         //script.recordIssues(tools: t)
         //script.warnings(parserName: 'MSBuild', pattern: buildLog)
