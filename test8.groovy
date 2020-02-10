@@ -84,8 +84,9 @@ class MyClass {
         //script.warningsParsers(parserName: 'MSBuild', pattern: buildLog)
         //io.jenkins.plugins.analysis.core.model.Tool.
 
-        script.println script.MSTest()
-
+        def res1 = script.mstest(testResultsFile:"**/*.trx", keepLongStdio: true)
+        script.println(res1)
+        
         //script.recordIssues(tools: t)
         //script.warnings(parserName: 'MSBuild', pattern: buildLog)
 
