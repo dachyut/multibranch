@@ -86,7 +86,7 @@ class MyClass {
 
         //Below this are testing scripts
         script.println("Testing code...")
-        script.recordIssues(tools: [msBuild(pattern: 'build.log')])
+        script.recordIssues(tools: [[msBuild(pattern: 'build.log')]])
 
     } //exec
 
