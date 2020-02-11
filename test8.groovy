@@ -87,7 +87,34 @@ class MyClass {
         //Below this are testing scripts
         script.println("Testing code...")
         
-        script.recordIssues(tools: msBuild[[(pattern: 'build.log')]])
+        script.XUnitBuilder(
+            tools: [[
+                $class: 'JUnitType',
+                pattern: 'TEST*.xml',
+                healthScaleFactor: 1.0,
+                allowEmptyResults: true,
+                allowMissing: true,
+                skipNoTestFiles: true
+            ],
+            [
+                $class: 'JUnitType',
+                pattern: 'junit-results.xml',
+                healthScaleFactor: 1.0,
+                allowEmptyResults: true,
+                allowMissing: true,
+                skipNoTestFiles: true
+            ],
+            [
+                $class: 'MSTestJunitHudsonTestType',
+                pattern: '*.trx',
+                healthScaleFactor: 1.0,
+                allowEmptyResults: true,
+                allowMissing: true,
+                skipNoTestFiles: true
+            ]]
+        )
+
+        
 
     } //exec
 
