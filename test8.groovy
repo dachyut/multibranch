@@ -81,11 +81,15 @@ class MyClass {
             projectName         : buildSubJob
         )
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
+        script.warnings(parserConfigurations: [parserName: 'MSBuild', pattern: buildLog])
+
+
+
         //script.warningsParsers(parserName: 'MSBuild', pattern: buildLog)
         //io.jenkins.plugins.analysis.core.model.Tool.
 
-        def res1 = script.MSTest(testResultsFile:"**/*.trx", keepLongStdio: true)
-        script.println(res1)
+        //def res1 = script.MSTest(testResultsFile:"**/*.trx", keepLongStdio: true)
+        //script.println(res1)
         
         //script.recordIssues(tools: t)
         //script.warnings(parserName: 'MSBuild', pattern: buildLog)
