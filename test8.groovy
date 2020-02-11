@@ -87,7 +87,7 @@ class MyClass {
         //Below this are testing scripts
         script.println("Testing code...")
         
-        script.XUnitBuilder(
+        script.xunit(
             tools: [[
                 $class: 'JUnitType',
                 pattern: 'TEST*.xml',
