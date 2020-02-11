@@ -83,7 +83,7 @@ class MyClass {
         )
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
 
-        script.getParserConfigurations()
+        script.warnings getParserConfigurations()
 
         script.warnings parserConfigurations: [parserName: 'MSBuild', pattern: buildLog]
 
