@@ -85,7 +85,7 @@ class MyClass {
 
         //script.warnings getParserConfigurations()
 
-        script.warnings(parserConfigurations: [parserName: 'MSBuild', pattern: buildLog])
+        script.warnings(parserConfigurations: [[parserName: 'MSBuild', pattern: buildLog]])
 
 
 
