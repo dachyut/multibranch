@@ -1,0 +1,7 @@
+<testsuites tests="3" failures="0" disabled="0" time="1.651408">
+  <testsuite tests="3" time="0.171026" errors="0" failures="0" skipped="0" timestamp="2020-02-14 06:26:47Z" name="Testing.Datacastle.Common.Infrastructure.dll.Testing.Datacastle.Common.Infrastructure.TestPostBlockConfirmationSignatureUploadMessage.">
+    <testcase name="TestPostBlockConfirmationSignatureUploadMessageVersioning" assertions="3" time="0.144883" status="Passed" classname="Testing.Datacastle.Common.Infrastructure.TestPostBlockConfirmationSignatureUploadMessage" />
+    <testcase name="TestPrevInstanceStatSerialization" assertions="6" time="0.011798" status="Passed" classname="Testing.Datacastle.Common.Infrastructure.TestPostBlockConfirmationSignatureUploadMessage" />
+    <testcase name="TestRequestSerialization" assertions="2" time="0.000742" status="Passed" classname="Testing.Datacastle.Common.Infrastructure.TestPostBlockConfirmationSignatureUploadMessage" />
+  </testsuite>
+</testsuites>
