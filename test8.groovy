@@ -104,7 +104,7 @@ class MyClass {
         //Below this are testing scripts
         script.println("Testing code...")
         
-        script.CoberturaPublisher(
+        script.Cobertura(
         autoUpdateHealth: false,
         autoUpdateStability: false,
         coberturaReportFile: 'cobertura-coverage.xml',
