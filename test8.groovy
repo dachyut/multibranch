@@ -22,9 +22,9 @@ class MyClass {
     def exec() {
         script.println("Inside class exec() method")
 		final String buildSubJob = 'EndpointMidmarket/Shared/Midmarket-New-Build_Hermes'
-        final String failedBuildArtifacts = 'test.txt,Build.log'
-        final String buildArtifacts = 'test.txt,Build.log'
-        final String buildLog = 'test.txt,Build.log'
+        final String failedBuildArtifacts = 'test.txt, build.log'
+        final String buildArtifacts = 'test.txt, build.log'
+        final String buildLog = 'test.txt, build.log'
         
         // Start another job
         def buildResult = script.build job: buildSubJob,
