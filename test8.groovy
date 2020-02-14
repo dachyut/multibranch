@@ -84,28 +84,38 @@ class MyClass {
         script.archiveArtifacts(artifacts: buildArtifacts, fingerprint: true)
         script.warnings(parserConfigurations: [[parserName: 'MSBuild', pattern: buildLog]])
 
+        script.xunit(
+                tools: [[
+                    $class: 'JUnitType',
+                    pattern: 'TEST*.xml',
+                    skipNoTestFiles: true
+                ],
+                [
+                    $class: 'JUnitType',
+                    pattern: 'junit-results.xml',
+                    skipNoTestFiles: true
+                ],
+                [
+                    $class: 'MSTestJunitHudsonTestType',
+                    pattern: '*.trx',
+                    skipNoTestFiles: true
+                ]]
+            )
         //Below this are testing scripts
         script.println("Testing code...")
         
-        script.xunit(
-            tools: [[
-                $class: 'JUnitType',
-                pattern: 'TEST*.xml',
-                skipNoTestFiles: true
-            ],
-            [
-                $class: 'JUnitType',
-                pattern: 'junit-results.xml',
-                healthScaleFactor: 1.0,
-                skipNoTestFiles: true
-            ],
-            [
-                $class: 'MSTestJunitHudsonTestType',
-                pattern: '*.trx',
-                healthScaleFactor: 1.0,
-                skipNoTestFiles: true
-            ]]
-        )
+        script.CoberturaPublisher(
+        autoUpdateHealth: false,
+        autoUpdateStability: false,
+        coberturaReportFile: 'cobertura-coverage.xml',
+        failUnhealthy: false,
+        failUnstable: false,
+        maxNumberOfBuilds: 0,
+        onlyStable: false,
+        sourceEncoding: 'ASCII',
+        zoomCoverageChart: false,
+        failNoReports: false)
+
 
         
 
