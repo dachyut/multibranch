@@ -100,24 +100,22 @@ class MyClass {
                     pattern: '*.trx',
                     skipNoTestFiles: true
                 ]]
-            )
-        //Below this are testing scripts
-        script.println("Testing code...")
+            )        
         
         script.cobertura(
-        autoUpdateHealth: false,
-        autoUpdateStability: false,
-        coberturaReportFile: 'cobertura-coverage.xml',
-        failUnhealthy: false,
-        failUnstable: false,
-        maxNumberOfBuilds: 0,
-        onlyStable: false,
-        sourceEncoding: 'ASCII',
-        zoomCoverageChart: false,
-        failNoReports: false)
+            autoUpdateHealth: false,
+            autoUpdateStability: false,
+            coberturaReportFile: 'cobertura-coverage.xml',
+            failUnhealthy: false,
+            failUnstable: false,
+            maxNumberOfBuilds: 0,
+            onlyStable: false,
+            sourceEncoding: 'ASCII',
+            zoomCoverageChart: false,
+            failNoReports: false)
 
-
-        
+        //Below this are testing scripts
+        script.println("Testing code...")        
 
     } //exec
 
