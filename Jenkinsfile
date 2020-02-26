@@ -24,7 +24,7 @@ node() {
 			def deployit = load 'test10.groovy'			
 			println "Setting class varibales"
 			String lockedPrivateCloudVaultVms = 'VM1, VM2'
-			deployit.branchOrCommit = commitHash
+			deployit.branchOrCommit = 'mycode'
 			deployit.lockedResources = lockedPrivateCloudVaultVms                    
 			deploy.exec()
 
