@@ -19,16 +19,16 @@ class DeployClass {
         script.println(deployList)
         // create a map of test sub jobs to run in parallel
         // Jenkins sandbox does not like some looping constructs to stick to a for loop
-        // def stepsForParallel = [:]
-        // for (String deploy in deployList) {
-        //     script.println "Deploying vault:  ${deploy}"
-        //     String myDeploy = deploy
-        //     // Closure will late evaluate the loop variable so all steps will see the last value
-        //     // Workaround is to declare a copy local to the loop, which will be evaluated correctly
-        //     stepsForParallel["${myDeploy}"] = {execOnce("${myDeploy}")}
-        // }
-        // // Run test sub jobs in parallel, across the map generated above
-        // parallel stepsForParallel
+        def stepsForParallel = [:]
+        for (String deploy in deployList) {
+            script.println "Deploying vault:  ${deploy}"
+            String myDeploy = deploy
+            // Closure will late evaluate the loop variable so all steps will see the last value
+            // Workaround is to declare a copy local to the loop, which will be evaluated correctly
+            stepsForParallel["${myDeploy}"] = {execOnce("${myDeploy}")}
+        }
+        // Run test sub jobs in parallel, across the map generated above
+        parallel stepsForParallel
     } //exec
 
     /***********************
