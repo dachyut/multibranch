@@ -26,7 +26,7 @@ node() {
 			String lockedPrivateCloudVaultVms = 'VM1, VM2'
 			deployit.branchOrCommit = 'mycode'
 			deployit.lockedResources = lockedPrivateCloudVaultVms                    
-			deploy.exec()
+			deployit.exec()
 
 			// def buildit = load 'test9.groovy'				
 			// println "Executing method inside class"
