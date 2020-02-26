@@ -28,7 +28,7 @@ class DeployClass {
             stepsForParallel["${myDeploy}"] = {execOnce("${myDeploy}")}
         }
         // Run test sub jobs in parallel, across the map generated above
-        parallel stepsForParallel
+        script.parallel stepsForParallel
     } //exec
 
     /***********************
