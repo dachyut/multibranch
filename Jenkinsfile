@@ -115,7 +115,7 @@ node() {
 def runAutomationStages (branchOrCommit, lockedResources, partnerName, params) {
     stage('Smoke Test') {
 		println "Loading automation.groovy"
-		def autoit = load 'jenkins/automationnew.groovy'
+		def autoit = load 'test11.groovy'
 		println "Setting class varibales"
 		autoit.archiveTestResults = params.ARCHIVE_TEST_RESULTS
 		autoit.branchOrCommit = commitHash
