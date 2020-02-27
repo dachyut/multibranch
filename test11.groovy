@@ -42,7 +42,7 @@ class AutomationClass {
             stepsForParallel["${mySuite}"] = {execOnce("${mySuite}", "${targetFolder}/${mySuite}", "${lockedResource}")}
         }
 
-        script.assert testSuiteList.length == locked_resource_index : "Test suite list length does not match locked resource index number."
+        //script.assert testSuiteList.length == locked_resource_index : "Test suite list length does not match locked resource index number."
 
         // Run test sub jobs in parallel, across the map generated above
         script.parallel stepsForParallel
