@@ -10,6 +10,9 @@ class MyClass {
     
     def exec() {
         script.println "Inside test6 exec method"
+        script.println branchOrCommit
+        script.println lockedResources
+        script.println partnerName
     }
 }
 
