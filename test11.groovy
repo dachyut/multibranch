@@ -15,6 +15,7 @@ class AutomationClass {
     String lockedResources = ''
     String pipelineJobName = ''
     boolean azureVaultFlag = false
+    String partnerName = ''
 
     /***********************
     Jenkins pipeline stage to execute automation
