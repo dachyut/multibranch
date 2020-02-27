@@ -32,7 +32,7 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 
-			runAutomationStages('mycode', 'vm1', 'partner')			
+			runAutomationStages('mycode', 'vm1', 'partner', params)			
 			// def deployit = load 'test10.groovy'			
 			// println "Setting class varibales"
 			// String lockedPrivateCloudVaultVms = 'VM1, VM2'
@@ -112,7 +112,7 @@ node() {
         }
 }
 
-def runAutomationStages (branchOrCommit, lockedResources, partnerName) {
+def runAutomationStages (branchOrCommit, lockedResources, partnerName, params) {
     stage('Smoke Test') {
 		println "loading test11.groovy"
 		def buildit = load 'test11.groovy'				
