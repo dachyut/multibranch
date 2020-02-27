@@ -21,7 +21,7 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 
-			runAutomationStages()			
+			runAutomationStages('mycode', 'vm1', 'partner')			
 			// def deployit = load 'test10.groovy'			
 			// println "Setting class varibales"
 			// String lockedPrivateCloudVaultVms = 'VM1, VM2'
@@ -101,9 +101,13 @@ node() {
         }
 }
 
-def runAutomationStages () {
+def runAutomationStages (branchOrCommit, lockedResources, partnerName) {
     stage('Smoke Test') {
+		println "loading test11.groovy"
 		def buildit = load 'test11.groovy'				
+		buildit.branchOrCommit = branchOrCommit
+		buildit.lockedResources = lockedResources
+		buildit.partnerName = partnerName
 		println "Executing method inside class"
 		buildit.exec()
 	}
