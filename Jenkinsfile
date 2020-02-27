@@ -1,6 +1,17 @@
 #!groovy
 import java.lang.String
 
+properties([
+    parameters([
+            string (name: 'BUILD_LABEL', defaultValue: 'CEB-NewBuild',
+                description: "Builds will run on this Jenkins label."),
+            string (name: 'TEST_PLATFORM', defaultValue: 'CEB-Client-Automation-Win10-UI',
+                description: 'Tests will run in parallel across this comma-delimited list of Jenkins labels.'),
+            string (name: 'CLIENT_DOWNLOAD_LOCATION', defaultValue: '',
+                description: 'Specify the CLIENT_DOWNLOAD_LOCATION path in feature acceptance suite file if you skip the client build'),            
+    ])
+])
+
 
 node() {
 
@@ -106,8 +117,8 @@ def runAutomationStages (branchOrCommit, lockedResources, partnerName) {
 		println "loading test11.groovy"
 		def buildit = load 'test11.groovy'				
 		buildit.branchOrCommit = branchOrCommit
-		buildit.lockedResources = lockedResources
-		buildit.partnerName = partnerName
+		buildit.lockedResources = params.BUILD_LABEL
+		buildit.partnerName = params.CLIENT_DOWNLOAD_LOCATION
 		println "Executing method inside class"
 		buildit.exec()
 	}
