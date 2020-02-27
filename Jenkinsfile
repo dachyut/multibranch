@@ -20,13 +20,14 @@ node() {
 			// sh "ls -la"	
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
-			
-			def deployit = load 'test10.groovy'			
-			println "Setting class varibales"
-			String lockedPrivateCloudVaultVms = 'VM1, VM2'
-			deployit.branchOrCommit = 'mycode'
-			deployit.lockedResources = lockedPrivateCloudVaultVms                    
-			deployit.exec()
+
+			runAutomationStages()			
+			// def deployit = load 'test10.groovy'			
+			// println "Setting class varibales"
+			// String lockedPrivateCloudVaultVms = 'VM1, VM2'
+			// deployit.branchOrCommit = 'mycode'
+			// deployit.lockedResources = lockedPrivateCloudVaultVms                    
+			// deployit.exec()
 
 			// def buildit = load 'test9.groovy'				
 			// println "Executing method inside class"
@@ -98,4 +99,12 @@ node() {
 			println "----End -------"
 			//sh "ls -la"	      
         }
+}
+
+def runAutomationStages () {
+    stage('Smoke Test') {
+		def buildit = load 'test11.groovy'				
+		println "Executing method inside class"
+		buildit.exec()
+	}
 }
