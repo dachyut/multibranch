@@ -114,12 +114,20 @@ node() {
 
 def runAutomationStages (branchOrCommit, lockedResources, partnerName, params) {
     stage('Smoke Test') {
-		println "loading test11.groovy"
-		def buildit = load 'test11.groovy'				
-		buildit.branchOrCommit = branchOrCommit
-		buildit.lockedResources = params.BUILD_LABEL
-		buildit.partnerName = params.CLIENT_DOWNLOAD_LOCATION
-		println "Executing method inside class"
-		buildit.exec()
+		println "Loading automation.groovy"
+		def autoit = load 'jenkins/automationnew.groovy'
+		println "Setting class varibales"
+		autoit.archiveTestResults = params.ARCHIVE_TEST_RESULTS
+		autoit.branchOrCommit = commitHash
+		autoit.testPlatform = params.TEST_PLATFORM
+		autoit.testSuite = params.SMOKE_SUITE
+		autoit.targetFolder = 'Smoke'
+		autoit.buildScope = buildLevel
+		autoit.skipInstall = false
+		autoit.logLevel = params.LOG_LEVEL_OPTIONS
+		autoit.lockedResources = lockedPrivateCloudVaultVms
+		autoit.pipelineJobName = pipelineJobName
+		autoit.azureVaultFlag = params.AZURE_VAULT_FLAG
+		autoit.exec()
 	}
 }
