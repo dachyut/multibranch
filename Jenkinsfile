@@ -32,13 +32,18 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 
-			def deployit = load 'test12.groovy'	
-			println "Setting class varibales"
-			deployit.jobName = 'mycode/mycommit'			                  
-			deployit.printJobScopes()
-			
-			deployit = null
-			deployit.dispose()
+			try {
+				def deployit = load 'test12.groovy'	
+				println "Setting class varibales"
+				deployit.jobName = 'mycode/mycommit'			                  
+				deployit.printJobScopes()
+			} catch (Exception e) {
+				println 'Job failed'
+				throw (e)
+			} finally {
+				println 'Destroyed'
+			}
+
 
 			def deployit1 = load 'test12.groovy'			
 			println "Setting class varibales"
