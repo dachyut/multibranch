@@ -37,10 +37,10 @@ node() {
 			deployit.jobName = 'mycode/mycommit'			                  
 			deployit.printJobScopes()
 			
-			def deployit = load 'test12.groovy'			
+			def deployit1 = load 'test12.groovy'			
 			println "Setting class varibales"
-			deployit.jobName = 'mycode/mycommit'			                  
-			deployit.printJobScopes()
+			deployit1.jobName = 'mycode/mycommit'			                  
+			deployit1.printJobScopes()
 
 			//runAutomationStages('mycode', 'vm1', 'partner', params)			
 			
