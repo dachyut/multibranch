@@ -38,7 +38,7 @@ node() {
 			deployit.printJobScopes()
 			
 			deployit = null
-			//System.gc()
+			System.gc()
 
 			def deployit1 = load 'test12.groovy'			
 			println "Setting class varibales"
