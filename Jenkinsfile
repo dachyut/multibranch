@@ -1,6 +1,7 @@
 #!groovy
 import java.lang.String
 
+
 properties([
     parameters([
             string (name: 'BUILD_LABEL', defaultValue: 'CEB-NewBuild',
@@ -32,20 +33,26 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 		
-			def deployit = load 'test12.groovy'	
-			println "Setting class varibales"
-			deployit.jobName = 'mycode/mycommit'			                  
-			deployit.printJobScopes()
+			def cl = load 'test13.groovy'
+			def a = cl.A
+			echo a.greet("world A")
+			def b = cl.B
+			echo b.greet("world B")
+
+			// def deployit = load 'test12.groovy'	
+			// println "Setting class varibales"
+			// deployit.jobName = 'mycode/mycommit'			                  
+			// deployit.printJobScopes()
 		
-			try {
-				deployit = load 'test12.groovy'			
-			} catch (Exception e) {
-				println 'Exception .............................'
-				println (e)
-			}
-			println "Setting class varibales"
-			deployit1.jobName = 'mycode/mycommit'			                  
-			deployit1.printJobScopes()
+			// try {
+			// 	deployit = load 'test12.groovy'			
+			// } catch (Exception e) {
+			// 	println 'Exception .............................'
+			// 	println (e)
+			// }
+			// println "Setting class varibales"
+			// deployit1.jobName = 'mycode/mycommit'			                  
+			// deployit1.printJobScopes()
 			
 
 
