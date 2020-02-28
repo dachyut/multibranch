@@ -43,7 +43,7 @@ class AutomationClass {
         //     stepsForParallel["${mySuite}"] = {execOnce("${mySuite}", "${targetFolder}/${mySuite}", "${lockedResource}")}
         // }
 
-        assert 3 == 4 : "length does not match."
+        assert 4 == 4 : "length does not match."
 
         // Run test sub jobs in parallel, across the map generated above
         // script.parallel stepsForParallel
