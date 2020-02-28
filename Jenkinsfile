@@ -36,7 +36,7 @@ node() {
 			println "Setting class varibales"
 			deployit.jobName = 'mycode/mycommit'			                  
 			deployit.printJobScopes()
-			deployit.recordHeaders()
+			
 
 			//runAutomationStages('mycode', 'vm1', 'partner', params)			
 			

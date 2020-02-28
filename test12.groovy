@@ -1,8 +1,7 @@
 #!groovy
 
-Script.environment = this
-
 class BuildTimer {
+    Script script;
     String jobScopes = ''
     String buildNumber = ''
     String jobName = ''    
@@ -21,4 +20,4 @@ class BuildTimer {
     
 }
 
-return this
+return new BuildTimer(script:this)
