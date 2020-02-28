@@ -32,7 +32,8 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 
-			def deployit = load 'test12.groovy'			
+			def deployit = load 'test12.groovy'	
+			println(deploit.getClass())
 			println "Setting class varibales"
 			deployit.jobName = 'mycode/mycommit'			                  
 			deployit.printJobScopes()
