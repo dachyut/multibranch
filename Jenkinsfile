@@ -32,7 +32,14 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 
-			runAutomationStages('mycode', 'vm1', 'partner', params)			
+			def deployit = load 'test12.groovy'			
+			println "Setting class varibales"
+			deployit.jobName = 'mycode/mycommit'			                  
+			deployit.printJobScopes()
+			deployit.recordHeaders()
+
+			//runAutomationStages('mycode', 'vm1', 'partner', params)			
+			
 			// def deployit = load 'test10.groovy'			
 			// println "Setting class varibales"
 			// String lockedPrivateCloudVaultVms = 'VM1, VM2'
