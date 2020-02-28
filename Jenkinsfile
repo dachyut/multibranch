@@ -33,7 +33,7 @@ node() {
             println "Loading groovy Class file"          
 
 			def deployit = load 'test12.groovy'	
-			println(deploit.getClass())
+			println(deployit.getClass())
 			println "Setting class varibales"
 			deployit.jobName = 'mycode/mycommit'			                  
 			deployit.printJobScopes()
