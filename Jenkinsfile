@@ -117,17 +117,9 @@ def runAutomationStages (branchOrCommit, lockedResources, partnerName, params) {
 		println "Loading automation.groovy"
 		def autoit = load 'test11.groovy'
 		println "Setting class varibales"
-		autoit.archiveTestResults = params.ARCHIVE_TEST_RESULTS
+		
 		autoit.branchOrCommit = commitHash
-		autoit.testPlatform = params.TEST_PLATFORM
-		autoit.testSuite = params.SMOKE_SUITE
-		autoit.targetFolder = 'Smoke'
-		autoit.buildScope = buildLevel
-		autoit.skipInstall = false
-		autoit.logLevel = params.LOG_LEVEL_OPTIONS
-		autoit.lockedResources = lockedPrivateCloudVaultVms
-		autoit.pipelineJobName = pipelineJobName
-		autoit.azureVaultFlag = params.AZURE_VAULT_FLAG
+		
 		autoit.exec()
 	}
 }
