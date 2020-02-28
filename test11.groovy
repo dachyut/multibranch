@@ -31,22 +31,22 @@ class AutomationClass {
 
         // create a map of test sub jobs to run in parallel
         // Jenkins sandbox does not like some looping constructs to stick to a for loop
-        def stepsForParallel = [:]
-        int locked_resource_index = 0
-        for (String suite in testSuiteList) {
-            // Closure will late evaluate the loop variable so all steps will see the last value
-            // Workaround is to declare a copy local to the loop, which will be evaluated correctly
-            String mySuite = suite
-            String lockedResource = lockedResourceList[locked_resource_index]
-            locked_resource_index++
-            script.println "Test Suite: " + mySuite
-            stepsForParallel["${mySuite}"] = {execOnce("${mySuite}", "${targetFolder}/${mySuite}", "${lockedResource}")}
-        }
+        // def stepsForParallel = [:]
+        // int locked_resource_index = 0
+        // for (String suite in testSuiteList) {
+        //     // Closure will late evaluate the loop variable so all steps will see the last value
+        //     // Workaround is to declare a copy local to the loop, which will be evaluated correctly
+        //     String mySuite = suite
+        //     String lockedResource = lockedResourceList[locked_resource_index]
+        //     locked_resource_index++
+        //     script.println "Test Suite: " + mySuite
+        //     stepsForParallel["${mySuite}"] = {execOnce("${mySuite}", "${targetFolder}/${mySuite}", "${lockedResource}")}
+        // }
 
-        //script.assert testSuiteList.length == locked_resource_index : "Test suite list length does not match locked resource index number."
+        assert 3 == 4 : "length does not match."
 
         // Run test sub jobs in parallel, across the map generated above
-        script.parallel stepsForParallel
+        // script.parallel stepsForParallel
     } //exec
 
     /***********************
