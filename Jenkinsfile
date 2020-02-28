@@ -33,13 +33,13 @@ node() {
             println "Loading groovy Class file"          
 
 			def deployit = load 'test12.groovy'	
-			println(deployit.getClass())
-			deployit = null
-			System.gc()
 			println "Setting class varibales"
 			deployit.jobName = 'mycode/mycommit'			                  
 			deployit.printJobScopes()
 			
+			deployit = null
+			//System.gc()
+
 			def deployit1 = load 'test12.groovy'			
 			println "Setting class varibales"
 			deployit1.jobName = 'mycode/mycommit'			                  
