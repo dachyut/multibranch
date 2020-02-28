@@ -37,6 +37,7 @@ node() {
 			deployit.jobName = 'mycode/mycommit'			                  
 			deployit.printJobScopes()
 			
+			deployit = null
 			deployit.dispose()
 
 			def deployit1 = load 'test12.groovy'			
