@@ -42,6 +42,7 @@ node() {
 				throw (e)
 			} finally {
 				println 'Destroyed'
+				deployit.finalize()
 			}
 
 

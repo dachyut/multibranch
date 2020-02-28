@@ -18,9 +18,9 @@ class BuildTimer {
         Script.environment.sh "echo \"Hello ....."
     }
 
-    void finalize() { 
-        println "Destroyed...." 
-    } 
+    // void finalize() { 
+    //     println "Destroyed...." 
+    // } 
     
 }
 
