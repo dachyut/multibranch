@@ -118,7 +118,7 @@ def runAutomationStages (branchOrCommit, lockedResources, partnerName, params) {
 		def autoit = load 'test11.groovy'
 		println "Setting class varibales"
 		
-		autoit.branchOrCommit = commitHash
+		autoit.branchOrCommit = branchOrCommit
 		
 		autoit.exec()
 	}
