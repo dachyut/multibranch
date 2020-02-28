@@ -17,6 +17,10 @@ class BuildTimer {
     def static recordHeaders() {
         Script.environment.sh "echo \"Hello ....."
     }
+
+    void finalize() { 
+        println "Destroyed" 
+    } 
     
 }
 
