@@ -36,7 +36,8 @@ node() {
 			def cl = load 'test13.groovy'
 			def a = cl.A
 			echo a.greet("world A")
-			def b = cl.B
+			def c2 = load 'test13.groovy'
+			def b = c2.B
 			echo b.greet("world B")
 
 			// def deployit = load 'test12.groovy'	
