@@ -31,25 +31,24 @@ node() {
 			// sh "ls -la"	
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
-
+		
+			def deployit = load 'test12.groovy'	
+			println "Setting class varibales"
+			deployit.jobName = 'mycode/mycommit'			                  
+			deployit.printJobScopes()
+		
 			try {
-				def deployit = load 'test12.groovy'	
-				println "Setting class varibales"
-				deployit.jobName = 'mycode/mycommit'			                  
-				deployit.printJobScopes()
+				deployit = load 'test12.groovy'			
 			} catch (Exception e) {
-				println 'Job failed'
-				throw (e)
-			} finally {
-				println 'Destroyed'
-				deployit.finalize()
+				println 'Exception .............................'
+				println (e)
 			}
-
-
-			def deployit1 = load 'test12.groovy'			
 			println "Setting class varibales"
 			deployit1.jobName = 'mycode/mycommit'			                  
 			deployit1.printJobScopes()
+			
+
+
 
 			//runAutomationStages('mycode', 'vm1', 'partner', params)			
 			

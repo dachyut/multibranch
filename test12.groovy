@@ -9,13 +9,13 @@ class BuildTimer {
     def printJobScopes() {
         // Given a slash-delimited string, such as Jenkins env.JOB_NAME,
         // reformat to comma-delimited string for CSV output
-        String jobScopes = jobName.split('/').join(', ')
-        println "\t${jobScopes}"
+        
+        script.println "In printJobScopes()"
         this.jobScopes = jobScopes
     }
 
     def static recordHeaders() {
-        Script.environment.sh "echo \"Hello ....."
+        script.println "In recordHeaders()"
     }
 
     // void finalize() { 
