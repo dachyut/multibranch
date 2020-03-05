@@ -1,9 +1,13 @@
 class A{
-    def greet(name){ return "greet from A: $name!" }
+    def greet(name){ 
+        println "In ClassA - greet()"
+        return "greet from A: $name!" }
 }
 
 class B{
-    def greet(name){ return "greet from B: $name!" }
+    def greet(name){ 
+        println "In ClassB - greet()"
+        return "greet from B: $name!" }
 }
 
 // this method just to have nice access to create class by name
