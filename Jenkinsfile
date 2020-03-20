@@ -33,17 +33,22 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 		
-			def cl = load 'test13.groovy'
-			def a = cl.A
-			echo a.greet("world A")
-			def c2 = load 'test13.groovy'
-			def b = c2.B
-			echo b.greet("world B")
+			// def buildit = load 'test3.groovy'			
+			// println "Setting class varibales"									
+			// println "Executing method inside class"
+			// buildit.exec()			
 
-			// def deployit = load 'test12.groovy'	
-			// println "Setting class varibales"
-			// deployit.jobName = 'mycode/mycommit'			                  
-			// deployit.printJobScopes()
+			// def cl = load 'test13.groovy'
+			// def a = cl.A
+			// echo a.greet("world A")
+			// //def c2 = load 'test13.groovy'
+			// def b = c1.B
+			// echo b.greet("world B")
+
+			def deployit = load 'test12.groovy'	
+			println "Setting class varibales"
+			deployit.jobName = 'mycode/mycommit'			                  
+			deployit.printJobScopes()
 		
 			// try {
 			// 	deployit = load 'test12.groovy'			
