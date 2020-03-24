@@ -10,6 +10,9 @@ class ClassA {
         script.println "In exec() method...."
 
         script.node {
+            ws(
+                script.println "Inside ws.."    
+            )
             script.println "Inside node.."
         }
     }
