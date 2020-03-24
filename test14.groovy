@@ -9,7 +9,7 @@ class ClassA {
         // reformat to comma-delimited string for CSV output
         script.println "In exec() method...."
 
-        node {
+        script.node {
             script.println "Inside node.."
         }
     }
