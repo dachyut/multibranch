@@ -13,7 +13,7 @@ class ClassA {
             script.ws() {
                 script.println "Inside ws.." 
                 script.bat 'echo Hello BAT...'   
-                String referenceRepoPath = "${env.WORKSPACE}"
+                String referenceRepoPath = "${script.env.WORKSPACE}"
                 script.println("${referenceRepoPath}")
             }
             script.println "Inside node.."
