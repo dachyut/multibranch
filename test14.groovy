@@ -11,7 +11,8 @@ class ClassA {
 
         script.node {
             script.ws() {
-                script.println "Inside ws.."    
+                script.println "Inside ws.." 
+                bat 'echo Hello BAT...'   
             }
             script.println "Inside node.."
         }
