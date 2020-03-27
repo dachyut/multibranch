@@ -18,6 +18,15 @@ class ClassA {
             }
             script.println "Inside node.."
         }
+
+        script.XUnitBuilder(
+                tools: [[
+                    $class: 'JUnitType',
+                    pattern: 'TEST*.xml',
+                    skipNoTestFiles: true
+                ]                
+            ]
+        )        
     }
 }
 
