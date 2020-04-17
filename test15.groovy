@@ -12,8 +12,7 @@ class MyClass {
             
             //script.println "${AZURE_SERVICE_PRINCIPAL_KEY}"
             script.sh '''
-            set +x
-            curl -H "Token: $AZURE_SERVICE_PRINCIPAL_KEY" https://some.api/
+                echo "Token: $AZURE_SERVICE_PRINCIPAL_KEY" 
             '''
         }
     }
