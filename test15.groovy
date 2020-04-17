@@ -7,7 +7,7 @@ class MyClass {
     def exec() {
         script.println "Inside test15 exec method"
         
-        withCredentials([script.string(credentialsId: 'jira_passws', variable: 'AZURE_SERVICE_PRINCIPAL_KEY')]) {
+        script.withCredentials([script.string(credentialsId: 'jira_passws', variable: 'AZURE_SERVICE_PRINCIPAL_KEY')]) {
             script.println "Hello !!!!!!!!!!!!!!!!!"
         }
     }
