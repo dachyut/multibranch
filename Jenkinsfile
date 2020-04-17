@@ -33,9 +33,13 @@ node() {
 			git branch: 'branch-6', url: 'https://github.com/dachyut/multibranch-1'
             println "Loading groovy Class file"          
 
-			def deployit = load 'test15.groovy'
+			def deployit = load 'test16.groovy'
 			println "Calling exec class method"			
 			deployit.exec()
+
+			// def deployit = load 'test15.groovy'
+			// println "Calling exec class method"			
+			// deployit.exec()
 
 			// def deployit = load 'test14.groovy'
 			// println "Calling exec class method"			
