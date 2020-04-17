@@ -10,7 +10,11 @@ class MyClass {
         script.withCredentials([script.string(credentialsId: 'jira_passws', variable: "AZURE_SERVICE_PRINCIPAL_KEY")]) {
             script.println "Hello !!!!!!!!!!!!!!!!!"
             
-            script.println "${AZURE_SERVICE_PRINCIPAL_KEY}"
+            //script.println "${AZURE_SERVICE_PRINCIPAL_KEY}"
+            script.sh '''
+            set +x
+            curl -H "Token: $AZURE_SERVICE_PRINCIPAL_KEY" https://some.api/
+            '''
         }
     }
 }
