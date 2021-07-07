@@ -33,7 +33,7 @@ node {
 	stage ('Build') {		
 		cleanWs()
 		
-		git branch: 'branch-1', url: 'https://github.com/dachyut/multibranch-1'
+		git branch: 'branch-4', url: 'https://github.com/dachyut/multibranch-1'
 		
 		echo "******** Environemental variables ********"
 		echo "BRANCH_NAME: ${env.BRANCH_NAME}"
@@ -92,7 +92,7 @@ node {
 			println "==============>${env.CHANGE_BRANCH} build: ${skipBuild}"
 			println "--------${env.CHANGE_BRANCH} prop file:"
 			sh "cat ${BuildPropertiesFile}"				
-			if(!skipBuild) {
+			if(!skipBuild) {  
 				println ">>>>>>Build requires product build"
 			}
 			else {
@@ -101,7 +101,11 @@ node {
 		}*/
 			
 		println "****************************************************"
-	}			
+	}	
+		
+	stage ('Test') {
+		println "Test stage completed"
+	}
 }
 
 Boolean getCIBuild(targetBranch, buildPropertiesFile,sourceBranch) {
